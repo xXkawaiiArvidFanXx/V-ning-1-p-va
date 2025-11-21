@@ -6,8 +6,7 @@ def xp_req(level):
 
 def level_up(xp, level, strenght, max_hp):
     """
-    Hantera level up. Returnerar (xp, level, strenght, smax_hp).
-    Om flera nivåer kan uppnås så upprepas valet tills xp är för lågt.
+    Hantera level up. Returnerar (xp, level, strenght, max_hp).
     """
     while xp >= xp_req(level):
         req = xp_req(level)
