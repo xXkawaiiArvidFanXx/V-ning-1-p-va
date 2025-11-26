@@ -7,12 +7,12 @@ import random as rand
 
 def Map_Creation():
     map = []
-    map_size = 5 #bestämmer storlek på kartan
+    map_size = 7 #bestämmer storlek på kartan
     for i in range (map_size): #En tom kart mall skapas
-        map.append([0,0,0,0,0])
+        map.append([0,0,0,0])
 
     for a in range (map_size):
-        for b in range (map_size): #här slumpas rummens egenskaper fram N = Neutralt 
+        for b in range (4): #här slumpas rummens egenskaper fram N = Neutralt 
             #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla kanske R = Renoveras B = BOSS
             Room_Type = ["N","G","O","T"]
 
@@ -28,4 +28,3 @@ def Print_map():
         print(row)
 
 map = Map_Creation()
-Print_map()
