@@ -28,4 +28,3 @@ def Print_map():
         print(row)
 
 map = Map_Creation()
-Print_map()
