@@ -22,6 +22,12 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
     else:
         print("FEL val, locka in och försök igen")
         startgame()
+    print("Vad för klass vill du spela som?")
+
+def maingame():
+    # här kör vi huvudspelet
+    while player.hp > 0:
+        
 
 
 
