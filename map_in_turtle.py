@@ -5,7 +5,10 @@
 import turtle as t
 from map_module import *
 
-Map = t.Turtle()
+def Turtle_maps():
+    Map = t.Turtle()
+    t.penup()
+    t.goto(-300,100)
+    # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
 
-
-t.done()
+    t.done()
