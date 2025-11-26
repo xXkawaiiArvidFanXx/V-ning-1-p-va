@@ -31,6 +31,7 @@ def level_up(xp, level, strenght, max_hp):
 
         else:
             print("Ojdå, mannen med trumpeten slog dig så att du förlorade all xp du hade. Bättre lycka nästa gång")
+            print("kanske skulle jag ha valt ett av valen istället för att vara lite dum tänker jag till för mig själv")
             xp = 0
     else:
         level_procent = 100*xp/xp_req(level)
