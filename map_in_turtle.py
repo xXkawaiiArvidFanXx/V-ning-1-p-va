@@ -1,37 +1,41 @@
-# Här ska du kunna Kalla på Turtle_Map() och se kartan i turtle
+# Här ska du kunna Kalla på Turtle_Map() lite som google maps och se kartan i turtle
 # man ska kunna se planlösningen med frågetecken i dem rum man inte varit i
 # och se vad som varit i dem rum man varit i, 
 # man ska se vart man är 
-import turtle as t
+import turtle
 from map_module import *
 Print_map()
-def Write_room():
-    t.pendown()
+def Write_room(x,y):
     for i in range (4):
+        t.pendown()
         t.forward(60)
         t.right(90)
+        t.penup()
+        t.right(45)
+        t.forward(42)
+        t.write(map[x][y])
+        t.back(42)
+        t.left(45)
     t.penup()
 
 def Turtle_maps():
-    #Map = t.Turtle()
+    Map = t.Turtle()
     t.penup()
-    t.goto(-300,200)
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
-    antal_rum=0
-    t.speed(100000)
+    t.speed(-1)
     for a in range (1,5):
-        for i in range (7):
-            Write_room()
-            antal_rum +=1
-            if antal_rum < 7:
-                t.forward(80)
-            else:
-                t.goto(-300,(200-a*75))#vart den nu ska gå tillbaka till början fast längre ned 
-                antal_rum = 0
-        
+        for i in range (6):
+            t.goto(-300+75*i,200-75*a)
+            Write_room(i,a-1)
+    Loop = True
+    while Loop == True:
+        action = turtle.textinput("är du klar eller vill du se kartan skrivas upp en gång till?", "Y = en gång till, q = Släpp mig ut")
+        if action == "Y":
+           Turtle_maps()
+        elif action == "q":
+            t.done()
+            break
+    
 
-
-    t.done()
-
-
+t = turtle
 Turtle_maps()
