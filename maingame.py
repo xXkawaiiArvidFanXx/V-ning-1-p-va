@@ -100,8 +100,39 @@ def class_chooser():
                          \__ __/""")
             time.sleep(5)
 
+
+
+
+def inventory():
+    # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
+    # kolla items och stats, och spara och stänga av
+    pass
+    
+
+
+
+
+def go_in_room():
+    # här ska man gå in i rum :P
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def maingame():
 # här kör vi huvudspelet
     player = class_chooser()
     while player.hp > 0:
         pass
+    
