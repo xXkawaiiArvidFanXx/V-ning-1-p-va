@@ -1,5 +1,5 @@
 import random as rand
-
+from slowtype import slowtype, deadahh
 class Player():
     def __init__(self, hp, strenght, name, charisma):
         self.hp = hp
@@ -37,6 +37,35 @@ def inventory(player):
         print("\n Inventory och Stats:")
         print(f"HP: {player.hp}/{player.maxhp}")
         print(f"Styrka: {player.strenght}")
+        print(f"Din charisma är: {player.charisma}")
+        
+        if player.equipped_weapon:
+            print(f"Utrustat Vapen: {player.equipped_weapon.name} Som gör {player.equipped_weapon.damage} i skada")
+        
+        print(f"\nDina Saker är: {len(player.inventory)}")
+        for i, item in enumerate(player.inventory):
+            print(f"{i+1}. {item.name} - Skada: {item.damage}, Räckvidd: {item.range}, Sällsynthet: {item.rarity}")
+        
+        # Meny Alternativ
+        slowtype("\nVad vill du göra?\n", 0.05)
+        slowtype("1. Byt Vapen\n2. Stäng Inventory\n", 0.05)
+        choice = input("Välj ett alternativ!!! ")
+        try:
+            if choice == "1":
+                weapon_choice = int(input("Ange numret på vapnet du vill utrusta: ")) - 1
+                if 0 <= weapon_choice < len(player.inventory):
+                    player.equip_weapon(player.inventory[weapon_choice])
+                    slowtype(f"Du har utrustat {player.equipped_weapon.name}.\n", 0.05)
+                else:
+                    deadahh()
+                    slowtype("Ogiltigt val. Försök igen.\n", 0.05)
+            elif choice == "2":
+                break
+        except ValueError:
+            deadahh()
+            slowtype("Lock in. Försök igen.\n", 0.05)
+            
+               
 
 
 
