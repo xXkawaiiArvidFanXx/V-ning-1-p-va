@@ -13,7 +13,7 @@ def Map_Creation():
 
     for a in range (map_size):
         for b in range (4): #här slumpas rummens egenskaper fram N = Neutralt 
-            #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla kanske R = Renoveras B = BOSS
+            #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla kanske R = Renoveras B = BOSS E= tomt rum
             Room_Type = ["N","G","O","T"]
 
             map[a][b]=(Room_Type[rand.randint(0,3)])
@@ -22,9 +22,40 @@ def Map_Creation():
     #Alltid en boss 1 i mittenrummet 
     #Boss 2 är alltid i sista rummet???
     map[2][2] = "B"
+    map[6][3] = "E"
     return map
 def Print_map():
     for row in map: #Hur man kan skiva ut kartan fint
         print(row)
 
 map = Map_Creation()
+
+def player_position(player_pos_y, player_pos_x, player_move):
+    while True:
+        if player_move == "up":
+            player_pos_y -= 1
+        elif player_move == "down":
+            player_pos_y += 1
+        elif player_move == "left":
+            player_pos_x -= 1
+        elif player_move == "right":
+            player_pos_x += 1
+        else:
+            print("ogiltig riktning")
+            continue
+        break
+    return player_pos_y, player_pos_x
+
+def get_room_type(player_pos_y, player_pos_x):
+    room = (map[player_pos_y][player_pos_x])
+
+    if room == "N":
+        return "Neutralt rum"
+    elif room == "G":
+        return "Gott rum"
+    elif room == "O":
+        return "Ont rum"
+    elif room == "T":
+        return "Fällrum"
+    elif room == "B":
+        return "Bossrum"
