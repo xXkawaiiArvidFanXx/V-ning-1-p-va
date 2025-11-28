@@ -106,17 +106,6 @@ def class_chooser():
 
 
 
-def go_in_room():
-    # här ska man gå in i rum :P
-    pass
-
-
-
-
-
-
-
-
 
 
 
