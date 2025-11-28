@@ -15,16 +15,16 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
     
 
     while True:
-        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil? ")
+        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil! ")
 
         try:
             startchoice = int(startchoice)   
 
             if startchoice == 1:
-                print("du har valt att starta ett nytt spel")
+                print("du har valt att starta ett nytt spel!")
                 #här körs main
             elif startchoice == 2:
-                print("du har valt att ladda in en sparfil")
+                print("du har valt att ladda in en sparfil!")
                 #här ska vi skapa en load save funktion
             
             else:
@@ -45,7 +45,7 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
                         \       /
                          \__ __/""")
             time.sleep(5)
-            slowtype("Det kan omöjligt vara så svårt, lock in", 0.1)
+            slowtype("Det kan omöjligt vara så svårt, locka in och get good", 0.1)
             time.sleep(1)
 
 
@@ -55,7 +55,7 @@ startgame()
 
 def class_chooser():
     ("""                Välj din skollkaraktär! 
-    (du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)""")
+    (du kan inte leva ut alla dina vildaste fantasier i spelet med dom men endå)""")
     while True:
         time.sleep(1)
         slowtype("1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. Grisch har Aura istället för Hp", 0.1)
@@ -100,8 +100,39 @@ def class_chooser():
                          \__ __/""")
             time.sleep(5)
 
+
+
+
+def inventory():
+    # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
+    # kolla items och stats, och spara och stänga av
+    pass
+    
+
+
+
+
+def go_in_room():
+    # här ska man gå in i rum :P
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def maingame():
 # här kör vi huvudspelet
     player = class_chooser()
     while player.hp > 0:
         pass
+    
