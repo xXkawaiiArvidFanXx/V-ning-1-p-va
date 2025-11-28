@@ -103,12 +103,6 @@ def class_chooser():
 
 
 
-def inventory():
-    # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
-    # kolla items och stats, och spara och stänga av
-    pass
-    
-
 
 
 

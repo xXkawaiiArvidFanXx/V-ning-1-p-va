@@ -7,13 +7,40 @@ class Player():
         self.strenght = strenght
         self.name = name
         self.charisma = charisma
+        self.inventory = [] # här skapar vi listan för spelarens inventory
+        self.equipped_weapon = None # Vapnet spelaren har utrustat
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
         return f"Du har nu {self.hp}/{self.maxhp} hp."
-        
+    
+
+    def add_item(self, item):
+        self.inventory.append(item)
+    
+    def remove_item(self, item):
+        if item in self.inventory:
+            self.inventory.remove(item)
+
+    def equip_weapon(self, weapon):
+        if weapon in self.inventory:
+            self.equipped_weapon = weapon
+
+
+
+def inventory(player):
+    # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
+    # kolla items och stats, och spara och stänga av
+    while True:
+        print("\n Inventory och Stats:")
+        print(f"HP: {player.hp}/{player.maxhp}")
+        print(f"Styrka: {player.strenght}")
+
+
+
+
 class Weapon():
     def __init__(self, damage, range, name, rarity):
         self.range = range
@@ -58,6 +85,5 @@ vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull",
 weaponnames = rand.choice(adjektivlista)+rand.choice(vapenlista)
 print(weaponnames)
 
-bihahh = Monster(2, "whore", 3, 5)
 
-print(bihahh.attacks())
+
