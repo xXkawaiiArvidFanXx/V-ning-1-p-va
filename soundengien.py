@@ -8,17 +8,19 @@ import pygame
 
 
 def sound(filväg):
-    """Högerklickar på ljudfilen och tryck på "Copy reletive path" och klistra in den inom paranteserna med citattecken."""
+    """Spelar en ljudfil. Skicka in sökvägen till filen som en sträng.
+    Exempel: sound("ljud/kiosken.wav")"""
     pygame.init()
+    
+    try:
+        ljud = pygame.mixer.Sound(filväg)
+        ljud.play()
+        
+        while pygame.mixer.get_busy():
+            pygame.time.Clock().tick(10)
+    except Exception as e:
+        print(f"Kunde inte spela ljud: {e}")
 
 
-    ljud = pygame.mixer.Sound(filväg)
-
-    ljud.play()
-
-    while pygame.mixer.get_busy():
-        pygame.time.Clock().tick(10)
-
-
-
-#Exempel sound("ljud\kiosken.wav")
+# Exempel på hur man använder funktionen:
+sound("ljud/kiosken.wav")
