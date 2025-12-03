@@ -23,6 +23,8 @@ def game_loading():
     print("Ett Spel Av")
     time.sleep(0.5)
     print("invänta dramatisk musik")
+    time.sleep(0.5)
+    print("Upplevs bäst med hörlurar (ASMR)")
     #trumpet dramatisk spelmusik
     time.sleep(1)
     print("!!    Studio FL    !!")
