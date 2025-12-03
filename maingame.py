@@ -104,6 +104,11 @@ def maingame(player):
 
 
 # Huvudprogrammet <3
+def maingame_start():
+    startgame()
+    player = class_chooser()
+    maingame(player)
 
-player = class_chooser()
-maingame(player)
+
+if __name__ == "__main__":
+    maingame_start()
