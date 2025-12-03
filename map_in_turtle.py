@@ -4,6 +4,7 @@
 # man ska se vart man är 
 import turtle
 from map_module import *
+from player import *
 Print_map()
 def Write_room(x,y):
     for i in range (4):
@@ -18,7 +19,7 @@ def Write_room(x,y):
         t.left(45)
     t.penup()
 
-def Turtle_maps(): #lägg in X Y player pos, kanske en lista för icke hittade rum
+def Turtle_maps(X,Y): #lägg in X Y player pos, kanske en lista för icke hittade rum
 
     t.penup()
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
