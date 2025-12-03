@@ -34,7 +34,7 @@ def Turtle_maps(): #lägg in X Y player pos, kanske en lista för icke hittade r
 
     Loop = True
     while Loop == True:
-        action = turtle.textinput("är du klar eller vill du se kartan skrivas upp en gång till?", "Y = en gång till, q = Släpp mig ut")
+        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", "Y = en gång till, q = Släpp mig ut")
         if action == "Y":
            Turtle_maps()
         elif action == "q":
