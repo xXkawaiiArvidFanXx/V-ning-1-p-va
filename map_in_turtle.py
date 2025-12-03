@@ -18,8 +18,8 @@ def Write_room(x,y):
         t.left(45)
     t.penup()
 
-def Turtle_maps():
-    Map = t.Turtle()
+def Turtle_maps(): #lägg in X Y player pos, kanske en lista för icke hittade rum
+
     t.penup()
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
     t.speed(-1)
@@ -27,6 +27,11 @@ def Turtle_maps():
         for i in range (6):
             t.goto(-300+75*i,200-75*a)
             Write_room(i,a-1)
+    #använd player pos som variabler x och y
+    """Player = t.Turtle()
+    Player.color("red")
+    Player.goto(-300+75*x,200-75*y)"""
+
     Loop = True
     while Loop == True:
         action = turtle.textinput("är du klar eller vill du se kartan skrivas upp en gång till?", "Y = en gång till, q = Släpp mig ut")
@@ -35,6 +40,7 @@ def Turtle_maps():
         elif action == "q":
             t.done()
             break
+    
     
 
 t = turtle
