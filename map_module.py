@@ -30,15 +30,23 @@ def Print_map():
 
 map = Map_Creation()
 
-def player_position(player_pos_y, player_pos_x, player_move):
+def illigal_move(player_pos_y, player_pos_x):
+    if player_pos_y < 0 or player_pos_y > 6 or player_pos_x < 0 or player_pos_x > 3:
+        print("Du kan inte gå utanför kartan!")
+        return True
+    else:
+        return False
+
+def player_position(player_pos_y, player_pos_x, illigal_move):
+    player_move = input("Vart vill du gå? upp, ner, vänster, höger? ").lower()
     while True:
-        if player_move == "up":
+        if player_move == "upp":
             player_pos_y -= 1
-        elif player_move == "down":
+        elif player_move == "ner":
             player_pos_y += 1
-        elif player_move == "left":
+        elif player_move == "vänster":
             player_pos_x -= 1
-        elif player_move == "right":
+        elif player_move == "höger":
             player_pos_x += 1
         else:
             print("ogiltig riktning")
