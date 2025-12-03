@@ -63,8 +63,7 @@ def inventory(player):
                 break
         except ValueError:
             deadahh()
-            slowtype("Lock in. Försök igen.\n", 0.05)
-            
+            slowtype("Lock in. Försök igen.\n", 0.05) 
                
 
 
@@ -113,3 +112,4 @@ adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoft
 vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel"]
 weaponnames = rand.choice(adjektivlista)+rand.choice(vapenlista)
 print(weaponnames)
+
