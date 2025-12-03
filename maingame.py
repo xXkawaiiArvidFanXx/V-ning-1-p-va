@@ -7,41 +7,6 @@ from slowtype import *
 import time
 # importera där de behövs annar kommer de printas i start
 
-
-
-
-def startgame(): #starten till spelet, här ska man välja om man ska skapa en ny sparfil eller om man vill importera en sparad version
-    print("Välkommen till första våningen på åva \n")
-    
-
-    while True:
-        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil? ")
-
-        try:
-            startchoice = int(startchoice)   
-
-            if startchoice == 1:
-                print("du har valt att starta ett nytt spel")
-                #här körs main
-            elif startchoice == 2:
-                print("du har valt att ladda in en sparfil")
-                #här ska vi skapa en load save funktion
-            
-            else:
-                raise ValueError
-
-        except ValueError:
-            time.sleep(1)
-            deadahh()
-            time.sleep(3)
-            slowtype("Det kan omöjligt vara så svårt, lock in", 0.1)
-            time.sleep(1)
-
-
-
-
-startgame()
-
 def class_chooser():
     ("""                Välj din skollkaraktär! 
     (du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)""")
@@ -62,6 +27,7 @@ def class_chooser():
         time.sleep(2)
         character_selector = input("eller bara skit i det och välj det du känner för")
         try:
+            character_selector = int(character_selector)
             if character_selector == 1:
                 return Player()
             elif character_selector == 2:
@@ -77,9 +43,64 @@ def class_chooser():
             time.sleep(1)
             deadahh()
             time.sleep(5)
-
-def maingame():
-# här kör vi huvudspelet
-    player = class_chooser()
+            slowtype("Ogiltigt val, försök igen.", 0.1)
+            time.sleep(1)
+def maingame(player):
+# här kör vi huvudspelet :D
     while player.hp > 0:
-        pass
+        game_choice = input("Vad vill du göra? 1. Gå till rum. 2. Öppna Inventory/Stats. 3. Spara och avsluta. ")
+        try:
+            game_choice = int(game_choice)
+
+            if game_choice == 1:
+                # här ska vi kalla på map modulen och låta spelaren röra sig
+                pass
+            elif game_choice == 2:
+                inventory(player)
+            elif game_choice == 3:
+                print("Sparar och avslutar spelet...")
+                break
+            else:
+                raise ValueError
+
+        except ValueError:
+            time.sleep(1)
+            deadahh()
+            time.sleep(3)
+            slowtype("Ogiltigt val, försök igen.", 0.1)
+            time.sleep(1)
+
+
+
+def startgame(): #starten till spelet, här ska man välja om man ska skapa en ny sparfil eller om man vill importera en sparad version
+    print("Välkommen till första våningen på åva \n")
+    
+    while True:
+        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil? ")
+
+        try:
+            startchoice = int(startchoice)   
+
+            if startchoice == 1:
+                print("du har valt att starta ett nytt spel")
+                return "new_game"
+            elif startchoice == 2:
+                print("du har valt att ladda in en sparfil")
+                #här ska vi skapa en load save funktion
+                return "load_game"
+            
+            else:
+                raise ValueError
+        except ValueError:
+            time.sleep(1)
+            deadahh()
+            time.sleep(3)
+            slowtype("Det kan omöjligt vara så svårt, lock in", 0.1)
+            time.sleep(1)
+
+
+# Huvudprogrammet <3
+
+game_mode = startgame()
+player = class_chooser()
+maingame(player)

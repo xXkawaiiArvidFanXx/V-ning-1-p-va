@@ -65,8 +65,7 @@ def inventory(player):
                 break
         except ValueError:
             deadahh()
-            slowtype("Lock in. Försök igen.\n", 0.05)
-            
+            slowtype("Lock in. Försök igen.\n", 0.05) 
                
 
 
