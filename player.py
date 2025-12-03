@@ -113,5 +113,13 @@ class Monster():
 adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad " ]
 vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel"]
 weaponnames = rand.choice(adjektivlista)+rand.choice(vapenlista)
-print(weaponnames)
 
+def health_potion(hp, maxhp, min_heal, max_heal):
+    heal_amount = rand.randint(min_heal, max_heal)
+    hp += heal_amount
+    if hp > maxhp:
+        hp = maxhp
+        print(f"Du återhämtar dig helt till {maxhp} hp!")
+    elif heal_amount == min_heal:
+        print(f"Du spilde väldigt mycket av din hälsodryck och återhämtar bara {min_heal} hp, du har nu {hp} hp")
+    return hp
