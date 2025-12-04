@@ -2,10 +2,11 @@
 # man ska kunna se planlösningen med frågetecken i dem rum man inte varit i
 # och se vad som varit i dem rum man varit i, 
 # man ska se vart man är 
+
 import turtle
 from map_module import *
 from player import *
-Print_map()
+from slowtype import *
 def Write_room(x,y):
     for i in range (4):
         t.pendown()
@@ -44,7 +45,13 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
         elif action == "q":
             t.done()
             break
+        else:
+            deadahh()
+            time.sleep(3)
+            slowtype("Lägg ägg med Felskrivandet",0.1)
+            
     
 t = turtle
 Spelaren = Player(2,2,2,2) # Denna ska bort
+Print_map()
 Turtle_maps(Spelaren.pos_x, Spelaren.pos_y)
