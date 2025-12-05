@@ -11,6 +11,9 @@ class Player():
         self.equipped_weapon = None # Vapnet spelaren har utrustat
         self.pos_y = 6
         self.pos_x = 3
+        boss_room_cleared = 0
+        boss_room_cleared_posistion_y = 0
+        boss_room_cleared_posistion_x = 0
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
@@ -50,7 +53,7 @@ def inventory(player):
         
         # Meny Alternativ
         slowtype("\nVad vill du göra?\n", 0.05)
-        slowtype("1. Byt Vapen\n2. Stäng Inventory\n", 0.05)
+        slowtype("1. Byt Vapen\n2. Stäng Inventory\n3. Öppna Karta (haijper nice)\n", 0.05)
         choice = input("Välj ett alternativ!!! ")
         try:
             if choice == "1":
@@ -63,6 +66,8 @@ def inventory(player):
                     slowtype("Ogiltigt val. Försök igen.\n", 0.05)
             elif choice == "2":
                 break
+            elif choice == "3":
+                slowtype("Kartan är inte implementerad än.\n", 0.05)
         except ValueError:
             deadahh()
             slowtype("Lock in. Försök igen.\n", 0.05) 
@@ -92,12 +97,12 @@ class Weapon():
 
 
 class Monster():
-    def __init__(self, monsterhealth, monsterdamage, monstername, monsterxp):
+    def __init__(self, monsterhealth, monsterdamage, monstername):
         self.monsterhealth = monsterhealth
         self.monstermaxhealth = monsterhealth
         self.monsterdamage = monsterdamage
         self.monstername = monstername
-        self.monsterxp = monsterxp
+        self.monsterxp = monsterdamage * monsterhealth
 
     def __str__(self):
         return f"Fienden har {self.monsterhealth} och gör {self.monsterdamage} i skada"
@@ -108,11 +113,19 @@ class Monster():
     def attacks(self):
         return f"Fienden gör {self.monsterdamage} i skada"
 
-
-
 adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad " ]
 vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel"]
 weaponnames = rand.choice(adjektivlista)+rand.choice(vapenlista)
+
+def weapon_create(wepontype):
+    if wepontype == "":
+        wepontype = rand.choice(vapenlista)
+    weponadjectiv = rand.choice(adjektivlista)
+
+    weaponnames = weponadjectiv + " " + wepontype
+
+
+    wepond = Weapon(rand.randint(5,15), rand.randint(1,5), weaponnames, rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"]))
 
 def health_potion(hp, maxhp, min_heal, max_heal):
     heal_amount = rand.randint(min_heal, max_heal)
