@@ -76,9 +76,3 @@ def get_room_type(player_pos_y, player_pos_x):
     elif room == "B":
         return "Bossrum"
     
-
-player = Player(100, 10, "Hero", 3)
-
-player.pos_y, player.pos_x = player_position(player.pos_y, player.pos_x)
-
-print(player.pos_y, player.pos_x)
