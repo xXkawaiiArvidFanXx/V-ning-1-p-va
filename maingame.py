@@ -108,6 +108,7 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
 
 # Huvudprogrammet <3
 def maingame_start():
+    Map_Creation()
     startgame()
     player = class_chooser()
     maingame(player)
