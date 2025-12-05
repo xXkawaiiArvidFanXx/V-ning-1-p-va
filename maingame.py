@@ -2,13 +2,12 @@
 from player import *
 from loading import *
 from map_module import * 
-from soundengien import *
+# from soundengien import *
 from slowtype import *
 import time
-# importera där de behövs annar kommer de printas i start
 
 def class_chooser():
-    ("""                Välj din skollkaraktär! 
+    print("""                Välj din skollkaraktär! 
     (du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)""")
     while True:
         time.sleep(1)
@@ -84,7 +83,7 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
     print("Välkommen till första våningen på åva \n")
     try:    
         # while True:
-        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil? ")
+        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil!!! ")
 
         startchoice = int(startchoice)   
 
