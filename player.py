@@ -92,12 +92,12 @@ class Weapon():
 
 
 class Monster():
-    def __init__(self, monsterhealth, monsterdamage, monstername, monsterxp):
+    def __init__(self, monsterhealth, monsterdamage, monstername):
         self.monsterhealth = monsterhealth
         self.monstermaxhealth = monsterhealth
         self.monsterdamage = monsterdamage
         self.monstername = monstername
-        self.monsterxp = monsterxp
+        self.monsterxp = monsterdamage * monsterhealth
 
     def __str__(self):
         return f"Fienden har {self.monsterhealth} och gör {self.monsterdamage} i skada"
@@ -108,11 +108,19 @@ class Monster():
     def attacks(self):
         return f"Fienden gör {self.monsterdamage} i skada"
 
-
-
 adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad " ]
 vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel"]
 weaponnames = rand.choice(adjektivlista)+rand.choice(vapenlista)
+
+def weapon_create(wepontype):
+    if wepontype == "":
+        wepontype = rand.choice(vapenlista)
+    weponadjectiv = rand.choice(adjektivlista)
+
+    weaponnames = weponadjectiv + " " + wepontype
+
+
+    wepond = Weapon(rand.randint(5,15), rand.randint(1,5), weaponnames, rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"]))
 
 def health_potion(hp, maxhp, min_heal, max_heal):
     heal_amount = rand.randint(min_heal, max_heal)
