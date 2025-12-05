@@ -4,7 +4,7 @@
 #Börja med map creation för att skapa kartan
 #med funktionen Print_map() så kan du skriva ut kartan i terminalen
 import random as rand
-
+from player import Player
 def Map_Creation():
     map = []
     map_size = 7 #bestämmer storlek på kartan
@@ -30,6 +30,8 @@ def Print_map():
 
 map = Map_Creation()
 
+
+
 def illigal_move(player_pos_y, player_pos_x):
     if player_pos_y < 0 or player_pos_y > 6 or player_pos_x < 0 or player_pos_x > 3:
         print("Du kan inte gå utanför kartan!")
@@ -37,22 +39,28 @@ def illigal_move(player_pos_y, player_pos_x):
     else:
         return False
 
-def player_position(player_pos_y, player_pos_x, illigal_move):
-    player_move = input("Vart vill du gå? upp, ner, vänster, höger? ").lower()
+
+def player_position(pos_y, pos_x):
     while True:
+        player_move = input("Vart vill du gå? upp, ner, vänster, höger? ").strip().lower()
+
         if player_move == "upp":
-            player_pos_y -= 1
+            new_y, new_x = pos_y - 1, pos_x
         elif player_move == "ner":
-            player_pos_y += 1
+            new_y, new_x = pos_y + 1, pos_x
         elif player_move == "vänster":
-            player_pos_x -= 1
+            new_y, new_x = pos_y, pos_x - 1
         elif player_move == "höger":
-            player_pos_x += 1
+            new_y, new_x = pos_y, pos_x + 1
         else:
-            print("ogiltig riktning")
+            print("Ogiltig riktning — skriv 'upp', 'ner', 'vänster' eller 'höger'.")
             continue
-        break
-    return player_pos_y, player_pos_x
+
+        if illigal_move(new_y, new_x):
+            print("Du kan inte gå utanför kartan. Försök igen.")
+            continue
+
+        return new_y, new_x
 
 def get_room_type(player_pos_y, player_pos_x):
     room = (map[player_pos_y][player_pos_x])
@@ -67,3 +75,4 @@ def get_room_type(player_pos_y, player_pos_x):
         return "Fällrum"
     elif room == "B":
         return "Bossrum"
+    
