@@ -75,33 +75,31 @@ def maingame(player):
 
 
 
-# def startgame(): #starten till spelet, här ska man välja om man ska skapa en ny sparfil eller om man vill importera en sparad version
-#     print("Välkommen till första våningen på åva \n")
-    
-#     # while True:
-#     startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil? ")
+def startgame(): #starten till spelet, här ska man välja om man ska skapa en ny sparfil eller om man vill importera en sparad version
+    print("Välkommen till första våningen på åva \n")
+    try:    
+        # while True:
+        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil? ")
 
-#     startchoice = int(startchoice)   
+        startchoice = int(startchoice)   
 
-#     if startchoice == 1:
-#         print("du har valt att starta ett nytt spel")
-#         return "new_game"
-            
+        if startchoice == 1:
+            print("du har valt att starta ett nytt spel")
+            return "new_game"
+                
 
-#     elif startchoice == 2:
-#         print("du har valt att ladda in en sparfil")
-#         #här ska vi skapa en load save funktion
-#         return "load_game"
-            
-    # else:
-    #         raise ValueError
-    # except ValueError:
-    #     time.sleep(1)
-    #     deadahh()
-    #     time.sleep(3)
-    #     slowtype("Det kan omöjligt vara så svårt, lock in", 0.1)
-    #     time.sleep(1)
-
+        elif startchoice == 2:
+            print("du har valt att ladda in en sparfil")
+            #här ska vi skapa en load save funktion
+            return "load_game"
+                
+    except ValueError:
+        time.sleep(1)
+        deadahh()
+        time.sleep(3)
+        slowtype("Ogiltigt val, försök igen.", 0.1)
+        time.sleep(1)
+        startgame()
 
 # Huvudprogrammet <3
 def maingame_start():
