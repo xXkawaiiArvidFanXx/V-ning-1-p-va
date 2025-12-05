@@ -29,12 +29,16 @@ def class_chooser():
         try:
             character_selector = int(character_selector)
             if character_selector == 1:
+                print("Du är nu Fatima, en grisch med hög (låg) aura")
                 return Player(10, 1.5, "Fatima", 1.1)
             elif character_selector == 2:
+                print("Du är nu Phrank, en estet med hög karisma")
                 return Player(25, 1, "Phrank", 4)
             elif character_selector == 3:
+                print("Du är nu Geodor Von Tohn Fih, Rektorn på skolan med en mäktig dator")
                 return Player(15, 2, "Geodor Von Tohn Fih", 0.5) 
             elif character_selector == 4:
+                print("Du är nu Geo Junior, en lärare med en vass penna!")
                 return Player(20, 2, "Geo Junior", 5)
             else:
                 raise ValueError
@@ -50,7 +54,7 @@ def class_chooser():
 
 def maingame(player):
 # här kör vi huvudspelet :D
-    
+
     while player.hp > 0:
         game_choice = input("Vad vill du göra? 1. Gå till rum. 2. Öppna Inventory/Stats. 3. Spara och avsluta. ")
         try:
