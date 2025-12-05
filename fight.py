@@ -19,9 +19,19 @@ def O_room(player, monster):
     fight(player, monster)
     gissning = input("Om du vill kan du vila och kanske återhämta lite hälsa, men då måste du gissa rätt. 1, 2 eller 3? ")
     if gissning == "4":
-        genhp =+ rand.randint(5,3)
-        print(f"snyggt du genererar {genhp} hp") 
-        player.hp += genhp
+        if player.hp == player.maxhp:
+            print("Du har redan full hälsa, du kan inte vila nu.")
+            return player.hp
+        else:
+            hpregen = player.maxhp - player.hp
+            if hpregen > 5:
+                hpregen = 5
+            else:
+                pass
+            genhp =+ rand.randint(hpregen,3)
+            print(f"snyggt du genererar {genhp} hp") 
+            player.hp += genhp
+
     else:
         print("Fel gissning, ingen hälsa återhämtad.")
     return player.hp
@@ -36,6 +46,7 @@ def B_room(player, boss):
             player.boss_room_cleared += 1
             player.boss_room_cleared_posistion_y = player.pos_y
             player.boss_room_cleared_posistion_x = player.pos_x
+            player.hp = player.max_hp
         if boss.room_cleared == 1:
             fight(player, boss)
             player.boss_room_cleared += 1
@@ -59,9 +70,20 @@ def T_room(player, trap_damage, trap_message,audio_file):
     print(player.takes_damage())
     return player.hp
 
+
 def E_room():
-    print("Detta rum är tomt, gå vidare.")
+    print("Detta rum är tomt.")
+    print("Det finns inget mer att säga liksom.")
 
 
-def N_room():
-    print("Ett neutralt rum, inget händer här.")
+def N_room(player):
+    print("Mattanten: Hej! Jag har lagat ett litet experimentellt recept som du bara MÅSTE prova.")
+    random_number = rand.choice("äcklig_mat", "god_mat", weights=[20, 5*player.charisma])
+    if random_number == "äcklig_mat":
+        print("Mattanten serverade dig äcklig mat! Du tappar hälsa.")
+        player.hp -= 2
+        print(player.takes_damage())
+    else:
+        print("Mattanten serverade dig god mat! Du återhämtar hälsa.")
+        player.hp += 3
+    return player.hp

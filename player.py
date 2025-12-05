@@ -11,9 +11,9 @@ class Player():
         self.equipped_weapon = None # Vapnet spelaren har utrustat
         self.pos_y = 6
         self.pos_x = 3
-        boss_room_cleared = 0
-        boss_room_cleared_posistion_y = 0
-        boss_room_cleared_posistion_x = 0
+        self.boss_room_cleared = 0
+        self.boss_room_cleared_posistion_x = 0
+        self.boss_room_cleared_posistion_y = 0
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
