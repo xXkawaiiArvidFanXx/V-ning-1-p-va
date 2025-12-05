@@ -7,17 +7,18 @@ import turtle
 from map_module import *
 from player import *
 from slowtype import *
+from maingame import *
 def Write_room(x,y):
     for i in range (4):
         t.pendown()
         t.forward(60)
         t.right(90)
         t.penup()
-        t.right(45)
-        t.forward(42)
-        t.write(map[x][y])
-        t.back(42)
-        t.left(45)
+    t.right(50)
+    t.forward(45)
+    t.write(map[x][y])
+    t.back(42)
+    t.left(50)
     t.penup()
 
 def Turtle_maps(x,y): #kanske en lista för icke hittade rum
@@ -32,6 +33,7 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     #använd player pos som variabler x och y
     Player = t.Turtle()
     Player.color("red")
+    Player.shape("turtle")
     Player.penup()
     Player.goto(-300+75*(x+3)+37,200-75*(y-2)-37)
     Player.pendown()
@@ -41,7 +43,7 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
         action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut
         Ta bort rutan genom att trycka på X när du kollat klart på kartan""")
         if action == "Y":
-           Turtle_maps(Spelaren.pos_x, Spelaren.pos_y)
+           Turtle_maps(player.pos_x, player.pos_y)
         elif action == "q":
             t.done()
             break
@@ -52,6 +54,6 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
             
     
 t = turtle
-Spelaren = Player(2,2,2,2) # Denna ska bort
+#Spelaren = Player(2,2,2,2) # Denna ska bort och Spelaren.pos_x, Spelaren.pos_y ersätts med namn på spelaren
 Print_map()
-Turtle_maps(Spelaren.pos_x, Spelaren.pos_y)
+Turtle_maps(player.pos_x, player.pos_y)
