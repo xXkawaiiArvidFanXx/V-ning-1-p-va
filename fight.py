@@ -1,5 +1,6 @@
 import random as rand
-
+from player import *
+from soundengien import *
 def fight(player, enemy):
     while player.hp > 0 and enemy.monsterhealth > 0:
         enemy.monsterhealth -= player.strenght
@@ -58,16 +59,45 @@ def G_room(player):
     player.hp =+ heal_amount
     return player.hp
 
-def T_room(player, trap_damage, trap_message,audio_file):
-    """Om det inte finns någon ljudfil, sätt audio_file till 0"""
+
+
+
+def traptypes(num):
+    if num == 1:
+        trap_message = """Du går fram med raska men bestämda steg och kommer fram till att du ska köpa en chokladboll. Du lägger fram 25 kr som du gjort orimligt många gånger innan." 
+        Men personalen i kiosken kollar på dig som om du är en idiot och pekar på priserna.
+        Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillbaka dina 25 kronor och går med ett sänkt huvud bort från kiosken ."""
+        audio_file = "ljud\kiosken.wav "
+    elif num == 2:
+        trap_message = "Du går ner för en liten trappnednång på tre steg. Plötsligt tappar du fotfästet och faller handlöst ner för trappan och landar hårt på marken."
+        audio_file = "fall.wav"
+    elif num == 3:
+        trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt och pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
+        audio_file = "pil.wav"
+    elif num == 4:
+        # hiss incident
+        pass
+    else:
+        trap_message = "När du öppnar dörren till det rum du går fram till ser du bara mörker, men Mamma didnt raise no chicken. När du går in gör du illa dig på något vasst i mörkret."
+        audio_file = 0
+    
+    return trap_message, audio_file
+
+
+
+def T_room(player, trap_damage, traptype):
+
+    trap_message, audio_file = traptypes(traptype)
     print(trap_message)
     if audio_file == 0:
         pass
     else:
-        # Spela upp ljudfilen här
-        pass
+        sound(audio_file)
     player.hp -= trap_damage
     print(player.takes_damage())
+    ajj = rand.randint(1,10)
+    if ajj == 1:
+        sound("ljud\Aj.wav")
     return player.hp
 
 
@@ -87,3 +117,18 @@ def N_room(player):
         print("Mattanten serverade dig god mat! Du återhämtar hälsa.")
         player.hp += 3
     return player.hp
+
+
+def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
+    if room == "Ont rum":
+        return O_room(player, Monster(20, 3, "Zombienbobi"))
+    elif room == "Bossrum":
+        return B_room(player, boss)
+    elif room == "Gott rum":
+        return G_room(player)
+    elif room == "Fällrum":
+        return T_room(player, rand.randint(2,4), rand.randint(1,3))
+    elif room == "E":
+        return E_room()
+    elif room == "Tomt rum":
+        return N_room(player)

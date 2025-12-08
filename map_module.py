@@ -75,4 +75,6 @@ def get_room_type(player_pos_y, player_pos_x):
         return "Fällrum"
     elif room == "B":
         return "Bossrum"
+    elif room == "E":
+        return "Tomt rum"
     
