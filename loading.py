@@ -30,5 +30,3 @@ def game_loading():
     print("!!    Studio FL    !!")
     return
     # Här skulle du lägga in kod för att spela upp ett ljud
-
-game_loading()
