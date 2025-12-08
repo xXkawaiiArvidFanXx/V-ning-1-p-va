@@ -3,7 +3,7 @@ from player import *
 from loading import *
 from map_module import * 
 from map_in_turtle import *
-# from soundengien import *
+from soundengien import *
 from slowtype import *
 import time
 

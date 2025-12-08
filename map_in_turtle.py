@@ -7,7 +7,7 @@ import turtle
 from map_module import *
 from player import *
 from slowtype import *
-from maingame import player
+# from maingame import player
 t = turtle
 
 def Write_room(x,y):
