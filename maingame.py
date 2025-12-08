@@ -2,7 +2,7 @@
 from player import *
 from loading import *
 from map_module import * 
-from map_in_turtle import *
+# from map_in_turtle import Turtle_maps, Write_room
 from soundengien import *
 from slowtype import *
 import time

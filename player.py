@@ -53,7 +53,7 @@ def inventory(player):
         
         # Meny Alternativ
         slowtype("\nVad vill du göra?\n", 0.05)
-        slowtype("1. Byt Vapen\n2. Stäng Inventory\n3. Öppna Karta (haijper nice)\n", 0.05)
+        slowtype("1. Byt Vapen\n2. Öppna Karta (haijper nice)\n3. Stäng Inventoryn\n", 0.05)
         choice = input("Välj ett alternativ!!! ")
         try:
             if choice == "1":
@@ -64,9 +64,9 @@ def inventory(player):
                 else:
                     deadahh()
                     slowtype("Ogiltigt val. Försök igen.\n", 0.05)
-            elif choice == "2":
-                break
             elif choice == "3":
+                break
+            elif choice == "2":
                 slowtype("Kartan är inte implementerad än.\n", 0.05)
         except ValueError:
             deadahh()
