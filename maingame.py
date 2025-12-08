@@ -1,9 +1,5 @@
 # här ska vi skapa vår huvuddel av spelet och imporera klasser etc eftersom vi jobbar
 from player import *
-from loading import *
-from map_module import * 
-# from map_in_turtle import Turtle_maps, Write_room
-from soundengien import *
 from slowtype import *
 import time
 
@@ -105,14 +101,3 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
         slowtype("Ogiltigt val, försök igen.", 0.1)
         time.sleep(1)
         startgame()
-
-# Huvudprogrammet <3
-def maingame_start():
-    Map_Creation()
-    startgame()
-    player = class_chooser()
-    maingame(player)
-
-
-if __name__ == "__main__":
-    maingame_start()
