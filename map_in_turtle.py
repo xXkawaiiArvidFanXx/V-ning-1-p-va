@@ -7,7 +7,6 @@ import turtle
 from map_module import *
 from player import *
 from slowtype import *
-from maingame import player
 t = turtle
 
 def Write_room(x,y):
@@ -57,3 +56,5 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
             deadahh()
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
+player = Player(20, 5, "Test Player", 10)
+Turtle_maps(player.pos_x, player.pos_y)

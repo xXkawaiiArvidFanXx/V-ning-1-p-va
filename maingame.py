@@ -1,9 +1,8 @@
 # här ska vi skapa vår huvuddel av spelet och imporera klasser etc eftersom vi jobbar
 from player import *
-from loading import *
-from map_module import * 
-# from soundengien import *
 from slowtype import *
+from map_module import *
+from fight import *
 import time
 
 def class_chooser():
@@ -60,8 +59,10 @@ def maingame(player):
             game_choice = int(game_choice)
 
             if game_choice == 1:
-                # här ska vi kalla på map modulen och låta spelaren röra sig
-                pass
+                player.pos_y, player.pos_x = player_position(player.pos_y, player.pos_x)
+                room=get_room_type(player.pos_y, player.pos_x)
+                room_chooser(room, player)
+                
             elif game_choice == 2:
                 inventory(player)
             elif game_choice == 3:
@@ -104,14 +105,3 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
         slowtype("Ogiltigt val, försök igen.", 0.1)
         time.sleep(1)
         startgame()
-
-# Huvudprogrammet <3
-def maingame_start():
-    Map_Creation()
-    startgame()
-    player = class_chooser()
-    maingame(player)
-
-
-if __name__ == "__main__":
-    maingame_start()

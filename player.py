@@ -11,9 +11,9 @@ class Player():
         self.equipped_weapon = None # Vapnet spelaren har utrustat
         self.pos_y = 6
         self.pos_x = 3
-        boss_room_cleared = 0
-        boss_room_cleared_posistion_y = 0
-        boss_room_cleared_posistion_x = 0
+        self.boss_room_cleared = 0
+        self.boss_room_cleared_posistion_x = 0
+        self.boss_room_cleared_posistion_y = 0
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
@@ -53,7 +53,7 @@ def inventory(player):
         
         # Meny Alternativ
         slowtype("\nVad vill du göra?\n", 0.05)
-        slowtype("1. Byt Vapen\n2. Stäng Inventory\n3. Öppna Karta (haijper nice)\n", 0.05)
+        slowtype("1. Byt Vapen\n2. Öppna Karta (haijper nice)\n3. Stäng Inventoryn\n", 0.05)
         choice = input("Välj ett alternativ!!! ")
         try:
             if choice == "1":
@@ -64,9 +64,9 @@ def inventory(player):
                 else:
                     deadahh()
                     slowtype("Ogiltigt val. Försök igen.\n", 0.05)
-            elif choice == "2":
-                break
             elif choice == "3":
+                break
+            elif choice == "2":
                 slowtype("Kartan är inte implementerad än.\n", 0.05)
         except ValueError:
             deadahh()
