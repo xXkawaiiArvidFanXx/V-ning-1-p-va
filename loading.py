@@ -1,5 +1,6 @@
 import time
 def game_loading():
+    """En Estetisk funktion"""
     print("Laddar pojken...(viktig plot device)")
     time.sleep(1)
     print("Laddar trummor...")

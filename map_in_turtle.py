@@ -25,6 +25,7 @@ def Write_room(x,y):
     
 
 def Turtle_maps(x,y): #kanske en lista för icke hittade rum
+    """player.pos_x, player.pos_y"""
     wn = turtle.Screen()
     wn.tracer(0) 
     t.penup()
