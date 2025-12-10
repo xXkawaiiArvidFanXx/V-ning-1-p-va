@@ -1,5 +1,6 @@
 import time
 def game_loading():
+    """En Estetisk funktion"""
     print("Laddar pojken...(viktig plot device)")
     time.sleep(1)
     print("Laddar trummor...")
@@ -30,5 +31,3 @@ def game_loading():
     print("!!    Studio FL    !!")
     return
     # Här skulle du lägga in kod för att spela upp ett ljud
-
-game_loading()
