@@ -36,12 +36,12 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
             wn.update()
             time.sleep(0.5)
     #använd player pos som variabler x och y
-    Player = t.Turtle()
-    Player.color("red")
-    Player.shape("turtle")
-    Player.penup()
-    Player.goto(-300+75*(x+3)+37,200-75*(y-2)-37)
-    Player.pendown()
+    pos = t.Turtle()
+    pos.color("red")
+    pos.shape("turtle")
+    pos.penup()
+    pos.goto(-300+75*(x+3)+37,200-75*(y-2)-37)
+    pos.pendown()
     wn.update() 
     Loop = True
     while Loop == True:
@@ -56,5 +56,5 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
             deadahh()
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
-player = Player(20, 5, "Test Player", 10)
-Turtle_maps(player.pos_x, player.pos_y)
+#player = Player(20, 5, "Test Player", 10)
+#Turtle_maps(player.pos_x, player.pos_y)
