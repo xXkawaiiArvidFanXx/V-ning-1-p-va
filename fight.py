@@ -114,7 +114,7 @@ def traptypes(num):
 
     elif num == 3:
         trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt och pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
-        audio_file = rand.choice(["ljud\pzidriv_2", "ljud\Bra (consolidated).wav", "ljud/pozidriv_1.wav"])
+        audio_file = rand.choice(["ljud\pzidriv_2", "ljud/pozidriv_1.wav"])
     elif num == 4:
         trap_message = "När du öppnar dörren till det rum du går fram till ser du bara mörker, men Mamma didnt raise no chicken. När du går in gör du illa dig på något vasst i mörkret."
         audio_file = 0
