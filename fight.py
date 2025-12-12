@@ -4,7 +4,7 @@ from soundengien import *
 from levelup_sys import *
 
 def fight(player, enemy):
-    """Simple turn-based fight: player can attack (1) or try to flee (2)."""
+
     while player.hp > 0 and enemy.monsterhealth > 0:
         choice = input("Vill du slåss (1) eller försöka fly (2)? ").strip()
 
@@ -49,6 +49,8 @@ def fight(player, enemy):
 
 
 def O_room(player, monster):
+    print("Du har gått in i ett ont rum och en fiende dyker upp!")
+    print(monster)
     fight(player, monster)
     correct_choice = str(rand.randint(1, 3))
     gissning = input("Om du vill kan du vila och kanske återhämta lite hälsa, men då måste du gissa rätt. 1, 2 eller 3? ").strip()
@@ -108,10 +110,11 @@ def traptypes(num):
         audio_file = "ljud/kiosken.wav"
     elif num == 2:
         trap_message = "Du går ner för en liten trappnednång på tre steg. Plötsligt tappar du fotfästet och faller handlöst ner för trappan och landar hårt på marken."
-        audio_file = "fall.wav"
+        audio_file = "ljud\jag_faller.wav"
+
     elif num == 3:
         trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt och pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
-        audio_file = "pil.wav"
+        audio_file = rand.choice(["ljud\pzidriv_2", "ljud\Bra (consolidated).wav", "ljud/pozidriv_1.wav"])
     elif num == 4:
         trap_message = "När du öppnar dörren till det rum du går fram till ser du bara mörker, men Mamma didnt raise no chicken. När du går in gör du illa dig på något vasst i mörkret."
         audio_file = 0
