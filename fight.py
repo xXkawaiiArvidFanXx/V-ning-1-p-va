@@ -162,7 +162,7 @@ def N_room(player):
         player.hp += 3
     return player.hp
 
-types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum"]
+types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
 
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
