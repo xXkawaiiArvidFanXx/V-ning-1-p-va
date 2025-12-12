@@ -28,6 +28,8 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     wn = turtle.Screen()
     wn.tracer(0) 
     t.penup()
+    t.speed(-1)
+    t.hideturtle()
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
     for a in range (1,5):
         for i in range (7):
