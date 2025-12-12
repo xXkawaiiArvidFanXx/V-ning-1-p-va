@@ -109,17 +109,17 @@ def traptypes(num):
         Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillbaka dina 25 kronor och går med ett sänkt huvud bort från kiosken ."""
         audio_file = "ljud/kiosken.wav"
     elif num == 2:
-        trap_message = "Du går ner för en liten trappnednång på tre steg. Plötsligt tappar du fotfästet och faller handlöst ner för trappan och landar hårt på marken."
+        trap_message = "Du går ner för en liten trappnednång på tre steg. Plötsligt halkar du och tappar fotfästet och faller handlöst ner för trappan och landar hårt på marken."
         audio_file = "ljud\jag_faller.wav"
 
     elif num == 3:
-        trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt och pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
+        trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen med hjälp av din kunskap och ditt snille. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt och pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
         audio_file = rand.choice(["ljud\pzidriv_2", "ljud/pozidriv_1.wav"])
     elif num == 4:
         trap_message = "När du öppnar dörren till det rum du går fram till ser du bara mörker, men Mamma didnt raise no chicken. När du går in gör du illa dig på något vasst i mörkret."
         audio_file = 0
     else:
-        trap_message = "En mystisk fälla…"
+        trap_message = "Du trodde att du hittade en genväg till matsalen, men du hade otur och hamnade i en trång korridor med kladdiga väggar. Du fastnar i väggen i flera timmar och du blir hungrig. I desperation börjar du att äta på väggen som är giftig och du tar skada och blir mildt arg på dig själv för att du åt av väggen istället för mackan i din hand"
         audio_file = 0
 
     return trap_message, audio_file
@@ -162,7 +162,7 @@ def N_room(player):
         player.hp += 3
     return player.hp
 
-types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum"]
+types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
 
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
