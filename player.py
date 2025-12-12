@@ -14,6 +14,8 @@ class Player():
         self.boss_room_cleared = 0
         self.boss_room_cleared_posistion_x = 0
         self.boss_room_cleared_posistion_y = 0
+        self.xp = 0
+        self.level = 1
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
