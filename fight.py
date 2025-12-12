@@ -3,18 +3,32 @@ from player import *
 from soundengien import *
 
 def fight(player, enemy):
+    oggi = 1
     while player.hp > 0 and enemy.monsterhealth > 0:
-        enemy.monsterhealth -= player.strenght
-        print(enemy.takes_damage())
+        while oggi == "1":
+            oggi = input("Vill du slåss (1) eller försöka fly (2)? ")
+            enemy.monsterhealth -= player.strenght
+            print(enemy.takes_damage())
 
-        player.hp -= enemy.monsterdamage
-        print(player.takes_damage())
+            player.hp -= enemy.monsterdamage
+            print(player.takes_damage())
 
-    if enemy.monsterhealth <= 0:
-        print(f"Du har besegrat {enemy.monstername}!")
-    else:
-        print("Du har blivit besegrad...")
-        print("försök att inte suga så mycket nästa gång!")
+        if enemy.monsterhealth <= 0:
+            print(f"Du har besegrat {enemy.monstername}!")
+            break
+        else:
+            print("Du har blivit besegrad...")
+            print("försök att inte suga så mycket nästa gång!")
+            break
+    if oggi != "1":
+        flee_chance = rand.randint(1, 10)
+        if flee_chance > 3:
+            print("Du lyckades fly från striden!")
+        elif player.name == "Fatima":
+            print("Du lyckas att fly men du tappa byxorna!")
+            player.hp -= 3
+            print(player.takes_damage())
+
 
 
 def O_room(player, monster):
@@ -109,8 +123,11 @@ def E_room():
 
 def N_room(player):
     print("Mattanten: Hej! Jag har lagat ett litet experimentellt recept som du bara MÅSTE prova.")
-    random_number = rand.choice("äcklig_mat", "god_mat", weights=[20, 5*player.charisma])
-    if random_number == "äcklig_mat":
+    colunary_experience = ["äcklig_mat", "god_mat"]
+    weights = [1, max(1, int(player.charisma))]
+    random_tastey = rand.choices(colunary_experience, weights=weights, k=1)[0]
+
+    if random_tastey == "äcklig_mat":
         print("Mattanten serverade dig äcklig mat! Du tappar hälsa.")
         player.hp -= 2
         print(player.takes_damage())
