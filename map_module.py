@@ -44,14 +44,14 @@ def player_position(pos_y, pos_x):
     while True:
         player_move = input("Vart vill du gå? upp, ner, vänster, höger? ").strip().lower()
 
-        if player_move == "upp":
-            new_y, new_x = pos_y - 1, pos_x
-        elif player_move == "ner":
-            new_y, new_x = pos_y + 1, pos_x
-        elif player_move == "vänster":
-            new_y, new_x = pos_y, pos_x - 1
-        elif player_move == "höger":
+        if player_move == "ner":
             new_y, new_x = pos_y, pos_x + 1
+        elif player_move == "upp":
+            new_y, new_x = pos_y, pos_x - 1
+        elif player_move == "vänster":
+            new_y, new_x = pos_y -1, pos_x 
+        elif player_move == "höger":
+            new_y, new_x = pos_y +1, pos_x
         else:
             print("Ogiltig riktning — skriv 'upp', 'ner', 'vänster' eller 'höger'.")
             continue

@@ -3,6 +3,7 @@ from player import *
 from slowtype import *
 from map_module import *
 from fight import *
+from map_module import *
 import time
 
 def class_chooser():
@@ -63,7 +64,7 @@ def maingame(player):
                 room=get_room_type(player.pos_y, player.pos_x)
                 print(room)
                 room_chooser(room, player)
-
+                
 
                 
             elif game_choice == 2:
