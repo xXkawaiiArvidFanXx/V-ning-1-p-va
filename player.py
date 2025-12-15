@@ -1,5 +1,6 @@
 import random as rand
-from slowtype import slowtype, deadahh
+from slowtype import *
+from map_in_turtle import *
 class Player():
     def __init__(self, hp, strenght, name, charisma):
         self.hp = hp
@@ -70,6 +71,7 @@ def inventory(player):
                 break
             elif choice == "2":
                 slowtype("Kartan är inte implementerad än.\n", 0.05)
+                Turtle_maps(player.pos_x, player.pos_y)
         except ValueError:
             deadahh()
             slowtype("Lock in. Försök igen.\n", 0.05) 

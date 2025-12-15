@@ -4,7 +4,7 @@
 #Börja med map creation för att skapa kartan
 #med funktionen Print_map() så kan du skriva ut kartan i terminalen
 import random as rand
-from player import Player
+from player import *
 def Map_Creation():
     map = []
     map_size = 7 #bestämmer storlek på kartan
