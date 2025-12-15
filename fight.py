@@ -40,7 +40,7 @@ def fight(player, enemy):
         player.xp += enemy.monsterxp
         player.xp, player.level, player.strenght, player.maxhp = level_up(player.xp, player.level, player.strenght, player.maxhp)
         return "victory"
-        inventory(player)
+        
 
 
     if player.hp <= 0:
