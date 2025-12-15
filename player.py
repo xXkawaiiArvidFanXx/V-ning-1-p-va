@@ -22,7 +22,7 @@ class Player():
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
-        return f"Du har nu {self.hp}/{self.maxhp} hp."
+        return f"Du har nu {self.hp}/{self.maxhp} {hp(self)}."
     
 
     def add_item(self, item):
@@ -43,7 +43,7 @@ def inventory(player):
     # kolla items och stats, och spara och stänga av
     while True:
         print("\n Inventory och Stats:")
-        print(f"HP: {player.hp}/{player.maxhp}")
+        print(f"{hp(player)}: {player.hp}/{player.maxhp}")
         print(f"Styrka: {player.strenght}")
         print(f"Din charisma är: {player.charisma}")
         
@@ -52,7 +52,7 @@ def inventory(player):
         
         print(f"\nDina Saker är: {len(player.inventory)}")
         for i, item in enumerate(player.inventory):
-            print(f"{i+1}. {item.name} - Skada: {item.damage}, Räckvidd: {item.range}, Sällsynthet: {item.rarity}")
+            print(f"{i+1}. {item.name} - Skada: {item.damage}, Sällsynthet: {item.rarity}")
         
         # Meny Alternativ
         slowtype("\nVad vill du göra?\n", 0.05)

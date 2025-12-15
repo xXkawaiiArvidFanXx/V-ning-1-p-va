@@ -21,3 +21,9 @@ def deadahh():
                 | \___/ |
                 \       /
                  \__ __/""")
+
+def hp(player):
+    if player.name == "Fatima":
+        return "Aura"
+    else:
+        return "HP"
