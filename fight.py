@@ -2,7 +2,7 @@ import random as rand
 from player import *
 from soundengien import *
 from levelup_sys import *
-
+from player import *
 def fight(player, enemy):
 
     while player.hp > 0 and enemy.monsterhealth > 0:
@@ -40,6 +40,8 @@ def fight(player, enemy):
         player.xp += enemy.monsterxp
         player.xp, player.level, player.strenght, player.maxhp = level_up(player.xp, player.level, player.strenght, player.maxhp)
         return "victory"
+        inventory(player)
+
 
     if player.hp <= 0:
         print("Du har blivit besegrad...")

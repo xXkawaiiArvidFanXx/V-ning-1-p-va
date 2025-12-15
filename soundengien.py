@@ -24,3 +24,5 @@ def sound(filväg):
 
 # Exempel på hur man använder funktionen:
 #sound("ljud/kiosken.wav")
+
+sound("ljud\way_ahead.wav")

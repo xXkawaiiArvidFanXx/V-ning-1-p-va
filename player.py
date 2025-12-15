@@ -36,6 +36,25 @@ class Player():
         if weapon in self.inventory:
             self.equipped_weapon = weapon
 
+    def generate_weapon(self, wepontype=""):
+        """Skapar ett vapen med `weapon_create` och lägger det i spelarens inventory.
+
+        Args:
+            wepontype (str): valfri typ/namn för vapnet. Tom sträng betyder slump.
+
+        Returns:
+            Weapon: det genererade vapnet som också har lagts till i inventory.
+        """
+        try:
+            new_weapon = weapon_create(wepontype)
+            self.add_item(new_weapon)
+            return new_weapon
+        except Exception as e:
+            # Om något går fel, skriv ut ett felmeddelande och returnera None
+            deadahh()
+            print(f"Kunde inte skapa vapen: {e}")
+            return None
+
 
 
 def inventory(player):
@@ -70,7 +89,12 @@ def inventory(player):
             elif choice == "3":
                 break
             elif choice == "2":
-                slowtype("Kartan är inte implementerad än.\n", 0.05)
+                slowtype("Kartan skrivs.\n", 0.05)
+                slowtype("ha lite tålamod...\n", 0.05)
+                slowtype("Öppnar karta...\n", 0.05)
+                slowtype("skojade bara, här är den!", 0.05)
+                slowtype("okej nu kommer seriöst kartan", 0.05)
+                slowtype("om en sekund...", 0.05)
                 Turtle_maps(player.pos_x, player.pos_y)
         except ValueError:
             deadahh()
@@ -83,19 +107,15 @@ def inventory(player):
 class Weapon():
     def __init__(self, damage, range, name, rarity):
         self.range = range
-        self.name1 = name
         self.rarity = rarity
         self.name = name
 
         if self.rarity == "legendariskt":
             self.damage = damage * 2
-
         elif self.rarity == "Episkt":
             self.damage = damage * 1.5
-
         elif self.rarity == "normal":
-            self.damage = damage 
-
+            self.damage = damage
         elif self.rarity == "temu kvalite":
             self.damage = damage * 0.75
 
@@ -128,9 +148,8 @@ def weapon_create(wepontype):
 
     weaponnames = weponadjectiv + " " + wepontype
 
-
-    wepond = Weapon(rand.randint(5,15), rand.randint(1,5), weaponnames, rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"]))
-
+    weapons = Weapon(rand.randint(5,15), rand.randint(1,5), weaponnames, rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"]))
+    return weapons
 def health_potion(hp, maxhp, min_heal, max_heal):
     heal_amount = rand.randint(min_heal, max_heal)
     hp += heal_amount
@@ -140,3 +159,4 @@ def health_potion(hp, maxhp, min_heal, max_heal):
     elif heal_amount == min_heal:
         print(f"Du spilde väldigt mycket av din hälsodryck och återhämtar bara {min_heal} hp, du har nu {hp} hp")
     return hp
+
