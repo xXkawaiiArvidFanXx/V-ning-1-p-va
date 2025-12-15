@@ -3,6 +3,7 @@ from player import *
 from soundengien import *
 from levelup_sys import *
 
+
 def fight(player, enemy):
 
     while player.hp > 0 and enemy.monsterhealth > 0:
@@ -65,7 +66,7 @@ def O_room(player, monster):
             print("Du är redan fullt återhämtad.")
             return player.hp
         genhp = rand.randint(1, hpregen)
-        print(f"Snyggt! Du återhämtar {genhp} HP.")
+        print(f"Snyggt! Du återhämtar {genhp} {hp(player)}.")
         player.hp += genhp
     else:
         print("Fel gissning, ingen hälsa återhämtad.")
@@ -168,7 +169,7 @@ def N_room(player):
             print(f"XP: {player.xp}")
         else:
             player.hp += actual_healed
-            print(f"Mattanten serverade dig god mat! Du återhämtar {actual_healed} HP.")
+            print(f"Mattanten serverade dig god mat! Du återhämtar {actual_healed} {hp(player)}.")
             print(player.takes_damage())
 
     return player.hp
