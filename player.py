@@ -70,7 +70,7 @@ def inventory(player):
             elif choice == "3":
                 break
             elif choice == "2":
-                slowtype("Kartan är inte implementerad än.\n", 0.05)
+                slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
                 Turtle_maps(player.pos_x, player.pos_y)
         except ValueError:
             deadahh()
