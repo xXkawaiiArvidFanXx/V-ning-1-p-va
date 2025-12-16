@@ -135,7 +135,8 @@ def weapon_create(wepontype):
         wepontype = rand.choice(vapenlista)
     weponadjectiv = rand.choice(adjektivlista)
     weaponnames = weponadjectiv + wepontype
-    weapon = Weapon(rand.randint(5,15), rand.randint(1,5), weaponnames, rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"]))
+    rarity = rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"])
+    weapon = Weapon(rand.randint(5,15), weaponnames, rarity)
     return weapon
 
 def health_potion(hp, maxhp, min_heal, max_heal):
@@ -147,6 +148,3 @@ def health_potion(hp, maxhp, min_heal, max_heal):
     elif heal_amount == min_heal:
         print(f"Du spilde väldigt mycket av din hälsodryck och återhämtar bara {min_heal} hp, du har nu {hp} hp")
     return hp
-
-wepond = weapon_create()
-print(wepond)

@@ -30,6 +30,3 @@ def hp(player):
 
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
-
-for i in range(15):
-    print(rand.randint(4,10))

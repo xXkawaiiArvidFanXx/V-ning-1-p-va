@@ -7,8 +7,9 @@ from map_module import *
 import time
 
 def class_chooser():
-    print("""                Välj din skollkaraktär! 
-    (du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)""")
+    print("""Välj din skollkaraktär!
+ 
+(du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)\n""")
     while True:
         time.sleep(1)
         slowtype("1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. Grisch har Aura istället för Hp", 0.01)
@@ -27,18 +28,31 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
         character_selector = input("eller bara skit i det och välj det du känner för ")
         try:
             character_selector = int(character_selector)
+            print("\n")
             if character_selector == 1:
                 print("Du är nu Fatima, en grisch med hög (låg) aura")
-                return Player(10, 1.5, "Fatima", 1.1)
+                player = Player(10, 1.5, "Fatima", 1.1)
+                belt = weapon_create("bälte")
+                player.add_item(belt)
+                return player
             elif character_selector == 2:
                 print("Du är nu Phrank, en estet med hög karisma")
-                return Player(25, 1, "Phrank", 4)
+                player = Player(25, 1, "Phrank", 4)
+                guitar = weapon_create("gitarr")
+                player.add_item(guitar)
+                return player
             elif character_selector == 3:
                 print("Du är nu Geodor Von Tohn Fih, Rektorn på skolan med en mäktig dator")
-                return Player(15, 2, "Geodor Von Tohn Fih", 0.5) 
+                player = Player(15, 2, "Geodor Von Tohn Fih", 0.5) 
+                laptop = weapon_create("dator")
+                player.add_item(laptop)
+                return player
             elif character_selector == 4:
                 print("Du är nu Geo Junior, en lärare med en vass penna!")
-                return Player(20, 2, "Geo Junior", 5)
+                player = Player(20, 2, "Geo Junior", 5)
+                pen = weapon_create("penna")
+                player.add_item(pen)
+                return player
             else:
                 raise ValueError
 
@@ -55,14 +69,15 @@ def maingame(player):
 # här kör vi huvudspelet :D
 
     while player.hp > 0:
-        game_choice = input("Vad vill du göra? 1. Gå till rum. 2. Öppna Inventory/Stats. 3. Spara och avsluta. ")
+        print("\n")
+        game_choice = input("Vad vill du göra? \n 1. Gå till rum. \n 2. Öppna Inventory/Stats. \n 3. Spara och avsluta. \n")
         try:
             game_choice = int(game_choice)
 
             if game_choice == 1:
+                print("\n")
                 player.pos_y, player.pos_x = player_position(player.pos_y, player.pos_x)
                 room=get_room_type(player.pos_y, player.pos_x)
-                print(room)
                 room_chooser(room, player)
                 
 
