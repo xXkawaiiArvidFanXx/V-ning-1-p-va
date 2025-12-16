@@ -2,6 +2,7 @@ import random as rand
 from player import *
 from soundengien import *
 from levelup_sys import *
+from slowtype import *
 
 
 def fight(player, enemy):
@@ -20,20 +21,24 @@ def fight(player, enemy):
         elif choice == "2":
             flee_chance = rand.randint(1, 10)
             if flee_chance > 3:
-                print("Du lyckades fly från striden!")
-                return "fled"
-            elif player.name == "Fatima":
-                print("Du lyckas att fly men du tappade byxorna!")
-                player.hp -= 3
-                print(player.takes_damage())
-                return "fled_with_loss"
+                if player.name != "Fatima":
+                    print("Du lyckades fly från striden!")
+                    return "fled"
+                else:
+                    print("Du lyckas att fly men du tappade byxorna!")
+                    player.hp -= 3
+                    print(player.takes_damage())
+                    return "fled"
+
             else:
                 print("Du misslyckades att fly! Fienden attackerar.")
                 player.hp -= enemy.monsterdamage
                 print(player.takes_damage())
 
         else:
-            print("Ogiltigt val, skriv 1 eller 2.")
+            print("Medans du tvekar, tar fienden chansen att attackera!")
+            player.hp -= enemy.monsterdamage
+            print(player.takes_damage())
             continue
 
     if enemy.monsterhealth <= 0:
@@ -50,19 +55,20 @@ def fight(player, enemy):
 
 
 def O_room(player, monster):
-    print("Du har gått in i ett ont rum och en fiende dyker upp!")
-    print(monster)
-    fight(player, monster)
+    clear_terminal()
+    
+    print("Du har gått in i ett ont rum och en fiende dyker upp! \n")
+    print(f"""-------------------{monster}-------------------""")
+    fight_clear_method = fight(player, monster)
+
     correct_choice = str(rand.randint(1, 3))
     gissning = input("Om du vill kan du vila och kanske återhämta lite hälsa, men då måste du gissa rätt. 1, 2 eller 3? ").strip()
-    if gissning == correct_choice:
+    if gissning == correct_choice and fight_clear_method != "fled":
         if player.hp == player.maxhp:
             print("Du har redan full hälsa, du kan inte vila nu.")
             return player.hp
         hpregen = player.maxhp - player.hp
-        if hpregen > 5:
-            hpregen = 5
-        if hpregen <= 0:
+        if hpregen == 0:
             print("Du är redan fullt återhämtad.")
             return player.hp
         genhp = rand.randint(1, hpregen)
@@ -174,12 +180,13 @@ def N_room(player):
 
     return player.hp
 
-types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
 
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
+    types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
     if room == "Ont rum":
-        return O_room(player, Monster(20, 3, rand.choice(types_of_monsters)))
+        monster_hp = 2*rand.randint(4,15)
+        return O_room(player, Monster(monster_hp, 20%monster_hp, rand.choice(types_of_monsters)))
     elif room == "Bossrum":
         return B_room(player)
     elif room == "Gott rum":

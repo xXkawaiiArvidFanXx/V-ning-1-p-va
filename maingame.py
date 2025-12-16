@@ -23,7 +23,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
 
         print("Välj nu noga vilken karaktär du väljer. Det kan komma att bli skillnaden mellan att bli en hjälte eller ett misslyckande")
         time.sleep(2)
-        character_selector = input("eller bara skit i det och välj det du känner för")
+        character_selector = input("eller bara skit i det och välj det du känner för ")
         try:
             character_selector = int(character_selector)
             if character_selector == 1:
