@@ -4,12 +4,13 @@ from map_in_turtle import *
 class Player():
     def __init__(self, hp, strenght, name, charisma):
         self.hp = hp
-        self.maxhp = hp
-        self.strenght = strenght
+        self.maxhp = hp    
+        self.inventory = [] # här skapar vi listan för spelarens inventory
+        self.equipped_weapon = self.inventory[0] # Vapnet spelaren har utrustat
+        self.str_multiplyer = 1+(strenght/10)
+        self.strenght = self.str_multiplyer * self.inventory[0].damage
         self.name = name
         self.charisma = charisma
-        self.inventory = [] # här skapar vi listan för spelarens inventory
-        self.equipped_weapon = None # Vapnet spelaren har utrustat
         self.pos_y = 6
         self.pos_x = 3
         self.boss_room_cleared = 0
@@ -33,8 +34,18 @@ class Player():
             self.inventory.remove(item)
 
     def equip_weapon(self, weapon):
-        if weapon in self.inventory:
-            self.equipped_weapon = weapon
+        if len(self.inventory) == 0:
+            self.equipped_weapon = None
+        else:
+            print(self.inventory)
+            try:
+                weapon = int(input("Vilket vapen vill du använda i strid (skriv siffra)"))
+                if weapon < 0 or weapon > len(self.inventory):
+                    self.equipped_weapon = None
+                else:
+                    self.equipped_weapon = self.inventory[weapon]
+            except ValueError:
+                deadahh()
 
     def generate_weapon(self, wepontype=""):
         """Skapar ett vapen med `weapon_create` och lägger det i spelarens inventory.
@@ -90,7 +101,7 @@ def inventory(player):
                 break
             elif choice == "2":
                 slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
-                Turtle_maps(player.pos_x, player.pos_y)
+                Turtle_maps(player)
         except ValueError:
             deadahh()
             slowtype("Lock in. Försök igen.\n", 0.05) 
@@ -101,7 +112,7 @@ def inventory(player):
 
 class Weapon():
     def __init__(self, damage, name, rarity):
-        self.name1 = name
+        self.damage = damage
         self.rarity = rarity
         self.name = name
 
@@ -115,7 +126,7 @@ class Weapon():
             self.damage = damage * 0.75
 
     def __str__(self):
-        return f"{self.name} — Skada: {self.damage}, Sällsynthet: {self.rarity}"
+        return f"{self.name} ||| Skada: {self.damage} ||| Sällsynthet: {self.rarity} |||"
 
 
 class Monster():
