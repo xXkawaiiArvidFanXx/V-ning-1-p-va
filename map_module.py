@@ -32,7 +32,7 @@ map = Map_Creation()
 
 
 
-def illigal_move(player_pos_y, player_pos_x):
+def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför kartan
     if player_pos_y < 0 or player_pos_y > 6 or player_pos_x < 0 or player_pos_x > 3:
         print("Du kan inte gå utanför kartan!")
         return True
