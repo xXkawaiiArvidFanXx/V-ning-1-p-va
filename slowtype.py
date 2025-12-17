@@ -1,5 +1,5 @@
-import sys, time
-
+import sys, time, os
+import random as rand
 
 def slowtype(str, speed):
     for letter in str:
@@ -27,3 +27,6 @@ def hp(player):
         return "Aura"
     else:
         return "HP"
+
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
