@@ -29,4 +29,7 @@ def hp(player):
         return "HP"
 
 def clear_terminal():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
