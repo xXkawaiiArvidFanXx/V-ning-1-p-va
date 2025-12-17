@@ -1,5 +1,5 @@
-import sys, time
-
+import sys, time, os
+import random as rand
 
 def slowtype(str, speed):
     for letter in str:
@@ -21,3 +21,15 @@ def deadahh():
                 | \___/ |
                 \       /
                  \__ __/""")
+
+def hp(player):
+    if player.name == "Fatima":
+        return "Aura"
+    else:
+        return "HP"
+
+def clear_terminal():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')

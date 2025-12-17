@@ -1,4 +1,5 @@
 import time
+from slowtype import clear_terminal
 def game_loading():
     """En Estetisk funktion"""
     print("Laddar pojken...(viktig plot device)")
@@ -24,10 +25,11 @@ def game_loading():
     print("Ett Spel Av")
     time.sleep(0.5)
     print("invänta dramatisk musik")
-    time.sleep(0.5)
-    print("Upplevs bäst med hörlurar (ASMR)")
     #trumpet dramatisk spelmusik
     time.sleep(1)
     print("!!    Studio FL    !!")
+    print("Upplevs bäst med hörlurar (ASMR)")
+    time.sleep(2)
+    clear_terminal()
     return
     # Här skulle du lägga in kod för att spela upp ett ljud

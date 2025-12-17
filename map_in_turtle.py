@@ -30,6 +30,7 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     t.penup()
     t.speed(-1)
     t.hideturtle()
+    
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
     for a in range (1,5):
         for i in range (7):
@@ -52,11 +53,9 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
         if action == "Y":
            Turtle_maps(player.pos_x, player.pos_y)
         elif action == "q":
-            t.done()
+            #t.done()
             break
         else:
             deadahh()
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
-#player = Player(20, 5, "Test Player", 10)
-#Turtle_maps(player.pos_x, player.pos_y)

@@ -22,7 +22,7 @@ class Player():
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
-        return f"Du har nu {self.hp}/{self.maxhp} hp."
+        return f"Du har nu {self.hp}/{self.maxhp} {hp(self)}."
     
 
     def add_item(self, item):
@@ -62,7 +62,7 @@ def inventory(player):
     # kolla items och stats, och spara och stänga av
     while True:
         print("\n Inventory och Stats:")
-        print(f"HP: {player.hp}/{player.maxhp}")
+        print(f"{hp(player)}: {player.hp}/{player.maxhp}")
         print(f"Styrka: {player.strenght}")
         print(f"Din charisma är: {player.charisma}")
         
@@ -71,7 +71,7 @@ def inventory(player):
         
         print(f"\nDina Saker är: {len(player.inventory)}")
         for i, item in enumerate(player.inventory):
-            print(f"{i+1}. {item.name} - Skada: {item.damage}, Räckvidd: {item.range}, Sällsynthet: {item.rarity}")
+            print(f"{i+1}. {item.name} - Skada: {item.damage}, Sällsynthet: {item.rarity}")
         
         # Meny Alternativ
         slowtype("\nVad vill du göra?\n", 0.05)
@@ -89,12 +89,7 @@ def inventory(player):
             elif choice == "3":
                 break
             elif choice == "2":
-                slowtype("Kartan skrivs.\n", 0.05)
-                slowtype("ha lite tålamod...\n", 0.05)
-                slowtype("Öppnar karta...\n", 0.05)
-                slowtype("skojade bara, här är den!", 0.05)
-                slowtype("okej nu kommer seriöst kartan", 0.05)
-                slowtype("om en sekund...", 0.05)
+                slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
                 Turtle_maps(player.pos_x, player.pos_y)
         except ValueError:
             deadahh()
@@ -105,8 +100,8 @@ def inventory(player):
 
 
 class Weapon():
-    def __init__(self, damage, range, name, rarity):
-        self.range = range
+    def __init__(self, damage, name, rarity):
+        self.name1 = name
         self.rarity = rarity
         self.name = name
 
@@ -119,6 +114,9 @@ class Weapon():
         elif self.rarity == "temu kvalite":
             self.damage = damage * 0.75
 
+    def __str__(self):
+        return f"{self.name} — Skada: {self.damage}, Sällsynthet: {self.rarity}"
+
 
 class Monster():
     def __init__(self, monsterhealth, monsterdamage, monstername):
@@ -127,6 +125,8 @@ class Monster():
         self.monsterdamage = monsterdamage
         self.monstername = monstername
         self.monsterxp = monsterdamage * monsterhealth
+        self.wepond = weapon_create("")
+        self.wepond_drop_rate = rand.randint(1, 100)
 
     def __str__(self):
         return f"Fienden har {self.monsterhealth} och gör {self.monsterdamage} i skada"
@@ -136,20 +136,25 @@ class Monster():
     
     def attacks(self):
         return f"Fienden gör {self.monsterdamage} i skada"
-
-adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad " ]
-vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel"]
-weaponnames = rand.choice(adjektivlista)+rand.choice(vapenlista)
+    
+    def drop_weapon(self, player):
+        if self.wepond_drop_rate > 70:
+            return 
+        else:
+            player.add_item(self.wepond)
 
 def weapon_create(wepontype):
+    adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad " ]
+    vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel"]
+
     if wepontype == "":
         wepontype = rand.choice(vapenlista)
     weponadjectiv = rand.choice(adjektivlista)
+    weaponnames = weponadjectiv + wepontype
+    rarity = rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"])
+    weapon = Weapon(rand.randint(5,15), weaponnames, rarity)
+    return weapon
 
-    weaponnames = weponadjectiv + " " + wepontype
-
-    weapons = Weapon(rand.randint(5,15), rand.randint(1,5), weaponnames, rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"]))
-    return weapons
 def health_potion(hp, maxhp, min_heal, max_heal):
     heal_amount = rand.randint(min_heal, max_heal)
     hp += heal_amount
@@ -159,4 +164,3 @@ def health_potion(hp, maxhp, min_heal, max_heal):
     elif heal_amount == min_heal:
         print(f"Du spilde väldigt mycket av din hälsodryck och återhämtar bara {min_heal} hp, du har nu {hp} hp")
     return hp
-
