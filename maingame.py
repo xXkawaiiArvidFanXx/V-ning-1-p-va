@@ -9,7 +9,7 @@ import time
 def class_chooser():
     slowtype("""Välj din skollkaraktär!
  
-(du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)\n""")
+(du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)\n,""", 0.01)
     while True:
         time.sleep(1)
         slowtype("1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. Grisch har Aura istället för Hp", 0.01)
@@ -23,7 +23,7 @@ Om du försöker spela med en sönder gitarr kommer du tappa allt förutom en ka
 Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd ska kunna gå sönder och pennan kan ha vässats sönder, då måste man spendera 2 rundor på att få tillbaka udden""", 0.01)
         time.sleep(1)
 
-        slowtype("Välj nu noga vilken karaktär du väljer. Det kan komma att bli skillnaden mellan att bli en hjälte eller ett misslyckande")
+        slowtype("Välj nu noga vilken karaktär du väljer. Det kan komma att bli skillnaden mellan att bli en hjälte eller ett misslyckande", 0.01)
         time.sleep(1)
         character_selector = input("Välj nu din karaktär (1-4): \n")
         try:
