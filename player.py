@@ -135,8 +135,16 @@ def weapon_create(wepontype):
         wepontype = rand.choice(vapenlista)
     weponadjectiv = rand.choice(adjektivlista)
     weaponnames = weponadjectiv + wepontype
-    rarity = rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"])
-    weapon = Weapon(rand.randint(5,15), weaponnames, rarity)
+    wepond_rarity = rand.randint(1,100)
+    if wepond_rarity > 95:
+        rarity = "legendariskt"
+    elif wepond_rarity > 80:
+        rarity = "Episkt"
+    elif wepond_rarity > 50:
+        rarity = "normal"
+    else:
+        rarity = "temu kvalite"
+    weapon = Weapon(rand.randint(2,10), weaponnames, rarity)
     return weapon
 
 def health_potion(hp, maxhp, min_heal, max_heal):
