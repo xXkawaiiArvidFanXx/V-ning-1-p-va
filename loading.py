@@ -1,5 +1,6 @@
 import time
 from slowtype import clear_terminal
+#Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet laddar ner massa filer
 def game_loading():
     """En Estetisk funktion"""
     print("Laddar pojken...(viktig plot device)")

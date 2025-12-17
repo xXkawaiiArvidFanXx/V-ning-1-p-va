@@ -1,8 +1,9 @@
 #Här skapas en karta och rummen slumpas fram
 #karta grid lista i lista 
 #map = kartan
-#Börja med map creation för att skapa kartan
 #med funktionen Print_map() så kan du skriva ut kartan i terminalen
+#med funktionen Map_Creation skapas en ny karta som sparas i den globala variabeln map
+#med funktionen get_room_type() kan du få vad det är för typ av rum spelaren står i
 import random as rand
 from player import *
 def Map_Creation():
@@ -15,7 +16,6 @@ def Map_Creation():
         for b in range (4): #här slumpas rummens egenskaper fram N = Neutralt 
             #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla kanske R = Renoveras B = BOSS E= tomt rum
             Room_Type = ["N","G","O","T"]
-
             map[a][b]=(Room_Type[rand.randint(0,3)])
 
     #Bossmodul
@@ -32,7 +32,7 @@ map = Map_Creation()
 
 
 
-def illigal_move(player_pos_y, player_pos_x):
+def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför kartan
     if player_pos_y < 0 or player_pos_y > 6 or player_pos_x < 0 or player_pos_x > 3:
         print("Du kan inte gå utanför kartan!")
         return True

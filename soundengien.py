@@ -1,8 +1,9 @@
 from os import environ
-environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1' #Tar bort massa onödig info text
 
 import warnings
-warnings.filterwarnings("ignore", message="pkg_resources is deprecated*", category=UserWarning)
+warnings.filterwarnings("ignore", message="pkg_resources is deprecated*", category=UserWarning) #Tar bort massa onödig info text
+
 
 import pygame
 
@@ -13,16 +14,16 @@ def sound(filväg):
     pygame.init()
     
     try:
-        ljud = pygame.mixer.Sound(filväg)
-        ljud.play()
+        ljud = pygame.mixer.Sound(filväg)  #Deklarerar "ljud" som ljud filen
+        ljud.play()                         #Spelar Ljudet
         
-        while pygame.mixer.get_busy():
-            pygame.time.Clock().tick(10)
-    except Exception as e:
+        while pygame.mixer.get_busy(): #Pausar programet medans Ljud spelas
+            pygame.time.Clock().tick(10) #Gör loppen långsammare (Snällare mot datorn)
+    except Exception as e:                      #hanterar om ljudet inte finns
         print(f"Kunde inte spela ljud: {e}")
 
 
 # Exempel på hur man använder funktionen:
 #sound("ljud/kiosken.wav")
 
-sound("ljud\way_ahead.wav")
+#sound("ljud\way_ahead.wav")
