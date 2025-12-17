@@ -36,6 +36,25 @@ class Player():
         if weapon in self.inventory:
             self.equipped_weapon = weapon
 
+    def generate_weapon(self, wepontype=""):
+        """Skapar ett vapen med `weapon_create` och lägger det i spelarens inventory.
+
+        Args:
+            wepontype (str): valfri typ/namn för vapnet. Tom sträng betyder slump.
+
+        Returns:
+            Weapon: det genererade vapnet som också har lagts till i inventory.
+        """
+        try:
+            new_weapon = weapon_create(wepontype)
+            self.add_item(new_weapon)
+            return new_weapon
+        except Exception as e:
+            # Om något går fel, skriv ut ett felmeddelande och returnera None
+            deadahh()
+            print(f"Kunde inte skapa vapen: {e}")
+            return None
+
 
 
 def inventory(player):
@@ -88,13 +107,10 @@ class Weapon():
 
         if self.rarity == "legendariskt":
             self.damage = damage * 2
-
         elif self.rarity == "Episkt":
             self.damage = damage * 1.5
-
         elif self.rarity == "normal":
-            self.damage = damage 
-
+            self.damage = damage
         elif self.rarity == "temu kvalite":
             self.damage = damage * 0.75
 
@@ -135,8 +151,16 @@ def weapon_create(wepontype):
         wepontype = rand.choice(vapenlista)
     weponadjectiv = rand.choice(adjektivlista)
     weaponnames = weponadjectiv + wepontype
-    rarity = rand.choice(["legendariskt", "Episkt", "normal", "temu kvalite"])
-    weapon = Weapon(rand.randint(5,15), weaponnames, rarity)
+    wepond_rarity = rand.randint(1,100)
+    if wepond_rarity > 95:
+        rarity = "legendariskt"
+    elif wepond_rarity > 80:
+        rarity = "Episkt"
+    elif wepond_rarity > 50:
+        rarity = "normal"
+    else:
+        rarity = "temu kvalite"
+    weapon = Weapon(rand.randint(2,10), weaponnames, rarity)
     return weapon
 
 def health_potion(hp, maxhp, min_heal, max_heal):
