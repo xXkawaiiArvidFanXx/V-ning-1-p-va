@@ -9,7 +9,7 @@ import time
 def class_chooser():
     slowtype("""Välj din skollkaraktär!
  
-(du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)\n,""", 0.01)
+(du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)\n""", 0.01)
     while True:
         time.sleep(1)
         slowtype("1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. Grisch har Aura istället för Hp", 0.01)

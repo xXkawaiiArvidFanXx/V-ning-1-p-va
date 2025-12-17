@@ -13,6 +13,5 @@ def maingame_start():
     player = class_chooser()
     maingame(player)
 
-
 if __name__ == "__main__":
     maingame_start()
