@@ -150,19 +150,29 @@ def E_room():
 
 
 def N_room(player):
-    #problem.
-    print("Mattanten: Hej! Jag har lagat ett litet experimentellt recept som du bara MÅSTE prova.")
-    colunary_experience = ["äcklig_mat", "god_mat"]
-    weights = [1, max(1, int(player.charisma))]
-    random_tastey = rand.choices(colunary_experience, weights=weights, k=1)[0]
 
-    if random_tastey == "äcklig_mat":
-        print("Mattanten serverade dig äcklig mat! Du tappar hälsa.")
-        player.hp -= 2
+    print("Mattanten: Hej! Jag har lagat ett litet experimentellt recept som du bara MÅSTE prova.")
+
+    weights = [1, max(1, int(player.charisma))]
+    outcome = rand.choices(["äcklig_mat", "god_mat"], weights=weights, k=1)[0]
+
+    if outcome == "äcklig_mat":
+        damage = 2
+        player.hp = max(0, player.hp - damage)
+        print(f"Mattanten serverade dig äcklig mat! Du tar {damage} skada.")
         print(player.takes_damage())
     else:
-        print("Mattanten serverade dig god mat! Du återhämtar hälsa.")
-        player.hp += 3
+        heal_amount = 3
+        actual_healed = min(heal_amount, player.maxhp - player.hp)
+        if actual_healed <= 0:
+            player.xp += 1
+            print("Mattanten serverade dig god mat, men du är redan fullhälsad. Du får 1 XP istället.")
+            print(f"XP: {player.xp}")
+        else:
+            player.hp += actual_healed
+            print(f"Mattanten serverade dig god mat! Du återhämtar {actual_healed} HP.")
+            print(player.takes_damage())
+
     return player.hp
 
 types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
@@ -172,12 +182,12 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     if room == "Ont rum":
         return O_room(player, Monster(20, 3, rand.choice(types_of_monsters)))
     elif room == "Bossrum":
-        return B_room(player, boss)
+        return B_room(player)
     elif room == "Gott rum":
         return G_room(player)
     elif room == "Fällrum":
         return T_room(player, rand.randint(2,4), rand.randint(1,4))
-    elif room == "E":
-        return E_room()
     elif room == "Tomt rum":
+        return E_room()
+    elif room == "Neutralt rum":
         return N_room(player)
