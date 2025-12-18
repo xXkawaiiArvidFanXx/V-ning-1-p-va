@@ -6,9 +6,10 @@ class Player():
         self.hp = hp
         self.maxhp = hp    
         self.inventory = [] # här skapar vi listan för spelarens inventory
-        self.equipped_weapon = self.inventory[0] # Vapnet spelaren har utrustat
-        self.str_multiplyer = 1+(strenght/10)
-        self.strenght = self.str_multiplyer * self.inventory[0].damage
+        # don't access inventory[0] at construction - it will be empty
+        self.equipped_weapon = None  # Vapnet spelaren har utrustat
+        # `strenght` is the base strength stat; effective attack may include weapon
+        self.strenght = strenght
         self.name = name
         self.charisma = charisma
         self.pos_y = 6
