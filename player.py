@@ -4,20 +4,12 @@ from map_in_turtle import *
 class Player():
     def __init__(self, hp, strenght, name, charisma, special_weapon=None):
         self.hp = hp
-<<<<<<< HEAD
-        self.maxhp = hp    
-        self.inventory = [] # här skapar vi listan för spelarens inventory
-        # don't access inventory[0] at construction - it will be empty
-        self.equipped_weapon = None  # Vapnet spelaren har utrustat
-        # `strenght` is the base strength stat; effective attack may include weapon
-=======
         self.maxhp = hp
         self.inventory = []  # här skapar vi listan för spelarens inventory
         self.equipped_weapon = None  # Vapnet spelaren har utrustat
         # Basstat för styrka (oförändrad av vapen)
         self.base_strenght = strenght
         # aktuell styrka som används i strid (uppdateras när vapen utrustas)
->>>>>>> adbed440088884e1d421da0f7f37b17c980160b2
         self.strenght = strenght
         self.name = name
         self.charisma = charisma
@@ -185,6 +177,14 @@ class Monster():
         self.wepond = weapon_create("")
         self.wepond_drop_rate = rand.randint(1, 100)
 
+        def monsterRANDname(self):
+            adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall" ]
+            monsterlista = ["Teknikare", "lerig och blöt fotboll", "Bokhylla", "Multimeter","El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
+            if self.monstername == "":    
+                self.monstername = rand.choice(adjektivlista) + rand.choice(monsterlista)
+
+
+
     def __str__(self):
         return f"Fienden har {self.monsterhealth} HP och gör {self.monsterdamage} i skada"
     
@@ -216,7 +216,7 @@ def weapon_create(wepontype):
     elif wepond_rarity > 50:
         rarity = "normal"
     else:
-        rarity = "temu kvalite"
+        rarity = "temu"
     weapon = Weapon(rand.randint(2,10), weaponnames, rarity)
     return weapon
 

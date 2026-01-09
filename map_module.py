@@ -42,18 +42,18 @@ def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför 
 
 def player_position(pos_y, pos_x):
     while True:
-        player_move = input("Vart vill du gå? upp, ner, vänster, höger? ").strip().lower()
+        player_move = input("Vart vill du gå? upp, ner, vänster, höger?\n Använd WASD").strip().lower()
 
-        if player_move == "ner":
+        if player_move == "s":
             new_y, new_x = pos_y, pos_x + 1
-        elif player_move == "upp":
+        elif player_move == "w":
             new_y, new_x = pos_y, pos_x - 1
-        elif player_move == "vänster":
+        elif player_move == "a":
             new_y, new_x = pos_y -1, pos_x 
-        elif player_move == "höger":
+        elif player_move == "d":
             new_y, new_x = pos_y +1, pos_x
         else:
-            print("Ogiltig riktning — skriv 'upp', 'ner', 'vänster' eller 'höger'.")
+            print("Ogiltig riktning — skriv 'W', 'S', 'A' eller 'D'.")
             continue
 
         if illigal_move(new_y, new_x):

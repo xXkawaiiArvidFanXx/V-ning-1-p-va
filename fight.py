@@ -59,7 +59,7 @@ def fight(player, enemy):
 def O_room(player, monster):
     clear_terminal()
     
-    print("Du har gått in i ett ont rum och en fiende dyker upp! \n")
+    print("Du har gått in i ett ont rum och en {} dyker upp! \n".format(monster.monstername))
     print(f"""-------------------{monster}-------------------""")
     fight_clear_method = fight(player, monster)
 
@@ -187,7 +187,7 @@ def N_room(player):
 
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
-    types_of_monsters = ["El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
+    types_of_monsters = Monster.monstername
     if room == "Ont rum":
         monster_hp = 2 * rand.randint(4, 15)
         base_attack = max(1, int(monster_hp * 0.15))
