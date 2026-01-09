@@ -2,14 +2,25 @@ import random as rand
 from slowtype import *
 from map_in_turtle import *
 class Player():
-    def __init__(self, hp, strenght, name, charisma):
+    def __init__(self, hp, strenght, name, charisma, special_weapon=None):
         self.hp = hp
+<<<<<<< HEAD
+        self.maxhp = hp    
+        self.inventory = [] # här skapar vi listan för spelarens inventory
+        # don't access inventory[0] at construction - it will be empty
+        self.equipped_weapon = None  # Vapnet spelaren har utrustat
+        # `strenght` is the base strength stat; effective attack may include weapon
+=======
         self.maxhp = hp
+        self.inventory = []  # här skapar vi listan för spelarens inventory
+        self.equipped_weapon = None  # Vapnet spelaren har utrustat
+        # Basstat för styrka (oförändrad av vapen)
+        self.base_strenght = strenght
+        # aktuell styrka som används i strid (uppdateras när vapen utrustas)
+>>>>>>> adbed440088884e1d421da0f7f37b17c980160b2
         self.strenght = strenght
         self.name = name
         self.charisma = charisma
-        self.inventory = [] # här skapar vi listan för spelarens inventory
-        self.equipped_weapon = None # Vapnet spelaren har utrustat
         self.pos_y = 6
         self.pos_x = 3
         self.boss_room_cleared = 0
@@ -22,7 +33,7 @@ class Player():
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
-        return f"Du har nu {self.hp}/{self.maxhp} {hp(self)}."
+        return f"Du har nu {self.hp}/{self.maxhp} hp."
     
 
     def add_item(self, item):
@@ -32,9 +43,55 @@ class Player():
         if item in self.inventory:
             self.inventory.remove(item)
 
-    def equip_weapon(self, weapon):
-        if weapon in self.inventory:
-            self.equipped_weapon = weapon
+    def equip_weapon(self, weapon=None):
+        """Utrusta ett vapen.
+
+        Om `weapon` är None så frågar funktionen användaren (index),
+        annars förväntas `weapon` vara ett objekt som finns i `self.inventory`.
+        """
+        if not self.inventory:
+            self.equipped_weapon = None
+            self.strenght = self.base_strenght
+            return
+
+        # Om ett vapen-objekt skickas in
+        if weapon is not None:
+            # Om användaren skickade ett index (int)
+            if isinstance(weapon, int):
+                idx = weapon
+                if 0 <= idx < len(self.inventory):
+                    self.equipped_weapon = self.inventory[idx]
+                else:
+                    self.equipped_weapon = None
+            else:
+                # anta att weapon är ett Weapon-objekt
+                if weapon in self.inventory:
+                    self.equipped_weapon = weapon
+                else:
+                    self.equipped_weapon = None
+        else:
+            # interaktivt val
+            print("Dina vapen:")
+            for i, it in enumerate(self.inventory, 1):
+                print(f"{i}. {it}")
+            try:
+                choice = int(input("Vilket vapen vill du använda i strid (skriv siffra): ")) - 1
+                if 0 <= choice < len(self.inventory):
+                    self.equipped_weapon = self.inventory[choice]
+                else:
+                    self.equipped_weapon = None
+            except ValueError:
+                deadahh()
+
+        # Uppdatera aktuell styrka beroende på vapen
+        if self.equipped_weapon:
+            try:
+                # Standard: spelarens attack = basstyrka + vapenskada
+                self.strenght = self.base_strenght + int(self.equipped_weapon.damage)
+            except Exception:
+                self.strenght = self.base_strenght
+        else:
+            self.strenght = self.base_strenght
 
     def generate_weapon(self, wepontype=""):
         """Skapar ett vapen med `weapon_create` och lägger det i spelarens inventory.
@@ -90,7 +147,7 @@ def inventory(player):
                 break
             elif choice == "2":
                 slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
-                Turtle_maps(player.pos_x, player.pos_y)
+                Turtle_maps(player)
         except ValueError:
             deadahh()
             slowtype("Lock in. Försök igen.\n", 0.05) 
@@ -101,7 +158,7 @@ def inventory(player):
 
 class Weapon():
     def __init__(self, damage, name, rarity):
-        self.name1 = name
+        self.damage = damage
         self.rarity = rarity
         self.name = name
 
@@ -115,7 +172,7 @@ class Weapon():
             self.damage = damage * 0.75
 
     def __str__(self):
-        return f"{self.name} — Skada: {self.damage}, Sällsynthet: {self.rarity}"
+        return f"{self.name} ||| Skada: {self.damage} ||| Sällsynthet: {self.rarity} |||"
 
 
 class Monster():
@@ -129,10 +186,10 @@ class Monster():
         self.wepond_drop_rate = rand.randint(1, 100)
 
     def __str__(self):
-        return f"Fienden har {self.monsterhealth} och gör {self.monsterdamage} i skada"
+        return f"Fienden har {self.monsterhealth} HP och gör {self.monsterdamage} i skada"
     
     def takes_damage(self):
-        return f"Fienden har nu {self.monsterhealth}/{self.monstermaxhealth}hp kvar"
+        return f"Fienden har nu {self.monsterhealth}/{self.monstermaxhealth}HP kvar"
     
     def attacks(self):
         return f"Fienden gör {self.monsterdamage} i skada"
@@ -144,8 +201,8 @@ class Monster():
             player.add_item(self.wepond)
 
 def weapon_create(wepontype):
-    adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad " ]
-    vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel"]
+    adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall" ]
+    vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel", "nallebjörn"]
 
     if wepontype == "":
         wepontype = rand.choice(vapenlista)
