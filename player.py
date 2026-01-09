@@ -4,20 +4,12 @@ from map_in_turtle import *
 class Player():
     def __init__(self, hp, strenght, name, charisma, special_weapon=None):
         self.hp = hp
-<<<<<<< HEAD
-        self.maxhp = hp    
-        self.inventory = [] # här skapar vi listan för spelarens inventory
-        # don't access inventory[0] at construction - it will be empty
-        self.equipped_weapon = None  # Vapnet spelaren har utrustat
-        # `strenght` is the base strength stat; effective attack may include weapon
-=======
         self.maxhp = hp
         self.inventory = []  # här skapar vi listan för spelarens inventory
         self.equipped_weapon = None  # Vapnet spelaren har utrustat
         # Basstat för styrka (oförändrad av vapen)
         self.base_strenght = strenght
         # aktuell styrka som används i strid (uppdateras när vapen utrustas)
->>>>>>> adbed440088884e1d421da0f7f37b17c980160b2
         self.strenght = strenght
         self.name = name
         self.charisma = charisma
@@ -146,8 +138,8 @@ def inventory(player):
             elif choice == "3":
                 break
             elif choice == "2":
-                slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
-                Turtle_maps(player)
+                slowtype("Klicka in på Turtle Grafics fönstret.\n VIKTIGT! Detta är en engångs grej, annars händer Enorma konsikvenser", 0.05)
+                Turtle_maps(player.pos_x , player.pos_y)
         except ValueError:
             deadahh()
             slowtype("Lock in. Försök igen.\n", 0.05) 
