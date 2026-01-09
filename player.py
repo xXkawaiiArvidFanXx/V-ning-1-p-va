@@ -26,7 +26,7 @@ class Player():
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
-        return f"Du har nu {self.hp}/{self.maxhp} {hp()}."
+        return f"Du har nu {self.hp}/{self.maxhp}."
     
 
     def add_item(self, item):
