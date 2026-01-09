@@ -1,6 +1,5 @@
 import sys, time, os
 import random as rand
-
 def slowtype(str, speed):
     for letter in str:
         sys.stdout.write(letter) #skriver en bokstav (utan radbrytning)
@@ -33,3 +32,4 @@ def clear_terminal():
         os.system('cls')
     else:
         os.system('clear')
+
