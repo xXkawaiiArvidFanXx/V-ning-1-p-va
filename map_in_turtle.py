@@ -23,7 +23,7 @@ def Write_room(x,y):
     t.penup()
     
 
-def Turtle_maps(player): #kanske en lista för icke hittade rum
+def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     """player.pos_x, player.pos_y"""
     wn = turtle.Screen()
     wn.tracer(0) 
@@ -43,17 +43,16 @@ def Turtle_maps(player): #kanske en lista för icke hittade rum
     pos.color("red")
     pos.shape("turtle")
     pos.penup()
-    pos.goto(-300+75*(player.pos_x+3)+37,200-75*(player.pos_y-2)-37)
+    pos.goto(-300+75*(x+3)+37,200-75*(y-2)-37)
     pos.pendown()
     wn.update() 
     Loop = True
     while Loop == True:
-        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut
-        Ta bort rutan genom att trycka på X när du kollat klart på kartan""")
+        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut""")
         if action == "Y":
-           Turtle_maps(player.pos_x, player.pos_y)
+           Turtle_maps(x, y)
         elif action == "q":
-            #t.done()
+            wn.bye()
             break
         else:
             deadahh()
