@@ -1,6 +1,7 @@
 import random as rand
 from slowtype import *
 from map_in_turtle import *
+
 class Player():
     def __init__(self, hp, strenght, name, charisma, special_weapon=None):
         self.hp = hp
@@ -25,7 +26,7 @@ class Player():
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
-        return f"Du har nu {self.hp}/{self.maxhp} hp."
+        return f"Du har nu {self.hp}/{self.maxhp}."
     
 
     def add_item(self, item):
@@ -35,55 +36,19 @@ class Player():
         if item in self.inventory:
             self.inventory.remove(item)
 
-    def equip_weapon(self, weapon=None):
-        """Utrusta ett vapen.
-
-        Om `weapon` är None så frågar funktionen användaren (index),
-        annars förväntas `weapon` vara ett objekt som finns i `self.inventory`.
-        """
-        if not self.inventory:
+    def equip_weapon(self, weapon):
+        if len(self.inventory) == 0:
             self.equipped_weapon = None
-            self.strenght = self.base_strenght
-            return
-
-        # Om ett vapen-objekt skickas in
-        if weapon is not None:
-            # Om användaren skickade ett index (int)
-            if isinstance(weapon, int):
-                idx = weapon
-                if 0 <= idx < len(self.inventory):
-                    self.equipped_weapon = self.inventory[idx]
-                else:
-                    self.equipped_weapon = None
-            else:
-                # anta att weapon är ett Weapon-objekt
-                if weapon in self.inventory:
-                    self.equipped_weapon = weapon
-                else:
-                    self.equipped_weapon = None
         else:
-            # interaktivt val
-            print("Dina vapen:")
-            for i, it in enumerate(self.inventory, 1):
-                print(f"{i}. {it}")
+            print(self.inventory)
             try:
-                choice = int(input("Vilket vapen vill du använda i strid (skriv siffra): ")) - 1
-                if 0 <= choice < len(self.inventory):
-                    self.equipped_weapon = self.inventory[choice]
-                else:
+                weapon = int(input("Vilket vapen vill du använda i strid (skriv siffra)"))
+                if weapon < 0 or weapon > len(self.inventory):
                     self.equipped_weapon = None
+                else:
+                    self.equipped_weapon = self.inventory[weapon]
             except ValueError:
                 deadahh()
-
-        # Uppdatera aktuell styrka beroende på vapen
-        if self.equipped_weapon:
-            try:
-                # Standard: spelarens attack = basstyrka + vapenskada
-                self.strenght = self.base_strenght + int(self.equipped_weapon.damage)
-            except Exception:
-                self.strenght = self.base_strenght
-        else:
-            self.strenght = self.base_strenght
 
     def generate_weapon(self, wepontype=""):
         """Skapar ett vapen med `weapon_create` och lägger det i spelarens inventory.
@@ -177,11 +142,19 @@ class Monster():
         self.wepond = weapon_create("")
         self.wepond_drop_rate = rand.randint(1, 100)
 
+        def monsterRANDname(self):
+            adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall" ]
+            monsterlista = ["Teknikare", "lerig och blöt fotboll", "Bokhylla", "Multimeter","El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin"]
+            if self.monstername == "":    
+                self.monstername = rand.choice(adjektivlista) + rand.choice(monsterlista)
+
+
+
     def __str__(self):
-        return f"Fienden har {self.monsterhealth} HP och gör {self.monsterdamage} i skada"
+        return f"Fienden har {self.monsterhealth} och gör {self.monsterdamage} i skada"
     
     def takes_damage(self):
-        return f"Fienden har nu {self.monsterhealth}/{self.monstermaxhealth}HP kvar"
+        return f"Fienden har nu {self.monsterhealth}/{self.monstermaxhealth}hp kvar"
     
     def attacks(self):
         return f"Fienden gör {self.monsterdamage} i skada"
@@ -208,7 +181,7 @@ def weapon_create(wepontype):
     elif wepond_rarity > 50:
         rarity = "normal"
     else:
-        rarity = "temu kvalite"
+        rarity = "temu"
     weapon = Weapon(rand.randint(2,10), weaponnames, rarity)
     return weapon
 
@@ -221,3 +194,4 @@ def health_potion(hp, maxhp, min_heal, max_heal):
     elif heal_amount == min_heal:
         print(f"Du spilde väldigt mycket av din hälsodryck och återhämtar bara {min_heal} hp, du har nu {hp} hp")
     return hp
+

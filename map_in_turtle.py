@@ -5,7 +5,6 @@
 
 import turtle
 from map_module import *
-from player import *
 from slowtype import *
 t = turtle
 
@@ -67,9 +66,15 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
         if action == "Y":
            Turtle_maps(x, y)
         elif action == "q":
-            wn.bye()
+            turtle.bye()
             break
         else:
             deadahh()
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
+
+#if __name__ == "__main__":
+#    # Demo / manual test: import Player here to avoid circular import during module import
+#    from player import Player
+#    player = Player(20, 2, "magis", 3, "lububu")
+#    Turtle_maps(player)

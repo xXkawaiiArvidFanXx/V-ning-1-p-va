@@ -6,6 +6,15 @@ from fight import *
 from map_module import *
 import time
 
+def anoying_name(player):
+    name = input("Hej! Vad är ditt namn? \n")
+    YesOrNo = input(f"Du skrev {name}, \nMenade du {player.name}\n Ja eller Nej\n")
+    while YesOrNo.lower() != "ja": 
+        clear_terminal()
+        YesOrNo = input(f"Förlåt jag såg inte ditt om du skrev ja eller nej \n Kan du svara igen?\n")
+    
+    slowtype(f"Okej\n", 0.01)
+
 def class_chooser():
     slowtype("""Välj din skollkaraktär!
  
@@ -30,28 +39,32 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
             character_selector = int(character_selector)
             print("\n")
             if character_selector == 1:
-                print("Du är nu Fatima, en grisch med hög (låg) aura \n")
                 player = Player(10, 1.5, "Fatima", 1.1)
                 belt = weapon_create("bälte")
                 player.add_item(belt)
+                anoying_name(player)
+                print("Du är nu Fatima, en grich med hög (låg) aura \n")
                 return player
             elif character_selector == 2:
-                print("Du är nu Phrank, en estet med hög karisma \n")
                 player = Player(25, 1, "Phrank", 4)
                 guitar = weapon_create("gitarr")
                 player.add_item(guitar)
+                anoying_name(player)
+                print("Du är nu Phrank, en estet med hög karisma \n")
                 return player
             elif character_selector == 3:
-                print("Du är nu Geodor Von Tohn Fih, Rektorn på skolan med en mäktig dator \n")
                 player = Player(15, 2, "Geodor Von Tohn Fih", 0.5) 
                 laptop = weapon_create("dator")
                 player.add_item(laptop)
+                anoying_name(player)
+                print("Du är nu Geodor Von Tohn Fih, Rektorn på skolan med en mäktig dator \n")
                 return player
             elif character_selector == 4:
-                print("Du är nu Geo Junior, en lärare med en vass penna! \n")
                 player = Player(20, 2, "Geo Junior", 5)
                 pen = weapon_create("penna")
                 player.add_item(pen)
+                anoying_name(player)
+                print("Du är nu Geo Junior, en lärare med en vass penna! \n")
                 return player
             else:
                 raise ValueError
