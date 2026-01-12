@@ -110,7 +110,7 @@ def inventory(player):
                 break
             elif choice == "2":
                 slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
-                Turtle_maps(player.pos_x, player.pos_y)
+                Turtle_maps(player)
         except ValueError:
             deadahh()
             slowtype("Lock in. Försök igen.\n", 0.05) 

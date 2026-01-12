@@ -29,6 +29,20 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     t.penup()
     t.speed(-1)
     t.hideturtle()
+    #Kompass Skrivs här
+    t.goto(0,190)
+    t.pendown()
+    for i in range (120):
+        t.forward(2)
+        t.left(3)
+    t.penup()
+    t.goto(-30,227)
+    t.pendown()
+    t.color("red")
+    t.goto(0,227)
+    t.color("black")
+    t.goto(30,227)
+    t.penup()
     
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
     for a in range (1,5):
@@ -47,11 +61,12 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     wn.update() 
     Loop = True
     while Loop == True:
-        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut""")
+        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut
+                                  (Liten kompass på toppen så du vet vart norr är)""")
         if action == "Y":
            Turtle_maps(x, y)
         elif action == "q":
-            wn.bye()
+            turtle.bye()
             break
         else:
             deadahh()
