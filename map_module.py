@@ -21,6 +21,7 @@ def Map_Creation():
     #Bossmodul
     #Alltid en boss 1 i mittenrummet 
     #Boss 2 är alltid i sista rummet???
+    map[3][1] = "B"
     map[2][2] = "B"
     map[6][3] = "E"
     return map
@@ -42,7 +43,7 @@ def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför 
 
 def player_position(pos_y, pos_x):
     while True:
-        player_move = input("Vart vill du gå? upp, ner, vänster, höger?\n Använd WASD").strip().lower()
+        player_move = input("Vart vill du gå? upp, ner, vänster, höger?\nAnvänd WASD\n").strip().lower()
 
         if player_move == "s":
             new_y, new_x = pos_y, pos_x + 1

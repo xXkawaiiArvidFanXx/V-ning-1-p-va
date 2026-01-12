@@ -7,13 +7,16 @@ from map_module import *
 import time
 
 def anoying_name(player):
-    name = input("Hej! Vad är ditt namn? \n")
-    YesOrNo = input(f"Du skrev {name}, \nMenade du {player.name}\n Ja eller Nej\n")
-    while YesOrNo.lower() != "ja": 
-        clear_terminal()
-        YesOrNo = input(f"Förlåt jag såg inte ditt om du skrev ja eller nej \n Kan du svara igen?\n")
-    
-    slowtype(f"Okej\n", 0.01)
+        name = input("Innan du börjar ditt äventyr vill jag först veta ditt namn!\nHej, jag heter: ")
+        if name == "":
+            slowtype(f"Du skrev ingeting, därmed blir ditt namn {player.name}!\n", 0.1)
+        elif player.name.lower() != name.lower():
+            YesOrNo = input(f"Du skrev {name}, \nMenade du {player.name} \nJa eller Nej\n")
+            while YesOrNo.lower() != "ja": 
+                clear_terminal()
+                time.sleep(0.5)
+                YesOrNo = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
+            slowtype(f"Okej\n", 0.01)
 
 def class_chooser():
     slowtype("""Välj din skollkaraktär!
@@ -21,7 +24,8 @@ def class_chooser():
 (du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)\n""", 0.01)
     while True:
         time.sleep(1)
-        slowtype("1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. Grisch har Aura istället för Hp", 0.01)
+        slowtype("""1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. 
+Däremot är grishpojken överdrivet självsäker som kanske kan komma till nytta. Grisch har Aura istället för Hp""", 0.01) #Självsäkerheten gör absolut ingenting, vi vill bara att man ska välja den sänsta karaktären.
         time.sleep(1)
         slowtype("""2. Estet har en gitarr som de kan använda för att slå till sina fiender. Gitarren kan man använda för att höja sin karisma men om du använder gitarren för att slåss kommer den gå sönder. 
 Om du försöker spela med en sönder gitarr kommer du tappa allt förutom en karisma poäng. Du är inte erfaren i gitarr eftersom att du endast har övat att spela trumpet hela ditt liv""", 0.01)
@@ -34,7 +38,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
 
         slowtype("Välj nu noga vilken karaktär du väljer. Det kan komma att bli skillnaden mellan att bli en hjälte eller ett misslyckande", 0.01)
         time.sleep(1)
-        character_selector = input("Välj nu din karaktär (1-4): \n")
+        character_selector = input("Välj nu din karaktär (1-4):")
         try:
             character_selector = int(character_selector)
             print("\n")
@@ -43,6 +47,8 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
                 belt = weapon_create("bälte")
                 player.add_item(belt)
                 anoying_name(player)
+                slowtype("Du är nu den sämsta karaktären\n", 0.1)
+                clear_terminal()
                 print("Du är nu Fatima, en grich med hög (låg) aura \n")
                 return player
             elif character_selector == 2:
@@ -81,9 +87,9 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
 def maingame(player):
 # här kör vi huvudspelet :D
 
-    while player.hp > 0:
+    while player.hp > 0 and player.boss_room_cleared != 2:
         print("\n")
-        game_choice = input("Vad vill du göra? \n 1. Gå till rum. \n 2. Öppna Inventory/Stats. \n 3. Spara och avsluta. \n")
+        game_choice = input("Vad vill du göra? \n 1. Gå till rum. \n 2. Öppna Inventory/Stats. \n 3. Spara och avsluta. \n  ")
         try:
             game_choice = int(game_choice)
 
@@ -91,7 +97,7 @@ def maingame(player):
                 print("\n")
                 player.pos_y, player.pos_x = player_position(player.pos_y, player.pos_x)
                 room=get_room_type(player.pos_y, player.pos_x)
-                room_chooser(room, player)
+                player = room_chooser(room, player)
                 
 
                 
@@ -109,6 +115,7 @@ def maingame(player):
             time.sleep(3)
             slowtype("Ogiltigt val, försök igen.", 0.1)
             time.sleep(1)
+    
 
 
 
