@@ -6,6 +6,7 @@
 #med funktionen get_room_type() kan du få vad det är för typ av rum spelaren står i
 import random as rand
 from player import *
+from soundengien import *
 def Map_Creation():
     map = []
     map_size = 7 #bestämmer storlek på kartan
@@ -58,7 +59,8 @@ def player_position(pos_y, pos_x):
             continue
 
         if illigal_move(new_y, new_x):
-            print("Du kan inte gå utanför kartan. Försök igen.")
+            print("Du försöker att vara som harry potter och åka genom väggar. Olyckligtnog springer du rätt in i en stolpe som var lite oschyst placerat.")
+            sound("ljud\stolpe.wav")
             continue
 
         return new_y, new_x
