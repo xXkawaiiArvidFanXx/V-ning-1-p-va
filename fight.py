@@ -107,7 +107,7 @@ def B_room(player):
     else:
         if player.boss_room_cleared == 0:
             print("Du har kommit till ett bossrum! Förbered dig på en tuff strid mot le cuisinier! \n")
-            boss = Monster(30,3, "le cuisinier", True)
+            boss = Monster(30,3,True, "le cuisinier")
             boss_clear_method = fight(player, boss)
             if boss_clear_method == "victory":
                 print("Grattis! Du har besegrat le cuisinier och klarat av det första bossrummet!")
@@ -117,7 +117,7 @@ def B_room(player):
                 player.hp = player.maxhp
 
         elif player.boss_room_cleared == 1:
-            boss = Monster(35,4, "le homme féminin Wilmér", True)
+            boss = Monster(35,4, True, "le homme féminin Wilmér")
             fight(player, boss)
             player.boss_room_cleared += 1
     return player
