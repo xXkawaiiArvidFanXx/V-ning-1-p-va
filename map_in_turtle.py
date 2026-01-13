@@ -21,7 +21,7 @@ def Write_room(x,y):
     t.left(50)
     t.penup()
     
-def Turtle_maps(y,x): #kanske en lista för icke hittade rum
+def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     """player.pos_x, player.pos_y"""
     t = turtle
     wn = turtle.Screen()
@@ -40,11 +40,12 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
             time.sleep(0.5)
     #använd player pos som variabler x och y
     pos = t.Turtle()
+    pos.clear()
     pos.shapesize(stretch_wid=1.5, stretch_len=1.5)
     pos.color("red")
     pos.shape("circle")
     pos.penup()
-    pos.goto(-435+65*(x)+35, 25-65*(y)-30)
+    pos.goto(-435+65*(x+3)+35, 25-65*(y-3)-30)
     pos.pendown()
     t.forward(90)
     t.write(""" 
@@ -67,8 +68,9 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
     while Loop == True:
         action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut""")
         if action.lower() == "y":
-           Turtle_maps(x, y)
+           Turtle_maps(x,y)
         elif action.lower() == "q":
+            pos.hideturtle()
             wn._root.withdraw() #gömmer fönstret (del av workaround)
             break
         else:
@@ -76,9 +78,12 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
 
+#Testning
+
 #if __name__ == "__main__":
 #    Map_Creation()
 #    Turtle_maps(3,6)
+
 #    # Demo / manual test: import Player here to avoid circular import during module import
 #    from player import Player
 #    player = Player(20, 2, "magis", 3, "lububu")
