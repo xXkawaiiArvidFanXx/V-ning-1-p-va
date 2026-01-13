@@ -85,7 +85,7 @@ def inventory(player):
     print("\n Inventory och Stats:")
     print(f"Din level är: {player.level}")
     print(f"{hp(player)}: {player.hp}/{player.maxhp}")
-    print(f"Styrka: {player.strenght}")
+    print(f"Attack Styrka: {player.strenght}")
     print(f"Din charisma är: {player.charisma}")
     if player.equipped_weapon != None:
         print(f"\nUtrustat Vapen: {player.equipped_weapon.name}")
