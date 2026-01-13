@@ -156,7 +156,7 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
                 
 
         elif startchoice == 2:
-            print("du har valt att ladda in en sparfil")
+            print("du har valt att ladda in en sparfil, men du känner djupt inne att du vill starta ett nytt spel så det är vad du får")
             #här ska vi skapa en load save funktion
             return "load_game"
                 
