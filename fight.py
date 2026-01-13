@@ -107,17 +107,17 @@ def B_room(player):
     else:
         if player.boss_room_cleared == 0:
             print("Du har kommit till ett bossrum! Förbered dig på en tuff strid mot le cuisinier! \n")
-            boss = Monster(30,3,True, "le cuisinier")
+            boss = Monster(round(player.level*1.05*75), round(player.level*1.05*5), True, "Le Cuisinier")
             boss_clear_method = fight(player, boss)
             if boss_clear_method == "victory":
-                print("Grattis! Du har besegrat le cuisinier och klarat av det första bossrummet!")
+                print("Grattis! Du har besegrat Le Cuisinier och klarat av det första bossrummet!")
                 player.boss_room_cleared += 1
                 player.boss_room_cleared_posistion_y = player.pos_y
                 player.boss_room_cleared_posistion_x = player.pos_x
                 player.hp = player.maxhp
 
         elif player.boss_room_cleared == 1:
-            boss = Monster(35,4, True, "le homme féminin Wilmér")
+            boss = Monster(round(player.level*1.05*150),round(player.level*1.05*10), True, "Le Homme Féminin Wilmér")
             fight(player, boss)
             player.boss_room_cleared += 1
     return player
@@ -168,7 +168,7 @@ def T_room(player, trap_damage, traptype):
         sound(audio_file)
     player.hp -= trap_damage
     print(player.takes_damage())
-    ajj = rand.randint(1,10)
+    ajj = rand.randint(round(player.maxhp*0.1,), round(player.maxhp*0.75))
     if ajj == 1:
         sound("ljud/oj_aj.wav")
     return player
@@ -218,8 +218,8 @@ def N_room(player):
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     if room == "Ont rum":
-        monster_hp = 2 * rand.randint(4, 15)
-        base_attack = round(7 + player.level - 0.23 * monster_hp) #bara formel som förhoppningsvis är balancerad
+        monster_hp = round(player.level *1.10 * rand.randint(4, 15))
+        base_attack = round(player.level *1.1 + 0.23 * monster_hp) #bara formel som förhoppningsvis är balancerad
         monster_attack = max(1, base_attack + rand.randint(-1, 1)) #max ifall ekvationen skulle ge tall under 1 (max väljer argumentet som är störst )
 
         return O_room(player, Monster(monster_hp, monster_attack, False))
