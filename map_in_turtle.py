@@ -76,9 +76,9 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
 
-if __name__ == "__main__":
-    Map_Creation()
-    Turtle_maps(3,6)
+#if __name__ == "__main__":
+#    Map_Creation()
+#    Turtle_maps(3,6)
 #    # Demo / manual test: import Player here to avoid circular import during module import
 #    from player import Player
 #    player = Player(20, 2, "magis", 3, "lububu")
