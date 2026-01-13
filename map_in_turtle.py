@@ -21,7 +21,7 @@ def Write_room(x,y):
     t.left(50)
     t.penup()
     
-def Turtle_maps(x,y): #kanske en lista för icke hittade rum
+def Turtle_maps(y,x): #kanske en lista för icke hittade rum
     """player.pos_x, player.pos_y"""
     t = turtle
     wn = turtle.Screen()
@@ -30,35 +30,31 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     t.penup()
     t.speed(-1)
     t.hideturtle()
-    #Kompass Skrivs här
-    t.goto(0,190)
-    t.pendown()
-    for i in range (120):
-        t.forward(2)
-        t.left(3)
-    t.penup()
-    t.goto(-30,227)
-    t.pendown()
-    t.color("red")
-    t.goto(0,227)
-    t.color("black")
-    t.goto(30,227)
-    t.penup()
-    
+    t.clear()
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
     for a in range (1,5):
         for i in range (7):
-            t.goto(-300+75*i,200-75*a)
+            t.goto(-300+65*a,200-65*i)
             Write_room(i,a-1)
             wn.update()
             time.sleep(0.5)
     #använd player pos som variabler x och y
     pos = t.Turtle()
+    pos.showturtle()
     pos.color("red")
-    pos.shape("turtle")
+    #pos.shape("circle")
     pos.penup()
-    pos.goto(-300+75*(x+3)+37,200-75*(y-2)-37)
+    pos.goto(-300+65*(x+3)+37,200-65*(y-2)-37)
     pos.pendown()
+    t.forward(90)
+    t.write(""" 
+ G = Gott rum
+ T = Fälla
+ E = Tomt rum
+ O = Ont rum
+ N = Neutralt rum
+ B = Boss Rum """,font=("Creepster", 24, "bold"))
+
     wn.update() 
     Loop = True
     while Loop == True:
@@ -67,7 +63,6 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
         if action.lower() == "y":
            Turtle_maps(x, y)
         elif action.lower() == "q":
-            # wn.bye()
             wn._root.withdraw() #gömmer fönstret (del av workaround)
             break
         else:
