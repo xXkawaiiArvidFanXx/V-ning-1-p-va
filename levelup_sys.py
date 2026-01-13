@@ -26,8 +26,8 @@ def level_up(player):
             if player.equipped_weapon == None:
                 player.strenght = player.base_strenght
             else:
-                player.strenght = player.base_strenght * player.equipped_weapon.damage
-            print(f"Du är i level {player.level} och har ökat din styrka till {player.strenght}.")
+                player.strenght = player.base_strenght + player.equipped_weapon.damage
+            print(f"Du är i level {player.level} och har ökat din skada till {player.strenght}.")
 
         #om choice är 2 så ökar max hp och healas helt
         elif choice == '2':

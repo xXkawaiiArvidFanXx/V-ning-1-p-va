@@ -82,24 +82,22 @@ class Player():
 def inventory(player):
     # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
     # kolla items och stats, och spara och stänga av
-    while True:
-        print("\n Inventory och Stats:")
-        print(f"Din level är: {player.level}")
-        print(f"{hp(player)}: {player.hp}/{player.maxhp}")
-        print(f"Styrka: {player.strenght}")
-        print(f"Din charisma är: {player.charisma}")
-        if player.equipped_weapon != None:
-            print(f"\nUtrustat Vapen: {player.equipped_weapon.name}")
-        time.sleep(3)
+    print("\n Inventory och Stats:")
+    print(f"Din level är: {player.level}")
+    print(f"{hp(player)}: {player.hp}/{player.maxhp}")
+    print(f"Attack Styrka: {player.strenght}")
+    print(f"Din charisma är: {player.charisma}")
+    if player.equipped_weapon != None:
+        print(f"\nUtrustat Vapen: {player.equipped_weapon.name}")
+    time.sleep(2)
 
-        
-        slowtype(f"\nDina Saker är: {len(player.inventory)}", 0.05)
-        time.sleep(0.5)
-        for i, item in enumerate(player.inventory):
-            print(f"{i+1}. {item.name} - Skada: {item.damage}, Sällsynthet: {item.rarity}")
-            time.sleep(0.5)
+    slowtype(f"\nDina Saker är: {len(player.inventory)}", 0.05)
+    time.sleep(0.5)
+    for i, item in enumerate(player.inventory):
+        print(f"{i+1}. {item.name} - Skada: {item.damage}, Sällsynthet: {item.rarity}")
+        time.sleep(0.2)
 
-        
+    while True: 
         # Meny Alternativ
         slowtype("\nVad vill du göra?\n", 0.05)
         slowtype("1. Byt Vapen\n2. Öppna Karta (haijper nice)\n3. Stäng Inventoryn\n", 0.05)
@@ -107,6 +105,8 @@ def inventory(player):
         try:
             if choice == "1":
                 player.equip_weapon()
+                time.sleep(2)
+                clear_terminal()
             elif choice == "3":
                 break
             elif choice == "2":

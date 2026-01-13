@@ -7,14 +7,15 @@ from map_module import *
 import time
 
 def anoying_name(player):
+        """står player iställer för playername men de ska vara ett namn här inte en player objekt"""
         i=0
         
         name = input("Innan du börjar ditt äventyr vill jag först veta ditt namn!\nHej, jag heter: ")
         if name == "":
-            slowtype(f"Du skrev ingeting, därmed blir ditt namn {player.name}!\n", 0.1)
+            slowtype(f"Du skrev ingeting, därmed blir ditt namn {player}!\n", 0.1)
         
-        elif player.name.lower() != name.lower():
-            YesOrNo = input(f"Du skrev {name}, \nMenade du {player.name} \nJa eller Nej\n")
+        elif player.lower() != name.lower():
+            YesOrNo = input(f"Du skrev {name}, \nMenade du {player} \nJa eller Nej\n")
             while YesOrNo.lower() != "ja": 
                 clear_terminal()
                 time.sleep(0.5)
@@ -25,21 +26,25 @@ def anoying_name(player):
                     YesOrNo = input(f"Allvarligt, ge dig. Skriv bara ja\n")
                     i += 1
                 elif i <= 15:
+                    deadahh()
                     YesOrNo = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
+                    deadahh()
                     i += 1
                 elif i <= 20:
                     YesOrNo = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
                     i += 1
                 elif i <= 25:
-                    slowtype(f"Okej du vinner, ditt namn är nu {name}", 3)
+                    slowtype(f"Okej du vinner, ditt namn är nu {name}", 1)
                     time.sleep(2)
-                    slowtype("Var det värt det?", 5)
+                    slowtype("Var det värt det?", 1.5)
                     time.sleep(2)
-                    slowtype("aja, lycka till", 5)
-                    player.name = name
-                    break
+                    slowtype("aja, lycka till", 2)
+                    player = name
+                    return player
+                
                     
             slowtype(f"Okej\n", 0.01)
+        return player
 
 def class_chooser():
     slowtype("""Välj din skollkaraktär!
@@ -65,36 +70,41 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
         try:
             character_selector = int(character_selector)
             print("\n")
+
             if character_selector == 1:
-                player = Player(10, 1.5, "Fatima", 1.1)
+                player_name = anoying_name("Fatima")
+                player = Player(10, 1.5, player_name, 1.1)
                 belt = weapon_create("bälte")
                 player.add_item(belt)
-                anoying_name(player)
                 slowtype("Du är nu den sämsta karaktären\n", 0.1)
                 clear_terminal()
-                print("Du är nu Fatima, en grich med hög (låg) aura \n")
+                print(f"Du är nu {player.name}, en grich med hög (låg) aura \n")
                 return player
+            
             elif character_selector == 2:
-                player = Player(25, 1, "Phrank", 4)
+                player_name = anoying_name("Phrank")
+                player = Player(25, 1, player_name, 4)
                 guitar = weapon_create("gitarr")
                 player.add_item(guitar)
-                anoying_name(player)
-                print("Du är nu Phrank, en estet med hög karisma \n")
+                print(f"Du är nu {player.name}, en estet med hög karisma \n")
                 return player
+            
             elif character_selector == 3:
-                player = Player(15, 2, "Geodor Von Tohn Fih", 0.5) 
+                player_name = anoying_name("Geodor Von Tohn Fih")
+                player = Player(15, 2, player_name, 0.5) 
                 laptop = weapon_create("dator")
                 player.add_item(laptop)
-                anoying_name(player)
-                print("Du är nu Geodor Von Tohn Fih, Rektorn på skolan med en mäktig dator \n")
+                print(f"Du är nu {player.name}, Rektorn på skolan med en mäktig dator \n")
                 return player
+            
             elif character_selector == 4:
-                player = Player(20, 2, "Geo Junior", 5)
+                player_name = anoying_name("Geo Junior")
+                player = Player(20, 2, player_name, 5)
                 pen = weapon_create("penna")
                 player.add_item(pen)
-                anoying_name(player)
-                print("Du är nu Geo Junior, en lärare med en vass penna! \n")
+                print(f"Du är nu {player.name}, en lärare med en vass penna! \n")
                 return player
+            
             else:
                 raise ValueError
 
