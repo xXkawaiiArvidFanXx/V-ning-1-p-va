@@ -3,23 +3,36 @@ from player import *
 from soundengien import *
 from levelup_sys import *
 from slowtype import *
-
+import time
 
 def fight(player, enemy):
+    """Kod för slagsmål"""
 
     while player.hp > 0 and enemy.monsterhealth > 0:
         choice = input("Vill du slåss (1) eller försöka fly (2)? ").strip()
 
         if choice == "1":
+            print(f"\nDu attackerar {enemy.monstername}\n")
+            time.sleep(0.5)
             enemy.monsterhealth -= player.strenght
+            if enemy.monsterhealth < 0:
+                enemy.monsterhealth = 0
             print(enemy.takes_damage())
+            time.sleep(0.5)
 
             if enemy.monsterhealth > 0:
                 player.hp -= enemy.monsterdamage
-                print(player.takes_damage())
+                print(f"\n{enemy.monstername} attackerar dig tillbaka!")
+                print(f"{player.takes_damage()}")
+                time.sleep(0.5)
 
         elif choice == "2":
             flee_chance = rand.randint(1, 10)
+            if enemy.is_boss == True:
+                print("Precis när du försöker fly från bossen ")
+                player.hp -= enemy.monsterdamage
+                print(player.takes_damage())
+
             if flee_chance > 3:
                 if player.name != "Fatima":
                     print("Du lyckades fly från striden!")
@@ -44,7 +57,7 @@ def fight(player, enemy):
     if enemy.monsterhealth <= 0:
         print(f"Du har besegrat {enemy.monstername}!")
         player.xp += enemy.monsterxp
-        player.xp, player.level, player.strenght, player.maxhp = level_up(player.xp, player.level, player.strenght, player.maxhp)
+        enemy.drop_weapon(player)
         return "victory"
         
 
@@ -57,56 +70,65 @@ def fight(player, enemy):
 
 
 def O_room(player, monster):
+    """Ont rum, startar slagsmål. Efter slagsmålet kollar koden vissa saker t.ex hur man vann o om man kan levla upp"""
     clear_terminal()
     
     print("Du har gått in i ett ont rum och en {} dyker upp! \n".format(monster.monstername))
     print(f"""-------------------{monster}-------------------""")
     fight_clear_method = fight(player, monster)
 
-    correct_choice = str(rand.randint(1, 3))
-    print("\n")
-    gissning = input("Om du vill kan du vila och kanske återhämta lite hälsa, men då måste du gissa rätt. 1, 2 eller 3? \n").strip()
-    if gissning == correct_choice and fight_clear_method == "victory":
-        if player.hp == player.maxhp:
-            print("Du har redan full hälsa, du kan inte vila nu.")
-            return player.hp
-        hpregen = player.maxhp - player.hp
-        if hpregen == 0:
-            print("Du är redan fullt återhämtad.")
-            return player.hp
-        genhp = rand.randint(1, hpregen)
-        print(f"Du återhämtar {genhp} {hp(player)}.")
-        player.hp += genhp
-    else:
-        print("Fel gissning, ingen hälsa återhämtad.")
-    return player.hp
+    if fight_clear_method == "victory":
+        correct_choice = str(rand.randint(1, 3))
+        print("\n")
+        gissning = input("Om du vill kan du vila och kanske återhämta lite hälsa, men då måste du gissa rätt. 1, 2 eller 3? \n").strip()
+        if gissning == correct_choice:
+            if player.hp == player.maxhp:
+                print("Du har redan full hälsa, du kan inte vila nu.")
+                return player
+            hpregen = player.maxhp - player.hp
+            if hpregen == 0:
+                print("Du är redan fullt återhämtad.")
+                return player
+            genhp = rand.randint(1, hpregen)
+            print(f"Du återhämtar {genhp} {hp(player)}.")
+            player.hp += genhp
+        else:
+            print("Fel gissning, ingen hälsa återhämtad.")
+        player.xp, player.level, player.strenght, player.maxhp, player.hp, player.base_strenght = level_up(player)
+    return player
+
+
 
 def B_room(player):
     boss = None
     if player.pos_y == player.boss_room_cleared_posistion_y and player.pos_x == player.boss_room_cleared_posistion_x :
         print("Du har redan besegrat bossen i detta rum.")
-        return
+        return player
     else:
         if player.boss_room_cleared == 0:
-            boss = Monster(40,3, "le cuisinier")
-            fight(player, boss)
-            player.boss_room_cleared += 1
-            player.boss_room_cleared_posistion_y = player.pos_y
-            player.boss_room_cleared_posistion_x = player.pos_x
-            player.hp = player.maxhp
+            print("Du har kommit till ett bossrum! Förbered dig på en tuff strid mot le cuisinier! \n")
+            boss = Monster(30,3, "le cuisinier", True)
+            boss_clear_method = fight(player, boss)
+            if boss_clear_method == "victory":
+                print("Grattis! Du har besegrat le cuisinier och klarat av det första bossrummet!")
+                player.boss_room_cleared += 1
+                player.boss_room_cleared_posistion_y = player.pos_y
+                player.boss_room_cleared_posistion_x = player.pos_x
+                player.hp = player.maxhp
+
         elif player.boss_room_cleared == 1:
-            boss = Monster(25,3, "le homme féminin Wilmér")
+            boss = Monster(35,4, "le homme féminin Wilmér", True)
             fight(player, boss)
             player.boss_room_cleared += 1
-    return player.hp, player.boss_room_cleared, player.boss_room_cleared_posistion_y, player.boss_room_cleared_posistion_x
+    return player
 
 def G_room(player):
-    print("Du har hittat ett gott rum och en hälsodryck och dricker den! \n")
+    print("Du har hittat ett gott rum och en hälsodryck och dricker den!")
     heal_amount = rand.randint(1, 2)
     player.hp += heal_amount
     if player.hp > player.maxhp:
         player.hp = player.maxhp
-    return player.hp
+    return player
 
 
 
@@ -149,19 +171,25 @@ def T_room(player, trap_damage, traptype):
     ajj = rand.randint(1,10)
     if ajj == 1:
         sound("ljud/oj_aj.wav")
-    return player.hp
+    return player
 
 
-def E_room():
-    print("Detta rum är tomt.")
+def E_room(player):
+    print("Dette rum er tomt.")
     print("Det finns inget mer att säga liksom.")
+    return player
 
 
 def N_room(player):
 
     print("Mattanten: Hej! Jag har lagat ett litet experimentellt recept som du bara MÅSTE prova.")
 
+    time.sleep(1)
+
     weights = [1, max(1, int(player.charisma))]
+
+    rand.randint(0,100)
+
     outcome = rand.choices(["äcklig_mat", "god_mat"], weights=weights, k=1)[0]
 
     if outcome == "äcklig_mat":
@@ -182,18 +210,19 @@ def N_room(player):
             print(f"Mattanten serverade dig god mat! Du återhämtar {actual_healed} {hp(player)}.")
             print(player.takes_damage())
 
-    return player.hp
+    time.sleep(1)
+
+    return player
 
 
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
-    types_of_monsters = Monster.monstername
     if room == "Ont rum":
         monster_hp = 2 * rand.randint(4, 15)
-        base_attack = max(1, int(monster_hp * 0.15))
-        monster_attack = max(1, base_attack + rand.randint(-1, 1))
+        base_attack = round(7 + player.level - 0.23 * monster_hp) #bara formel som förhoppningsvis är balancerad
+        monster_attack = max(1, base_attack + rand.randint(-1, 1)) #max ifall ekvationen skulle ge tall under 1 (max väljer argumentet som är störst )
 
-        return O_room(player, Monster(monster_hp, monster_attack, rand.choice(types_of_monsters)))
+        return O_room(player, Monster(monster_hp, monster_attack, False))
     elif room == "Bossrum":
         return B_room(player)
     elif room == "Gott rum":
@@ -201,6 +230,6 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     elif room == "Fällrum":
         return T_room(player, rand.randint(2,4), rand.randint(1,4))
     elif room == "Tomt rum":
-        return E_room()
+        return E_room(player)
     elif room == "Neutralt rum":
         return N_room(player)

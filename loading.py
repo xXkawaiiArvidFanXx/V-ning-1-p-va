@@ -3,11 +3,13 @@ from slowtype import clear_terminal
 #Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet laddar ner massa filer
 def game_loading():
     """En Estetisk funktion"""
+    clear_terminal()
     print("Laddar pojken...(viktig plot device)")
     time.sleep(1)
     print("Laddar trummor...")
     time.sleep(0.5)
     print("Laddar gitarrer...")
+    #print("Speltips: Kartan kan bara visas en gång annars krashar spelet")
     time.sleep(0.7)
     print("Laddar orkester...")
     time.sleep(1.2)
@@ -22,7 +24,9 @@ def game_loading():
     print("Laddar berättaröst...")
     time.sleep(1.3)
     print("Laddar lite annat gojs...")
-    time.sleep(3)
+    time.sleep(0.1)
+    print("Speltips : Gå inte in i dom vassa väggarna")
+    time.sleep(2.6)
     print("Ett Spel Av")
     time.sleep(0.5)
     print("invänta dramatisk musik")
