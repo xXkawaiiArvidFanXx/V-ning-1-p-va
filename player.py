@@ -72,8 +72,8 @@ class Player():
                 continue
 
             self.equipped_weapon = self.inventory[item_chooser]
-            self.strenght = self.base_strenght * self.equipped_weapon.damage
-            print(f"Du utrustade: {self.equipped_weapon.name}. Din styrka är nu {self.strenght}.")
+            self.strenght = self.base_strenght + self.equipped_weapon.damage
+            print(f"Du utrustade: {self.equipped_weapon.name}. Din skada är nu {self.strenght}.")
             return
 
 
@@ -84,6 +84,7 @@ def inventory(player):
     # kolla items och stats, och spara och stänga av
     while True:
         print("\n Inventory och Stats:")
+        print(f"Din level är: {player.level}")
         print(f"{hp(player)}: {player.hp}/{player.maxhp}")
         print(f"Styrka: {player.strenght}")
         print(f"Din charisma är: {player.charisma}")
@@ -92,7 +93,7 @@ def inventory(player):
         time.sleep(3)
 
         
-        print(f"\nDina Saker är: {len(player.inventory)}")
+        slowtype(f"\nDina Saker är: {len(player.inventory)}", 0.05)
         time.sleep(0.5)
         for i, item in enumerate(player.inventory):
             print(f"{i+1}. {item.name} - Skada: {item.damage}, Sällsynthet: {item.rarity}")
@@ -161,7 +162,7 @@ class Monster():
 
 
     def __str__(self):
-        return f"Fienden ({self.monstername}) har {self.monsterhealth} och gör {self.monsterdamage} i skada"
+        return f"Fienden ({self.monstername}) har {self.monsterhealth} hp och gör {self.monsterdamage} i skada"
     
     def takes_damage(self):
         return f"Fienden har nu {self.monsterhealth}/{self.monstermaxhealth}hp kvar"
