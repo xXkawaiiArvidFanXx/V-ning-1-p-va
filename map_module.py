@@ -47,13 +47,13 @@ def player_position(pos_y, pos_x):
         player_move = input("Vart vill du gå? upp, ner, vänster, höger?\nAnvänd WASD\n").strip().lower()
 
         if player_move == "s":
-            new_y, new_x = pos_y, pos_x + 1
+            new_y, new_x = pos_y + 1, pos_x
         elif player_move == "w":
-            new_y, new_x = pos_y, pos_x - 1
+            new_y, new_x = pos_y - 1, pos_x
         elif player_move == "a":
-            new_y, new_x = pos_y -1, pos_x 
+            new_y, new_x = pos_y, pos_x -1
         elif player_move == "d":
-            new_y, new_x = pos_y +1, pos_x
+            new_y, new_x = pos_y, pos_x + 1
         else:
             print("Ogiltig riktning — skriv 'W', 'S', 'A' eller 'D'.")
             continue
