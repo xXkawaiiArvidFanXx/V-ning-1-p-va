@@ -40,6 +40,7 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
             time.sleep(0.5)
     #använd player pos som variabler x och y
     pos = t.Turtle()
+    pos.clear()
     pos.shapesize(stretch_wid=1.5, stretch_len=1.5)
     pos.color("red")
     pos.shape("circle")
@@ -76,9 +77,12 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
 
-if __name__ == "__main__":
-    Map_Creation()
-    Turtle_maps(3,6)
+#Testning
+
+#if __name__ == "__main__":
+#    Map_Creation()
+#   Turtle_maps(3,6)
+
 #    # Demo / manual test: import Player here to avoid circular import during module import
 #    from player import Player
 #    player = Player(20, 2, "magis", 3, "lububu")
