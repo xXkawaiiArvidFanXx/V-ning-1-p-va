@@ -72,8 +72,8 @@ class Player():
                 continue
 
             self.equipped_weapon = self.inventory[item_chooser]
-            self.strenght = self.base_strenght * self.equipped_weapon.damage
-            print(f"Du utrustade: {self.equipped_weapon.name}. Din styrka är nu {self.strenght}.")
+            self.strenght = self.base_strenght + self.equipped_weapon.damage
+            print(f"Du utrustade: {self.equipped_weapon.name}. Din skada är nu {self.strenght}.")
             return
 
 
