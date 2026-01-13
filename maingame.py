@@ -53,7 +53,7 @@ def class_chooser():
     while True:
         time.sleep(1)
         slowtype("""1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. 
-Däremot är grishpojken överdrivet självsäker som kanske kan komma till nytta. Grisch har Aura istället för Hp""", 0.01) #Självsäkerheten gör absolut ingenting, vi vill bara att man ska välja den sänsta karaktären.
+Däremot är grischpojken överdrivet självsäker som kanske kan komma till nytta. Grisch har Aura istället för Hp""", 0.01) #Självsäkerheten gör absolut ingenting, vi vill bara att man ska välja den sänsta karaktären.
         time.sleep(1)
         slowtype("""2. Estet har en gitarr som de kan använda för att slå till sina fiender. Gitarren kan man använda för att höja sin karisma men om du använder gitarren för att slåss kommer den gå sönder. 
 Om du försöker spela med en sönder gitarr kommer du tappa allt förutom en karisma poäng. Du är inte erfaren i gitarr eftersom att du endast har övat att spela trumpet hela ditt liv""", 0.01)
