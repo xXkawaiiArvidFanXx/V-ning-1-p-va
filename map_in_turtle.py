@@ -21,11 +21,12 @@ def Write_room(x,y):
     t.left(50)
     t.penup()
     
-
 def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     """player.pos_x, player.pos_y"""
+    t = turtle
     wn = turtle.Screen()
-    wn.tracer(0) 
+    wn._root.deiconify() #återställer fönstret (behövde göra en workaround då turtle är mer eller mindre tänk att vara hela programet. (Igentligen inte så bra då en uppdatering till turtle skulle kunna förstöra alting, men funkar som en snabb lösninng))
+    wn.tracer(0)
     t.penup()
     t.speed(-1)
     t.hideturtle()
@@ -63,10 +64,11 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     while Loop == True:
         action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut
                                   (Liten kompass på toppen så du vet vart norr är)""")
-        if action == "Y":
+        if action.lower() == "y":
            Turtle_maps(x, y)
-        elif action == "q":
-            turtle.bye()
+        elif action.lower() == "q":
+            # wn.bye()
+            wn._root.withdraw() #gömmer fönstret (del av workaround)
             break
         else:
             deadahh()
