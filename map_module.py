@@ -22,7 +22,7 @@ def Map_Creation():
     #Alltid en boss 1 i mittenrummet 
     #Boss 2 är alltid i sista rummet???
     map[3][1] = "B"
-    map[2][2] = "B"
+    map[6][2] = "B"
     map[6][3] = "E"
     return map
 def Print_map():

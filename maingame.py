@@ -7,15 +7,38 @@ from map_module import *
 import time
 
 def anoying_name(player):
+        i=0
+        
         name = input("Innan du börjar ditt äventyr vill jag först veta ditt namn!\nHej, jag heter: ")
         if name == "":
             slowtype(f"Du skrev ingeting, därmed blir ditt namn {player.name}!\n", 0.1)
+        
         elif player.name.lower() != name.lower():
             YesOrNo = input(f"Du skrev {name}, \nMenade du {player.name} \nJa eller Nej\n")
             while YesOrNo.lower() != "ja": 
                 clear_terminal()
                 time.sleep(0.5)
-                YesOrNo = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
+                if i <= 5:
+                    YesOrNo = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
+                    i += 1
+                elif i <= 10:
+                    YesOrNo = input(f"Allvarligt, ge dig. Skriv bara ja\n")
+                    i += 1
+                elif i <= 15:
+                    YesOrNo = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
+                    i += 1
+                elif i <= 20:
+                    YesOrNo = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
+                    i += 1
+                elif i <= 25:
+                    slowtype(f"Okej du vinner, ditt namn är nu {name}", 3)
+                    time.sleep(2)
+                    slowtype("Var det värt det?", 5)
+                    time.sleep(2)
+                    slowtype("aja, lycka till", 5)
+                    player.name = name
+                    break
+                    
             slowtype(f"Okej\n", 0.01)
 
 def class_chooser():
