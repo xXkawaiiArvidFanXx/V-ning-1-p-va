@@ -161,7 +161,7 @@ class Monster():
 
 
     def __str__(self):
-        return f"Fienden ({self.monstername}) har {self.monsterhealth} och gör {self.monsterdamage} i skada"
+        return f"Fienden ({self.monstername}) har {self.monsterhealth} hp och gör {self.monsterdamage} i skada"
     
     def takes_damage(self):
         return f"Fienden har nu {self.monsterhealth}/{self.monstermaxhealth}hp kvar"
