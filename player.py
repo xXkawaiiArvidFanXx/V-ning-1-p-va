@@ -154,11 +154,13 @@ class Weapon():
         return f"{self.name} ||| Skada: {self.damage} ||| Sällsynthet: {self.rarity} |||"
 
 def monsterRANDname(monstername=""):
-    adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urlladad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall " ]
-    monsterlista = ["Teknikare", "lerig och blöt fotboll", "Bokhylla", "Multimeter","El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin", "kirk", "har har tungstensboll + lavastöveL"]
+
+    adjective_list = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urlladad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall " ]
+    monster_list = ["Teknikare", "lerig och blöt fotboll", "Bokhylla", "Multimeter","El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin", "kirk", "har har tungstensboll + lavastöveL"]
+
     # om inget namn ges så slumpas ett namn fram
     if monstername == "" or monstername is None:
-        return rand.choice(adjektivlista) + rand.choice(monsterlista)
+        return rand.choice(adjective_list) + rand.choice(monster_list)
     return monstername
 
 class Monster():
@@ -215,12 +217,7 @@ def weapon_create(wepontype):
     weapon = Weapon(rand.randint(2,10), weaponnames, rarity)
     return weapon
 
-
-
-
-
-
-def kista(player):
+def chest(player):
     random_num = rand.randint(1,100)
     if random_num >= 50:
         choice = "health"

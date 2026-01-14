@@ -137,7 +137,7 @@ def B_room(player):
 
 def G_room(player):
     print("Du har hittat en kista och öppnar den!\n")
-    kista(player)
+    chest(player)
     return player
 
 
