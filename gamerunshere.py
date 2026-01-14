@@ -1,13 +1,13 @@
 from maingame import *
 from map_module import *
 from loading import *
-from victory_or_loosory import *
+from victory_or_lose import *
 
 
 # Huvudprogrammet <3
 def maingame_start():
     game_loading()
-    Map_Creation()
+    map_creation()
     startgame()
     player = class_chooser()
     maingame(player)

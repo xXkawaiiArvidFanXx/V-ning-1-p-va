@@ -1,15 +1,15 @@
 import random as rand
 from player import *
-from soundengien import *
+from soundengiene import *
 from levelup_sys import *
-from slowtype import *
+from text_func import *
 import time
 
 def fight(player, enemy):
     """Kod för slagsmål"""
 
     while player.hp > 0 and enemy.monsterhealth > 0:
-        choice = input("Vill du slåss (1) eller försöka fly (2)? ").strip()
+        choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly ()? ").strip()
 
         if choice == "1":
             print(f"\nDu attackerar {enemy.monstername}\n")
@@ -25,8 +25,11 @@ def fight(player, enemy):
                 print(f"\n{enemy.monstername} attackerar dig tillbaka!")
                 print(f"{player.takes_damage()}")
                 time.sleep(0.5)
-
         elif choice == "2":
+            use_health_potion(player)
+            buffered_type("Du dricker en hälsodryck och återhämtar lite hälsa!\n", 0.05)
+
+        elif choice == "3":
             flee_chance = rand.randint(1, 10)
             if enemy.is_boss == True:
                 print("Precis när du försöker fly från bossen så greppar han tag i dig och slår dig!")
@@ -88,7 +91,7 @@ def O_room(player, monster):
             if hpregen == 0:
                 print("Du är redan fullt återhämtad.")
             genhp = rand.randint(1, hpregen)
-            print(f"Du återhämtar {genhp} {hp(player)}.")
+            print(f"Du återhämtar {genhp} {hp_or_aura(player)}.")
             player.hp += genhp
         else:
             print("Fel gissning, ingen hälsa återhämtad.")
@@ -104,7 +107,7 @@ def B_room(player):
         return player
     else:
 
-        slowtype("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare \n Det rekomenderas att sänka volymen \n du har 5 sekunder på dig",0,1)
+        buffered_type("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare \n Det rekomenderas att sänka volymen \n du har 5 sekunder på dig",0,1)
         stopmusic()
         backgroundmusic("ljud\hesa_filip.waw")
         for i in range (0,4):
@@ -133,17 +136,12 @@ def B_room(player):
     return player
 
 def G_room(player):
-    print("Du har hittat ett gott rum och en hälsodryck och dricker den!")
-    heal_amount = rand.randint(1, 2)
-    player.hp += heal_amount
-    if player.hp > player.maxhp:
-        player.hp = player.maxhp
+    print("Du har hittat en kista och öppnar den!\n")
+    chest(player)
     return player
 
 
-
-
-def traptypes(num):
+def traptypes(num, player):
     audio_file = 0 
     if num == 1:
         trap_message = """Du går fram med raska men bestämda steg och kommer fram till att du ska köpa en chokladboll. Du lägger fram 25 kr som du gjort orimligt många gånger innan." 
@@ -160,6 +158,9 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
     elif num == 4:
         trap_message = "När du öppnar dörren till rummet ser du bara mörker, men Mamma didnt raise no chicken, så du går in. När du går in gör du illa dig på något vasst i mörkret."
         audio_file = 0
+    elif len(player.inventory) >= 5:
+        trap_message = "Du försöker att smyga förbi en lärare som patrullerar korridoren, men du snubblar över din egen ficka full med saker och faller pladask på marken. Läraren ser dig och du får en varning för att ha sprungit i korridoren."
+        audio_file = 0
     else:
         trap_message = "Du trodde att du hittade en genväg till matsalen, men du hade otur och hamnade i en trång korridor med kladdiga väggar. Du fastnar i väggen i flera timmar och du blir hungrig. I desperation börjar du att äta på väggen som är giftig och du tar skada och blir mildt arg på dig själv för att du åt av väggen istället för mackan i din hand"
         audio_file = 0
@@ -170,7 +171,7 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
 
 def T_room(player, trap_damage, traptype):
     print("\n")
-    trap_message, audio_file = traptypes(traptype)
+    trap_message, audio_file = traptypes(traptype, player)
     print(trap_message)
     if audio_file == 0:
         pass
@@ -217,7 +218,7 @@ def N_room(player):
             print(f"XP: {player.xp}")
         else:
             player.hp += actual_healed
-            print(f"Mattanten serverade dig god mat! Du återhämtar {actual_healed} {hp(player)}.")
+            print(f"Mattanten serverade dig god mat! Du återhämtar {actual_healed} {hp_or_aura(player)}.")
             print(player.takes_damage())
 
     time.sleep(1)
@@ -238,7 +239,7 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     elif room == "Gott rum":
         return G_room(player)
     elif room == "Fällrum":
-        return T_room(player, rand.randint(2,4), rand.randint(1,4))
+        return T_room(player, rand.randint(2,4), rand.randint(1,5))
     elif room == "Tomt rum":
         return E_room(player)
     elif room == "Neutralt rum":

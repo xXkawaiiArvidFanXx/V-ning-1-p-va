@@ -1,5 +1,5 @@
 import random as rand
-from slowtype import *
+from text_func import *
 from map_in_turtle import *
 
 class Player():
@@ -21,12 +21,13 @@ class Player():
         self.boss_room_cleared_posistion_y = 0
         self.xp = 0
         self.level = 1
+        self.health_potion = 0
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
-        return f"Du har nu {self.hp}/{self.maxhp} {hp(self)}."
+        return f"Du har nu {self.hp}/{self.maxhp} {hp_or_aura(self)}."
     
 
     def add_item(self, item):
@@ -76,22 +77,32 @@ class Player():
             print(f"Du utrustade: {self.equipped_weapon.name}. Din skada är nu {self.strenght}.")
             return
 
-
+def use_health_potion(player):
+    if player.health_potion > 0:
+        heal_amount = round(player.maxhp * 0.4)
+        player.hp += heal_amount
+        if player.hp > player.maxhp:
+            player.hp = player.maxhp
+        player.health_potion -= 1
+        print(f"Du använde en hälsodryck och återhämtade {heal_amount} {hp_or_aura(player)}. Du har nu {player.hp}/{player.maxhp} {hp_or_aura(player)}.")
+    else:
+        print("Du har inga hälsodrycker kvar!\n")
+        print("Försök att bli bättre?")
 
 
 def inventory(player):
     # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
-    # kolla items och stats, och spara och stänga av
+    # kolla items och stats, och stänga av
     print("\n Inventory och Stats:")
     print(f"Din level är: {player.level}")
-    print(f"{hp(player)}: {player.hp}/{player.maxhp}")
+    print(f"{hp_or_aura(player)}: {player.hp}/{player.maxhp}")
     print(f"Attack Styrka: {player.strenght}")
     print(f"Din charisma är: {player.charisma}")
     if player.equipped_weapon != None:
         print(f"\nUtrustat Vapen: {player.equipped_weapon.name}")
     time.sleep(2)
 
-    slowtype(f"\nDina Saker är: {len(player.inventory)}", 0.05)
+    buffered_type(f"\nDina Saker är: {len(player.inventory)}", 0.05)
     time.sleep(0.5)
     for i, item in enumerate(player.inventory):
         print(f"{i+1}. {item.name} - Skada: {item.damage}, Sällsynthet: {item.rarity}")
@@ -99,8 +110,8 @@ def inventory(player):
 
     while True: 
         # Meny Alternativ
-        slowtype("\nVad vill du göra?\n", 0.05)
-        slowtype("1. Byt Vapen\n2. Öppna Karta (haijper nice)\n3. Stäng Inventoryn\n", 0.05)
+        buffered_type("\nVad vill du göra?\n", 0.05)
+        buffered_type(f"1. Byt Vapen\n2. Öppna Karta (haijper nice)\n3. Drick en hälsodryck! du har just nu {player.hp}/{player.maxhp} {hp_or_aura(player)} \n4. Stäng Inventoryn\n", 0.05)
         choice = input("Välj ett alternativ!!! ")
         try:
             if choice == "1":
@@ -108,13 +119,17 @@ def inventory(player):
                 time.sleep(2)
                 clear_terminal()
             elif choice == "3":
-                break
+                use_health_potion(player)
+                buffered_type("Nu har du druckit en smaskig hälsodryck!\n", 0.05)
+                buffered_type(f"Du har nu {player.health_potion} hälsodrycker kvar i bakfickan!\n", 0.05)
             elif choice == "2":
-                slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
+                buffered_type("Klicka in på Turtle Grafics fönstret.\n", 0.05)
                 Turtle_maps(player.pos_x, player.pos_y)
+            elif choice == "4":
+                break
         except ValueError:
-            deadahh()
-            slowtype("Lock in. Försök igen.\n", 0.05) 
+            typo()
+            buffered_type("Lock in. Försök igen.\n", 0.05) 
                
 
 
@@ -139,11 +154,13 @@ class Weapon():
         return f"{self.name} ||| Skada: {self.damage} ||| Sällsynthet: {self.rarity} |||"
 
 def monsterRANDname(monstername=""):
-    adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urlladad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall" ]
-    monsterlista = ["Teknikare", "lerig och blöt fotboll", "Bokhylla", "Multimeter","El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin", "kirk", "har har tungstensboll + lavastöveL"]
+
+    adjective_list = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urlladad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall " ]
+    monster_list = ["Teknikare", "lerig och blöt fotboll", "Bokhylla", "Multimeter","El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin", "kirk", "har har tungstensboll + lavastöveL"]
+
     # om inget namn ges så slumpas ett namn fram
     if monstername == "" or monstername is None:
-        return rand.choice(adjektivlista) + rand.choice(monsterlista)
+        return rand.choice(adjective_list) + rand.choice(monster_list)
     return monstername
 
 class Monster():
@@ -181,7 +198,7 @@ class Monster():
 
 
 def weapon_create(wepontype):
-    adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall" ]
+    adjektivlista = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urladdad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall " ]
     vapenlista = ["pilbåge", "projector kontroll", "dolk", "stekpanna", "kastrull", "mattebok","kniv","suddgummi","sköld","penna","saxofon", "gitarr","pappersflygplan","trombon", "bastrumma", "flagga", "musiksmak","kunskap","ljussabel", "nallebjörn"]
 
     if wepontype == "":
@@ -200,14 +217,28 @@ def weapon_create(wepontype):
     weapon = Weapon(rand.randint(2,10), weaponnames, rarity)
     return weapon
 
-def health_potion(hp, maxhp, min_heal, max_heal):
-    heal_amount = rand.randint(min_heal, max_heal)
-    hp += heal_amount
-    if hp > maxhp:
-        hp = maxhp
-        print(f"Du återhämtar dig helt till {maxhp} hp!")
-    elif heal_amount == min_heal:
-        print(f"Du spilde väldigt mycket av din hälsodryck och återhämtar bara {min_heal} hp, du har nu {hp} hp")
-    return hp
+def chest(player):
+    random_num = rand.randint(1,100)
+    if random_num >= 50:
+        choice = "health"
+    if random_num >= 50 and random_num < 75:
+        choice = "weapon"
+    else:
+        choice = "empty"
+    if choice == "weapon":
+        chest_weapon = weapon_create("")
+        player.add_item(chest_weapon)
+        print(f"Du hittade {chest_weapon} och lägger det i ditt inventory!")
+    elif choice == "health":
+        player.health_potion += 1
+        print("Du hittade en häslodryck i kistan och lägger den i bakfickan!")
+    else:
+        print("Kistan var tom...")
+        print("Försök inte ha lika otur nästa gång...")
+    return player
+    
+
+        
+
 
 
