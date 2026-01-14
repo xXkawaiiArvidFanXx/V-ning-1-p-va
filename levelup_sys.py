@@ -11,7 +11,7 @@ def level_up(player):
     Hantera level up. Returnerar (xp, level, strenght, max_hp).
     """
     if player.xp >= xp_req(player.level):
-        req = xp_req(player.level)
+        req = xp_req(player.level) #xp som ska tas bort vid level up
         choice = input("""Du kan gå upp i nivå! Men innan det måste du bestäma om du vill:
 1. Få mer styrka
 2. Få mer max hp\n""")
