@@ -9,7 +9,7 @@ def fight(player, enemy):
     """Kod för slagsmål"""
 
     while player.hp > 0 and enemy.monsterhealth > 0:
-        choice = input("Vill du slåss (1) eller försöka fly (2)? ").strip()
+        choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly ()? ").strip()
 
         if choice == "1":
             print(f"\nDu attackerar {enemy.monstername}\n")
@@ -25,8 +25,11 @@ def fight(player, enemy):
                 print(f"\n{enemy.monstername} attackerar dig tillbaka!")
                 print(f"{player.takes_damage()}")
                 time.sleep(0.5)
-
         elif choice == "2":
+            use_health_potion(player)
+            slowtype("Du dricker en hälsodryck och återhämtar lite hälsa!\n", 0.05)
+
+        elif choice == "3":
             flee_chance = rand.randint(1, 10)
             if enemy.is_boss == True:
                 print("Precis när du försöker fly från bossen så greppar han tag i dig och slår dig!")
@@ -125,13 +128,9 @@ def B_room(player):
     return player
 
 def G_room(player):
-    print("Du har hittat ett gott rum och en hälsodryck och dricker den!")
-    heal_amount = rand.randint(1, 2)
-    player.hp += heal_amount
-    if player.hp > player.maxhp:
-        player.hp = player.maxhp
+    print("Du har hittat en kista och öppnar den!\n")
+    kista(player)
     return player
-
 
 
 
