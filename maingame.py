@@ -19,13 +19,13 @@ def anoying_name(player):
             while YesOrNo.lower() != "ja": 
                 clear_terminal()
                 time.sleep(0.5)
-                if i <= 5:
+                if i <= 3:
                     YesOrNo = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
                     i += 1
-                elif i <= 10:
+                elif i <= 7:
                     YesOrNo = input(f"Allvarligt, ge dig. Skriv bara ja\n")
                     i += 1
-                elif i <= 15:
+                elif i <= 14:
                     deadahh()
                     YesOrNo = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
                     deadahh()
@@ -34,16 +34,16 @@ def anoying_name(player):
                     YesOrNo = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
                     i += 1
                 elif i <= 25:
-                    slowtype(f"Okej du vinner, ditt namn är nu {name}", 1)
+                    slowtype(f"Okej du vinner, ditt namn är nu {name}", 0.5)
                     time.sleep(2)
-                    slowtype("Var det värt det?", 1.5)
+                    slowtype("Var det värt det?", 0.75)
                     time.sleep(2)
-                    slowtype("aja, lycka till", 2)
+                    slowtype("aja, lycka till", 1)
                     player = name
                     return player
                 
                     
-            slowtype(f"Okej\n", 0.01)
+            slowtype(f"Okej\n", 2)
         return player
 
 def class_chooser():
