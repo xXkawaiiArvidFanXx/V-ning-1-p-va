@@ -66,7 +66,8 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     wn.update() 
     Loop = True
     while Loop == True:
-        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut""")
+        time.sleep(3)
+        action = turtle.textinput("kollat klart på kartan?", "q = Släpp mig ut")
         if action.lower() == "y":
            Turtle_maps(x,y)
         elif action.lower() == "q":

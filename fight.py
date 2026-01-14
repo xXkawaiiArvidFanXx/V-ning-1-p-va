@@ -9,7 +9,7 @@ def fight(player, enemy):
     """Kod för slagsmål"""
 
     while player.hp > 0 and enemy.monsterhealth > 0:
-        choice = input("Vill du slåss (1) eller försöka fly (2)? ").strip()
+        choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly ()? ").strip()
 
         if choice == "1":
             print(f"\nDu attackerar {enemy.monstername}\n")
@@ -25,8 +25,11 @@ def fight(player, enemy):
                 print(f"\n{enemy.monstername} attackerar dig tillbaka!")
                 print(f"{player.takes_damage()}")
                 time.sleep(0.5)
-
         elif choice == "2":
+            use_health_potion(player)
+            buffered_type("Du dricker en hälsodryck och återhämtar lite hälsa!\n", 0.05)
+
+        elif choice == "3":
             flee_chance = rand.randint(1, 10)
             if enemy.is_boss == True:
                 print("Precis när du försöker fly från bossen så greppar han tag i dig och slår dig!")
@@ -84,11 +87,9 @@ def O_room(player, monster):
         if gissning == correct_choice:
             if player.hp == player.maxhp:
                 print("Du har redan full hälsa, du kan inte vila nu.")
-                return player
             hpregen = player.maxhp - player.hp
             if hpregen == 0:
                 print("Du är redan fullt återhämtad.")
-                return player
             genhp = rand.randint(1, hpregen)
             print(f"Du återhämtar {genhp} {hp_or_aura(player)}.")
             player.hp += genhp
@@ -135,14 +136,9 @@ def B_room(player):
     return player
 
 def G_room(player):
-    print("Du har hittat ett gott rum och en hälsodryck och dricker den!")
-    heal_amount = rand.randint(1, 2)
-    player.hp += heal_amount
-    if player.hp > player.maxhp:
-        player.hp = player.maxhp
+    print("Du har hittat en kista och öppnar den!\n")
+    kista(player)
     return player
-
-
 
 
 def traptypes(num, player):
@@ -157,7 +153,7 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
         audio_file = "ljud\jag_faller.wav"
 
     elif num == 3:
-        trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen med hjälp av din kunskap och ditt snille. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt och pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
+        trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen med hjälp av din kunskap och ditt snille. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt bits till en pozidriv skruv, så pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
         audio_file = rand.choice(["ljud\pzidriv_2", "ljud/pozidriv_1.wav"])
     elif num == 4:
         trap_message = "När du öppnar dörren till rummet ser du bara mörker, men Mamma didnt raise no chicken, så du går in. När du går in gör du illa dig på något vasst i mörkret."

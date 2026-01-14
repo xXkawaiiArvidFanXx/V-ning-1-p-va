@@ -13,7 +13,7 @@ def game_loading():
     print("Laddar trummor...")
     time.sleep(0.5)
     print("Laddar gitarrer...")
-    #print("Speltips: Kartan kan bara visas en gång annars krashar spelet")
+    print("Speltips: Använd kartan, den kan ge dig vital information")
     time.sleep(0.7)
     print("Laddar orkester...")
     time.sleep(1.2)
@@ -34,7 +34,6 @@ def game_loading():
     print("Ett Spel Av")
     time.sleep(0.5)
     print("invänta dramatisk musik")
-    #trumpet dramatisk spelmusik
     time.sleep(1)
     print("!!    Studio FL    !!")
     sound("ljud/intro.wav")
