@@ -5,7 +5,7 @@ from soundengien import *
 def game_loading():
     """En Estetisk funktion"""
     clear_terminal()
-    backgroundmusic("ljud\bakgrund.wav")
+    backgroundmusic("ljud/bakgrund.wav")
     print("Spelet upplevs bäst med hörlurar eller suround sound med dolby atmos och high fidelity högtalare (rekomenderad mängd 5000 watt och 50 högtalare)")
     time.sleep(2)
     print("Laddar pojken...(viktig plot device)")
@@ -36,7 +36,6 @@ def game_loading():
     print("invänta dramatisk musik")
     #trumpet dramatisk spelmusik
     time.sleep(1)
-    stopmusic()
     print("!!    Studio FL    !!")
     sound("ljud/intro.wav")
     time.sleep(2)
