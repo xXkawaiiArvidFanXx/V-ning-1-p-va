@@ -87,11 +87,9 @@ def O_room(player, monster):
         if gissning == correct_choice:
             if player.hp == player.maxhp:
                 print("Du har redan full hälsa, du kan inte vila nu.")
-                return player
             hpregen = player.maxhp - player.hp
             if hpregen == 0:
                 print("Du är redan fullt återhämtad.")
-                return player
             genhp = rand.randint(1, hpregen)
             print(f"Du återhämtar {genhp} {hp(player)}.")
             player.hp += genhp
@@ -108,7 +106,16 @@ def B_room(player):
         print("Du har redan besegrat bossen i detta rum.")
         return player
     else:
+
+        slowtype("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare \n Det rekomenderas att sänka volymen \n du har 5 sekunder på dig",0,1)
+        stopmusic()
+        backgroundmusic("ljud\hesa_filip.waw")
+        for i in range (0,4):
+            time.sleep(1)
+            print(i+1) # Eventuelt ljud
         backgroundmusic("ljud\cinematic_drum_loop.wav")
+        
+        
         if player.boss_room_cleared == 0:
             print("Du har kommit till ett bossrum! Förbered dig på en tuff strid mot le cuisinier! \n")
             boss = Monster(round(player.level*1.05*75), round(player.level*1.05*5), True, "Le Cuisinier")
@@ -125,6 +132,7 @@ def B_room(player):
             fight(player, boss)
             player.boss_room_cleared += 1
         stopmusic()
+        backgroundmusic("ljud\\bakgrund.wav")
     return player
 
 def G_room(player):
@@ -146,7 +154,7 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
         audio_file = "ljud\jag_faller.wav"
 
     elif num == 3:
-        trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen med hjälp av din kunskap och ditt snille. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt och pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
+        trap_message = "Du ser en väg in till rum 3545 (Workshopen) och tänker skapa ett vapen av materialen med hjälp av din kunskap och ditt snille. Men när du ska skruva märker du att philips bittsen du satte in inte var rätt bits till en pozidriv skruv, så pozidriv skruven skuts ut från ditt vapen och landar i ditt öga."
         audio_file = rand.choice(["ljud\pzidriv_2", "ljud/pozidriv_1.wav"])
     elif num == 4:
         trap_message = "När du öppnar dörren till rummet ser du bara mörker, men Mamma didnt raise no chicken, så du går in. När du går in gör du illa dig på något vasst i mörkret."

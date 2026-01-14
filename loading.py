@@ -5,7 +5,7 @@ from soundengien import *
 def game_loading():
     """En Estetisk funktion"""
     clear_terminal()
-    backgroundmusic("ljud\\bakgrund.wav")
+    backgroundmusic("ljud/bakgrund.wav")
     print("Spelet upplevs bäst med hörlurar eller suround sound med dolby atmos och high fidelity högtalare (rekomenderad mängd 5000 watt och 50 högtalare)")
     time.sleep(2)
     print("Laddar pojken...(viktig plot device)")
@@ -13,7 +13,7 @@ def game_loading():
     print("Laddar trummor...")
     time.sleep(0.5)
     print("Laddar gitarrer...")
-    #print("Speltips: Kartan kan bara visas en gång annars krashar spelet")
+    print("Speltips: Använd kartan, den kan ge dig vital information")
     time.sleep(0.7)
     print("Laddar orkester...")
     time.sleep(1.2)
@@ -34,9 +34,7 @@ def game_loading():
     print("Ett Spel Av")
     time.sleep(0.5)
     print("invänta dramatisk musik")
-    #trumpet dramatisk spelmusik
     time.sleep(1)
-    stopmusic()
     print("!!    Studio FL    !!")
     sound("ljud/intro.wav")
     time.sleep(2)
