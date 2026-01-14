@@ -5,6 +5,7 @@ from text_func import *
 from map_module import *
 from fight import *
 from map_module import *
+from save_funktion import *
 import time
 
 def anoying_name(player):
@@ -136,7 +137,7 @@ def maingame(player):
             elif game_choice == 2:
                 inventory(player)
             elif game_choice == 3:
-                print("Sparar och avslutar spelet...")
+                save_game(player, map)
                 break
             else:
                 raise ValueError
