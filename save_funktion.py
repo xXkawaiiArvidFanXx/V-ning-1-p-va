@@ -24,6 +24,7 @@ from map_module import *
 #         self.health_potion = 0
 
 def save_game(player, map):
+    """Player , map"""
     hp = player.hp
     maxhp = player.maxhp
     inventory = player.inventory
