@@ -17,22 +17,22 @@ def anoying_name(player):
             buffered_type(f"Du skrev ingenting, därmed blir ditt namn {player}!\n", 0.1)
         
         elif player.lower() != name.lower():
-            YesOrNo = input(f"Du skrev {name}, \nMenade du {player} \nJa eller Nej\n")
-            while YesOrNo.lower() != "ja": 
+            yes_or_no = input(f"Du skrev {name}, \nMenade du {player} \nJa eller Nej\n")
+            while yes_or_no.lower() != "ja": 
                 clear_terminal()
                 time.sleep(0.5)
                 if i <= 3:
-                    YesOrNo = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
+                    yes_or_no = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
                     i += 1
                 elif i <= 7:
-                    YesOrNo = input(f"Allvarligt, ge dig. Skriv bara ja\n")
+                    yes_or_no = input(f"Allvarligt, ge dig. Skriv bara ja\n")
                     i += 1
                 elif i <= 14:
                     typo()
-                    YesOrNo = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
+                    yes_or_no = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
                     i += 1
                 elif i <= 20:
-                    YesOrNo = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
+                    yes_or_no = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
                     i += 1
                 elif i <= 25:
                     buffered_type(f"Okej du vinner, ditt namn är nu {name}", 1)

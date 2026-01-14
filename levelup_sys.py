@@ -45,6 +45,7 @@ def level_up(player):
 
     else:
         level_procent = 100*player.xp/xp_req(player.level)
-        level_procent_kvar = 100 - level_procent
-        print(f"Endast {level_procent_kvar}% kvar till nästa level")
+        level_procent = round(level_procent)
+        level_procent_left = 100 - level_procent
+        print(f"Endast {level_procent_left}% kvar till nästa level")
     return player.xp, player.level, player.strenght, player.maxhp, player.hp, player.base_strenght
