@@ -170,8 +170,8 @@ class Monster():
         self.monsterdamage = monsterdamage
         self.monstername = monsterRANDname(monstername)
         self.monsterxp = monsterdamage * monsterhealth
-        self.wepond = weapon_create("")
-        self.wepond_drop_rate = rand.randint(1, 100)
+        self.wepon = weapon_create("")
+        self.wepon_drop_rate = rand.randint(1, 100)
         self.is_boss = boss #booleskt värde, True innebär att det är en boss, detta gör bara så att man inte kan fly från slagsmålet
 
 
@@ -188,11 +188,11 @@ class Monster():
         return f"Fienden gör {self.monsterdamage} i skada"
     
     def drop_weapon(self, player):
-        if self.wepond_drop_rate > 70:
+        if self.wepon_drop_rate > 70:
             return 
         else:
-            player.add_item(self.wepond)
-            print(f"Efter att du dödade {self.monstername} dropade han {self.wepond}")
+            player.add_item(self.wepon)
+            print(f"Efter att du dödade {self.monstername} dropade han {self.wepon}")
             print("För att använda detta vapen gå in i ditt inventory och byt vapen")
         
 
