@@ -1,6 +1,6 @@
 import math
-from slowtype import *
-from soundengien import *
+from text_func import *
+from soundengiene import *
 def xp_req(level):
     """Funktion för hur mycket xp som krävs för att gå upp i nivå"""
     return 10 * 1.5 ** level
@@ -35,7 +35,7 @@ def level_up(player):
             player.maxhp += 5
             player.hp = player.maxhp
             player.xp -= req
-            print(f"Du är i level {player.level} och har ökat din max {hp(player)} till {player.maxhp} och du har nu {player.hp}/{player.maxhp} {hp(player)}.")
+            print(f"Du är i level {player.level} och har ökat din max {hp_or_aura(player)} till {player.maxhp} och du har nu {player.hp}/{player.maxhp} {hp_or_aura(player)}.")
 
         else:
             print("Ojdå, mannen med trumpeten slog dig så att du förlorade all xp du hade. Bättre lycka nästa gång")

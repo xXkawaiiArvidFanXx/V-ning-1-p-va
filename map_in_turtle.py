@@ -5,7 +5,7 @@
 
 import turtle
 from map_module import *
-from slowtype import *
+from text_func import *
 t = turtle
 
 def Write_room(x,y):
@@ -74,9 +74,9 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
             wn._root.withdraw() #gömmer fönstret (del av workaround)
             break
         else:
-            deadahh()
+            typo()
             time.sleep(3)
-            slowtype("Lägg ägg med Felskrivandet",0.1)
+            buffered_type("Lägg ägg med Felskrivandet",0.1)
 
 #Testning
 

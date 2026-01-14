@@ -1,7 +1,7 @@
 from maingame import *
 from map_module import *
 from loading import *
-from victory_or_loosory import *
+from victory_or_lose import *
 
 
 # Huvudprogrammet <3

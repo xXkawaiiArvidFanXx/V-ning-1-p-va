@@ -1,13 +1,13 @@
 import sys, time, os
 import random as rand
-def slowtype(str, speed):
+def buffered_type(str, speed):
     for letter in str:
         sys.stdout.write(letter) #skriver en bokstav (utan radbrytning)
         sys.stdout.flush()  #Gör så att texsten väntar med att skiva ut allt sammtidigt 
         time.sleep(speed)   #Hastighet
     print("\n")
 
-def deadahh():
+def typo():
         print("""    
                   _____
                 _/ _ _ \_  
@@ -21,7 +21,7 @@ def deadahh():
                 \       /
                  \__ __/""")
 
-def hp(player):
+def hp_or_aura(player):
     if player.name == "Fatima":
         return "Aura"
     else:

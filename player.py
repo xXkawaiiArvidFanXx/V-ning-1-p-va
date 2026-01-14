@@ -1,5 +1,5 @@
 import random as rand
-from slowtype import *
+from text_func import *
 from map_in_turtle import *
 
 class Player():
@@ -26,7 +26,7 @@ class Player():
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
     
     def takes_damage(self):
-        return f"Du har nu {self.hp}/{self.maxhp} {hp(self)}."
+        return f"Du har nu {self.hp}/{self.maxhp} {hp_or_aura(self)}."
     
 
     def add_item(self, item):
@@ -84,14 +84,14 @@ def inventory(player):
     # kolla items och stats, och spara och stänga av
     print("\n Inventory och Stats:")
     print(f"Din level är: {player.level}")
-    print(f"{hp(player)}: {player.hp}/{player.maxhp}")
+    print(f"{hp_or_aura(player)}: {player.hp}/{player.maxhp}")
     print(f"Attack Styrka: {player.strenght}")
     print(f"Din charisma är: {player.charisma}")
     if player.equipped_weapon != None:
         print(f"\nUtrustat Vapen: {player.equipped_weapon.name}")
     time.sleep(2)
 
-    slowtype(f"\nDina Saker är: {len(player.inventory)}", 0.05)
+    buffered_type(f"\nDina Saker är: {len(player.inventory)}", 0.05)
     time.sleep(0.5)
     for i, item in enumerate(player.inventory):
         print(f"{i+1}. {item.name} - Skada: {item.damage}, Sällsynthet: {item.rarity}")
@@ -99,8 +99,8 @@ def inventory(player):
 
     while True: 
         # Meny Alternativ
-        slowtype("\nVad vill du göra?\n", 0.05)
-        slowtype("1. Byt Vapen\n2. Öppna Karta (haijper nice)\n3. Stäng Inventoryn\n", 0.05)
+        buffered_type("\nVad vill du göra?\n", 0.05)
+        buffered_type("1. Byt Vapen\n2. Öppna Karta (haijper nice)\n3. Stäng Inventoryn\n", 0.05)
         choice = input("Välj ett alternativ!!! ")
         try:
             if choice == "1":
@@ -110,11 +110,11 @@ def inventory(player):
             elif choice == "3":
                 break
             elif choice == "2":
-                slowtype("Klicka in på Turtle Grafics fönstret.\n", 0.05)
+                buffered_type("Klicka in på Turtle Grafics fönstret.\n", 0.05)
                 Turtle_maps(player.pos_x, player.pos_y)
         except ValueError:
-            deadahh()
-            slowtype("Lock in. Försök igen.\n", 0.05) 
+            typo()
+            buffered_type("Lock in. Försök igen.\n", 0.05) 
                
 
 
