@@ -1,4 +1,6 @@
 from os import environ
+import pygame
+
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1' #Tar bort massa onödig info text
 
 import warnings
@@ -7,6 +9,16 @@ warnings.filterwarnings("ignore", message="pkg_resources is deprecated*", catego
 
 import pygame
 
+def backgroundmusic(filväg):
+    """Spelar en bakgrundsmusik. Skicka in sökvägen till filen som en sträng.
+    Exempel: backgroundmusic("ljud/bakgrundsmusik.wav")"""
+    pygame.mixer.init()
+    pygame.mixer.music.load(filväg)
+    pygame.mixer.music.play(-1)  # Spela i loop
+
+def stopmusic():
+    """Stoppar bakgrundsmusiken som spelas."""
+    pygame.mixer.music.stop()
 
 def sound(filväg):
     """Spelar en ljudfil. Skicka in sökvägen till filen som en sträng.

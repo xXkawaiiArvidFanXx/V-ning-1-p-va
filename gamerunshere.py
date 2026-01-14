@@ -6,7 +6,7 @@ from victory_or_loosory import *
 
 # Huvudprogrammet <3
 def maingame_start():
-    #game_loading()
+    game_loading()
     Map_Creation()
     startgame()
     player = class_chooser()

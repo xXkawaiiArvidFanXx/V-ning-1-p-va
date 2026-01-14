@@ -21,7 +21,7 @@ def Write_room(x,y):
     t.left(50)
     t.penup()
     
-def Turtle_maps(y,x): #kanske en lista för icke hittade rum
+def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     """player.pos_x, player.pos_y"""
     t = turtle
     wn = turtle.Screen()
@@ -34,35 +34,43 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
     # en for loop som går igenom alla rum 4*7 och skriver ut Vad som finns i dem (täks med ? om ett tag)
     for a in range (1,5):
         for i in range (7):
-            t.goto(-300+65*a,200-65*i)
+            t.goto(-300+65*a,225-65*i)
             Write_room(i,a-1)
             wn.update()
             time.sleep(0.5)
     #använd player pos som variabler x och y
     pos = t.Turtle()
-    pos.showturtle()
+    pos.clear()
+    pos.shapesize(stretch_wid=1.5, stretch_len=1.5)
     pos.color("red")
-    #pos.shape("circle")
+    pos.shape("circle")
     pos.penup()
-    pos.goto(-300+65*(x+3)+37,200-65*(y-2)-37)
+    pos.goto(-435+65*(x+3)+35, 25-65*(y-3)-30)
     pos.pendown()
     t.forward(90)
     t.write(""" 
+ DU ÄR Här -->
  G = Gott rum
  T = Fälla
  E = Tomt rum
  O = Ont rum
  N = Neutralt rum
  B = Boss Rum """,font=("Creepster", 24, "bold"))
+    estetiskblob = t.Turtle()
+    estetiskblob.penup()
+    estetiskblob.goto(290, 75)
+    estetiskblob.shapesize(stretch_wid=1.5, stretch_len=1.5)
+    estetiskblob.color("red")
+    estetiskblob.shape("circle")
 
     wn.update() 
     Loop = True
     while Loop == True:
-        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut
-                                  (Liten kompass på toppen så du vet vart norr är)""")
+        action = turtle.textinput("Är du klar eller vill du se kartan skrivas upp en gång till?", """Y = en gång till, q = Släpp mig ut""")
         if action.lower() == "y":
-           Turtle_maps(x, y)
+           Turtle_maps(x,y)
         elif action.lower() == "q":
+            pos.hideturtle()
             wn._root.withdraw() #gömmer fönstret (del av workaround)
             break
         else:
@@ -70,7 +78,12 @@ def Turtle_maps(y,x): #kanske en lista för icke hittade rum
             time.sleep(3)
             slowtype("Lägg ägg med Felskrivandet",0.1)
 
+#Testning
+
 #if __name__ == "__main__":
+#    Map_Creation()
+#    Turtle_maps(3,6)
+
 #    # Demo / manual test: import Player here to avoid circular import during module import
 #    from player import Player
 #    player = Player(20, 2, "magis", 3, "lububu")

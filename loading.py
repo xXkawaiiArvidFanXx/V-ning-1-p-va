@@ -1,9 +1,13 @@
 import time
 from slowtype import clear_terminal
+from soundengien import *
 #Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet laddar ner massa filer
 def game_loading():
     """En Estetisk funktion"""
     clear_terminal()
+    backgroundmusic("ljud\\bakgrund.wav")
+    print("Spelet upplevs bäst med hörlurar eller suround sound med dolby atmos och high fidelity högtalare (rekomenderad mängd 5000 watt och 50 högtalare)")
+    time.sleep(2)
     print("Laddar pojken...(viktig plot device)")
     time.sleep(1)
     print("Laddar trummor...")
@@ -32,8 +36,9 @@ def game_loading():
     print("invänta dramatisk musik")
     #trumpet dramatisk spelmusik
     time.sleep(1)
+    stopmusic()
     print("!!    Studio FL    !!")
-    print("Upplevs bäst med hörlurar (ASMR)")
+    sound("ljud/intro.wav")
     time.sleep(2)
     clear_terminal()
     return

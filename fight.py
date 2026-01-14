@@ -29,7 +29,7 @@ def fight(player, enemy):
         elif choice == "2":
             flee_chance = rand.randint(1, 10)
             if enemy.is_boss == True:
-                print("Precis när du försöker fly från bossen ")
+                print("Precis när du försöker fly från bossen så greppar han tag i dig och slår dig!")
                 player.hp -= enemy.monsterdamage
                 print(player.takes_damage())
 
@@ -105,6 +105,7 @@ def B_room(player):
         print("Du har redan besegrat bossen i detta rum.")
         return player
     else:
+        backgroundmusic("ljud\cinematic_drum_loop.wav")
         if player.boss_room_cleared == 0:
             print("Du har kommit till ett bossrum! Förbered dig på en tuff strid mot le cuisinier! \n")
             boss = Monster(round(player.level*1.05*75), round(player.level*1.05*5), True, "Le Cuisinier")
@@ -120,6 +121,7 @@ def B_room(player):
             boss = Monster(round(player.level*1.05*150),round(player.level*1.05*10), True, "Le Homme Féminin Wilmér")
             fight(player, boss)
             player.boss_room_cleared += 1
+        stopmusic()
     return player
 
 def G_room(player):
