@@ -88,6 +88,7 @@ def use_health_potion(player):
     else:
         print("Du har inga hälsodrycker kvar!\n")
         print("Försök att bli bättre?")
+    return player
 
 
 def inventory(player):
