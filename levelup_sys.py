@@ -10,8 +10,9 @@ def level_up(player):
     """
     Hantera level up. Returnerar (xp, level, strenght, max_hp).
     """
-    if player.xp >= xp_req(player.level):
-        req = xp_req(player.level) #xp som ska tas bort vid level up
+    req = xp_req(player.level)
+    if player.xp >= req:
+         #xp som ska tas bort vid level up
         choice = input("""Du kan gå upp i nivå! Men innan det måste du bestäma om du vill:
 1. Få mer styrka
 2. Få mer max hp\n""")
@@ -44,7 +45,7 @@ def level_up(player):
             sound("ljud/wompwomp.mp3")
 
     else:
-        level_procent = 100*player.xp/xp_req(player.level)
+        level_procent = 100*player.xp/req
         level_procent = round(level_procent)
         level_procent_left = 100 - level_procent
         print(f"Endast {level_procent_left}% kvar till nästa level")
