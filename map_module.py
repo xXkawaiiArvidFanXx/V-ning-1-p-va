@@ -30,12 +30,11 @@ def map_creation():
 
 # Behövs inte, men sparar endå
 #
-#def print_map():
-#    for row in map: #Hur man kan skiva ut kartan fint
-#        print(row)
+def print_map():
+   for row in map: #Hur man kan skiva ut kartan fint
+       print(row)
 
 map = map_creation()
-
 
 
 def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför kartan
