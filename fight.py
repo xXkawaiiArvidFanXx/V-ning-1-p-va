@@ -8,7 +8,20 @@ import time
 def fight(player, enemy):
     """Kod för slagsmål"""
 
+    first_strike = enemy.monster_start(player)
+
     while player.hp > 0 and enemy.monsterhealth > 0:
+
+        if first_strike:
+            print(f"\n{enemy.monstername} attackerar dig först!")
+            player.hp -= enemy.monsterdamage
+            print(player.takes_damage())
+            first_strike = False
+
+        if enemy.fight_or_flight(player):
+            print(f"{enemy.monstername} ser din karisma!")
+            return "fled"
+
         choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
 
         if choice == "1":
@@ -30,7 +43,7 @@ def fight(player, enemy):
                 print("Du har inga hälsodrycker kvar!")
                 continue
             else:
-                use_health_potion(player)
+                player = use_health_potion(player)
                 buffered_type("Du dricker en hälsodryck och återhämtar lite hälsa!\n", 0.05)
 
         elif choice == "3":
