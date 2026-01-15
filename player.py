@@ -119,9 +119,13 @@ def inventory(player):
                 time.sleep(2)
                 clear_terminal()
             elif choice == "3":
-                use_health_potion(player)
-                buffered_type("Nu har du druckit en smaskig hälsodryck!\n", 0.05)
-                buffered_type(f"Du har nu {player.health_potion} hälsodrycker kvar i bakfickan!\n", 0.05)
+                if player.health_potion <= 0:
+                    buffered_type("Du har inga hälsodrycker kvar!\n", 0.05)
+                    continue
+                else:
+                    use_health_potion(player)
+                    buffered_type("Nu har du druckit en smaskig hälsodryck!\n", 0.05)
+                    buffered_type(f"Du har nu {player.health_potion} hälsodrycker kvar i bakfickan!\n", 0.05)
             elif choice == "2":
                 buffered_type("Klicka in på Turtle Grafics fönstret.\n", 0.05)
                 Turtle_maps(player.pos_x, player.pos_y)
