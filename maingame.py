@@ -4,7 +4,6 @@ from player import *
 from text_func import *
 from map_module import *
 from fight import *
-from map_module import *
 from save_funktion import *
 import time
 
@@ -124,7 +123,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
 
 
 
-def maingame(player):
+def maingame(player, game_map):
 # här kör vi huvudspelet :D
 
     while player.hp > 0 and player.boss_room_cleared != 2:
@@ -136,7 +135,7 @@ def maingame(player):
             if game_choice == 1:
                 print("\n")
                 player.pos_y, player.pos_x = player_position(player.pos_y, player.pos_x)
-                room=get_room_type(player.pos_y, player.pos_x)
+                room=get_room_type(player.pos_y, player.pos_x, game_map)
                 player = room_chooser(room, player)
                 
 
@@ -173,7 +172,7 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
                 
 
         elif startchoice == 2:
-            print("du har valt att ladda in en sparfil, men du känner djupt inne att du vill starta ett nytt spel så det är vad du får")
+            print("du har valt att ladda in en sparfil")
             #här ska vi skapa en load save funktion
             return "load_game"
                 
