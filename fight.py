@@ -127,7 +127,7 @@ def B_room(player):
         buffered_type("Det rekomenderas att sänka volymen", 0.1)
         buffered_type("Du har 5 sekunder på dig", 0.1)
         stopmusic()
-        backgroundmusic("ljud\hesa_filip.waw")
+        backgroundmusic("ljud\\hesa_filip.wav")
         for i in range (0,4):
             time.sleep(1)
             print(i+1) # Eventuelt ljud
