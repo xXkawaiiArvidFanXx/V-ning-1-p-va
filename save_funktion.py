@@ -23,12 +23,12 @@ from map_module import *
 #         self.level = 1
 #         self.health_potion = 0
 
-def save_game(player, map):
+def save_game(player, map,weapon):
     """Player , map"""
     hp = player.hp
     maxhp = player.maxhp
     inventory = player.inventory
-    weapon = player.equipped_weapon
+    e_weapon = player.equipped_weapon
     basestrenght =player.base_strenght
     strenght = player.strenght
     name =player.name
@@ -41,15 +41,21 @@ def save_game(player, map):
     xp =player.xp
     level = player.level
     potsion = player.health_potion
-    grich = player.grich 
+    grisch = player.grisch 
     
+    weapon_damage =weapon.damage
+    weapon_name= weapon.name
+    weapon_rarity=weapon.rarity
+
+
+
     map_save = ""
     for a in range (7):
         for b in range (4): 
              map_save += map[a][b]
 
     file = open("save_file.txt", mode="w", encoding="utf-8") #encoding="utf-8"
-    file.write(f"{hp}_{maxhp}_{inventory}_{weapon}_{basestrenght}_{strenght}_{name}_{charisma}_{y}_{x}_{nr_boss}_{boss_x}_{boss_y}_{xp}_{level}_{potsion}_{grich}_\n{map_save}")
+    file.write(f"{hp}_{maxhp}_{inventory}_{e_weapon}_{basestrenght}_{strenght}_{name}_{charisma}_{y}_{x}_{nr_boss}_{boss_x}_{boss_y}_{xp}_{level}_{potsion}_{grisch}_{weapon_damage}_{weapon_name}_{weapon_rarity}_\n{map_save}\n")
     file.close()
     print("Spelet är nu sparat")
 
@@ -74,7 +80,7 @@ def load_game():
     player.hp =int(list_of_stats[0])
     player.maxhp =int(list_of_stats[1])
     player.inventory =list_of_stats[2]
-    player.equip_weapon =list_of_stats[3]
+    player.equipped_weapon =list_of_stats[3]
     player.base_strenght =float(list_of_stats[4])
     player.strenght=float(list_of_stats[5])
     player.name=list_of_stats[6]
@@ -87,16 +93,20 @@ def load_game():
     player.xp =int(list_of_stats[13])
     player.level=int(list_of_stats[14])
     player.health_potion=int(list_of_stats[15])
-    player.grich = bool(list_of_stats[16])
-
+    player.grisch = bool(list_of_stats[16])
+    weapon_damage = int(list_of_stats[17])
+    weapon_name = list_of_stats[18]
+    weapon_rarity =list_of_stats[19]
+    wepon =Weapon(weapon_damage, weapon_name, weapon_rarity)
+    player.equipped_weapon = wepon
     #gör Map save till formen av en karta
     map_save = []
     for i in range (7): #En tom kart mall skapas
         map_save.append([map[4*i-3],map[4*i-2],map[3+4*i-1],map[4*i]])
     # for row in map_save: #Hur man kan skiva ut kartan fint
     #        print(row)
-
-    return player , map_save
+    
+    return player , map_save, wepon
 
 #load_game()
 
@@ -109,6 +119,8 @@ def load_game():
 
 
 # allt effter detta ska bort
+
+
 
 # map = []
 # map_size = 7 #bestämmer storlek på kartan
@@ -128,5 +140,7 @@ def load_game():
 # map[2][2] = "B"
 # map[6][3] = "E"
 
-# spelare = Player(2,2,2,2,2)
-# save_game(spelare, map)
+weapon = weapon_create("")
+spelare = Player(2,2,2,2,2)
+save_game(spelare, map,weapon)
+load_game()
