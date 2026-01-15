@@ -1,6 +1,6 @@
 import math
 from text_func import *
-from soundengiene import *
+from soundengine import *
 def xp_req(level):
     """Funktion för hur mycket xp som krävs för att gå upp i nivå"""
     return 10 * 1.5 ** level

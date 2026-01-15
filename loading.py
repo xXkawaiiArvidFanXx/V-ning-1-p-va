@@ -1,6 +1,6 @@
 import time
 from text_func import clear_terminal
-from soundengiene import *
+from soundengine import *
 #Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet laddar ner massa filer
 def game_loading():
     """En Estetisk funktion"""

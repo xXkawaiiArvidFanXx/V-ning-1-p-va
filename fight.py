@@ -1,6 +1,6 @@
 import random as rand
 from player import *
-from soundengiene import *
+from soundengine import *
 from levelup_sys import *
 from text_func import *
 import time

@@ -6,7 +6,7 @@
 #med funktionen get_room_type() kan du få vad det är för typ av rum spelaren står i
 import random as rand
 from player import *
-from soundengiene import *
+from soundengine import *
 def map_creation():
     map = []
     map_size = 7 #bestämmer storlek på kartan
