@@ -49,28 +49,26 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     pos.pendown()
     t.forward(90)
     t.write(""" 
- DU ÄR Här -->
+ DU ÄR HÄR -->
  G = Gott rum
  T = Fälla
  E = Tomt rum
  O = Ont rum
  N = Neutralt rum
  B = Boss Rum """,font=("Creepster", 24, "bold"))
-    estetiskblob = t.Turtle()
-    estetiskblob.penup()
-    estetiskblob.goto(290, 75)
-    estetiskblob.shapesize(stretch_wid=1.5, stretch_len=1.5)
-    estetiskblob.color("red")
-    estetiskblob.shape("circle")
+    player_map_icon = t.Turtle()
+    player_map_icon.penup()
+    player_map_icon.goto(290, 75)
+    player_map_icon.shapesize(stretch_wid=1.5, stretch_len=1.5)
+    player_map_icon.color("red")
+    player_map_icon.shape("circle")
 
-    wn.update() 
+    wn.update()
     Loop = True
     while Loop == True:
         time.sleep(3)
         action = turtle.textinput("kollat klart på kartan?", "q = Släpp mig ut")
-        if action.lower() == "y":
-           Turtle_maps(x,y)
-        elif action.lower() == "q":
+        if action.lower() == "q":
             pos.hideturtle()
             wn._root.withdraw() #gömmer fönstret (del av workaround)
             break
