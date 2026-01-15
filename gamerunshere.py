@@ -12,6 +12,7 @@ def maingame_start():
     player = class_chooser()
     maingame(player)
     victory_or_loosory(player)
+    endcredits()
 
 if __name__ == "__main__":
     maingame_start()
