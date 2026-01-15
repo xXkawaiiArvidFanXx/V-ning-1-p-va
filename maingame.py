@@ -78,7 +78,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
                 player.add_item(belt)
                 buffered_type("Du är nu den sämsta karaktären\n", 0.1)
                 clear_terminal()
-                print(f"Du är nu {player.name}, en grich med hög (låg) aura \n")
+                print(f"Du är nu {player.name}, en grisch med hög (låg) aura \n")
                 return player
             
             elif character_selector == 2:
@@ -99,7 +99,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
             
             elif character_selector == 4:
                 player_name = anoying_name("Geo Junior")
-                player = Player(20, 2, player_name, 5)
+                player = Player(20, 2, player_name, 2.5)
                 pen = weapon_create("penna")
                 player.add_item(pen)
                 print(f"Du är nu {player.name}, en lärare med en vass penna! \n")
