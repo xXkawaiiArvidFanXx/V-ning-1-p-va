@@ -28,7 +28,9 @@ def save_game(player, map):
     hp = player.hp
     maxhp = player.maxhp
     inventory = player.inventory
-    strenght =player.base_strenght
+    weapon = player.equipped_weapon
+    basestrenght =player.base_strenght
+    strenght = player.strenght
     name =player.name
     charisma =player.charisma
     y =player.pos_y
@@ -41,13 +43,67 @@ def save_game(player, map):
     potsion = player.health_potion
     
     map_save = ""
-    for a in range (map_size):
-        for b in range (4): #här slumpas rummens egenskaper fram N = Neutralt 
+    for a in range (7):
+        for b in range (4): 
              map_save += map[a][b]
 
     file = open("save_file.txt", mode="w", encoding="utf-8") #encoding="utf-8"
-    file.write(f"{hp}{maxhp}{inventory}{strenght}{name}{charisma}{y}{x}{nr_boss}{boss_x}{boss_y}{xp}{level}{potsion}\n{map_save}")
+    file.write(f"{hp}_{maxhp}_{inventory}_{weapon}_{basestrenght}_{strenght}_{name}_{charisma}_{y}_{x}_{nr_boss}_{boss_x}_{boss_y}_{xp}_{level}_{potsion}_\n{map_save}")
     file.close()
+
+def load_game():
+
+    file = open("save_file.txt", mode="r", encoding="utf-8") #encoding="utf-8" gör att åäö fungerar, taget från internet
+    stats = file.readline() #läser alla 16 player stats
+    print(stats)
+    stats.split("_")
+    list_of_stats = []
+    one_stat = ""
+    for letter in stats:
+        if letter != "_":
+            one_stat += letter
+        else:
+            list_of_stats.append(one_stat)
+            one_stat = ""
+    print (list_of_stats)
+    player = Player(2,2,"N",2,"W")
+    player.hp =list_of_stats[0]
+    player.maxhp =list_of_stats[1]
+    player.inventory =list_of_stats[2]
+    player.equip_weapon =list_of_stats[3]
+    player.base_strenght =list_of_stats[4]
+    player.strenght=list_of_stats[5]
+    player.name=list_of_stats[6]
+    player.charisma=list_of_stats[7]
+    player.pos_y=list_of_stats[8]
+    player.pos_x=list_of_stats[9]
+    player.boss_room_cleared =list_of_stats[10]
+    player.boss_room_cleared_posistion_x=list_of_stats[11]
+    player.boss_room_cleared_posistion_y=list_of_stats[12]
+    player.xp =list_of_stats[13]
+    player.level=list_of_stats[14]
+    player.health_potion=list_of_stats[15]
+
+
+
+    map = file.read(-1) # hämtar kartan
+    file.close() #stänger filen
+    #gör Map save till formen av en karta
+    map_save = []
+    for i in range (7): #En tom kart mall skapas
+        map_save.append([map[4*i-3],map[4*i-2],map[3+4*i-1],map[4*i]])
+    # for row in map_save: #Hur man kan skiva ut kartan fint
+    #        print(row)
+
+    #return player , map
+
+#load_game()
+
+
+
+
+
+
 
 
 
