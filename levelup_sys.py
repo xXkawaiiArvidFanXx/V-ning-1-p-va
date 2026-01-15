@@ -13,14 +13,15 @@ def level_up(player):
     req = xp_req(player.level)
     if player.xp >= req:
          #xp som ska tas bort vid level up
-        choice = input("""Du kan gå upp i nivå! Men innan det måste du bestäma om du vill:
+         print ("====================================================================================================================\n")
+         choice = input("""Du kan gå upp i nivå! Men innan det måste du bestäma om du vill:
 1. Få mer styrka
 2. Få mer max hp\n""")
-        sound("ljud/xp_ljud.mp3")
-        clear_terminal()
+         sound("ljud/xp_ljud.mp3")
+         clear_terminal()
         # trumpet ska spelas här
         #om choice är 1 så ökar styrkan
-        if choice == '1':
+         if choice == '1':
             player.level += 1
             player.base_strenght += 2
             player.xp -= req
@@ -31,14 +32,14 @@ def level_up(player):
             print(f"Du är i level {player.level} och har ökat din skada till {player.strenght}.")
 
         #om choice är 2 så ökar max hp och healas helt
-        elif choice == '2':
+         elif choice == '2':
             player.level += 1
             player.maxhp += 5
             player.hp = player.maxhp
             player.xp -= req
             print(f"Du är i level {player.level} och har ökat din max {hp_or_aura(player)} till {player.maxhp} och du har nu {player.hp}/{player.maxhp} {hp_or_aura(player)}.")
 
-        else:
+         else:
             print("Ojdå, mannen med trumpeten slog dig så att du förlorade all xp du hade. Bättre lycka nästa gång")
             print("kanske skulle jag ha valt ett av valen istället för att vara lite dum tänker jag till för mig själv")
             player.xp = 0

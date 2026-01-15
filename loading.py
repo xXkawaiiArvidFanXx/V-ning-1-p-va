@@ -46,48 +46,52 @@ def game_loading():
     return
     # Här skulle du lägga in kod för att spela upp ett ljud
 
+def endcredits_common_names():
+    buffered_type("Elias kronofogsvans (såg)", 0.2)
+    buffered_type("Den kvalificerade Fofilolipop", 0.2)
+    buffered_type("Den något kortare Frej", 0.2)
+
+def endcredits_headline(i):
+    print ("=========================================================================================================================")
+    if i == 1:
+        buffered_type("Programering" , 0.1)
+    elif i == 2:
+        buffered_type("Speldesign", 0.1)
+    elif i == 3:
+        buffered_type("Musik och Ljuddesign", 0.1)
+    elif i == 4:
+        buffered_type("Balans och Spelmekanik", 0.1)
+    elif i == 5:
+        buffered_type ("Balans och Spelmekanik", 0.1) 
+    elif i == 6:
+        buffered_type ("Monsterdesign", 0.1)
+
 def endcredits():
     """Spelar upp slutcredits"""
     clear_terminal()
-    buffered_type("Programering", 0.1)
-    buffered_type("Elias kronofogsvans (såg)", 0.2)
-    buffered_type("Den kvalificerade Fofilolipop", 0.2)
-    buffered_type("frej?", 0.2)
+    for i in range(1,6):
+        endcredits_headline(i)
+        endcredits_common_names()
+        if i == 5:
+            buffered_type("tåbiah (raggmunk)", 0.2)
+    print ("=========================================================================================================================")
+    buffered_type("Karta samt inledandet av spar funktion", 0.1)
+    buffered_type("Den något kortare Frej", 0.2)
     time.sleep(2)
-    buffered_type("Speldesign", 0.1)
-    buffered_type("Elias kronofogsvans (såg)", 0.2)
-    buffered_type("Den kvalificerade Fofilolipop", 0.2)
-    buffered_type("frej?", 0.2)
-    time.sleep(2)
-    buffered_type("Musik och Ljuddesign", 0.1)
-    buffered_type("Elias kronofogsvans (såg)", 0.2)
-    buffered_type("Den kvalificerade Fofilolipop", 0.2)
-    buffered_type("frej?", 0.2)
-    time.sleep(2)
-    buffered_type("Balans och Spelmekanik", 0.1)
-    buffered_type("Elias kronofogsvans (såg)", 0.2)
-    buffered_type("Den kvalificerade Fofilolipop", 0.2)
-    buffered_type("frej?", 0.2)
-    buffered_type("tåbiah (raggmunk)", 0.2)
-    time.sleep(2)
-    buffered_type("Monsterdesign", 0.1)
-    buffered_type("Elias kronofogsvans (såg)", 0.2)
-    buffered_type("Den kvalificerade Fofilolipop", 0.2)
-    buffered_type("frej?", 0.2)
-    time.sleep(2)
-    buffered_type("Karta", 0.1)
-    buffered_type("frej!", 0.2)
-    time.sleep(2)
+    print ("=========================================================================================================================")
     buffered_type("Projektöverseende fellstavningar och rum (inte hotell hahahahaha kanske (stav))", 0.1)
     buffered_type("Den kvalificerade Fofilolipop", 0.2)
     time.sleep(2)
+    print ("=========================================================================================================================")
     buffered_type("Inventory, buggar och hälsoflaskor det är viktigt", 0.1)
     buffered_type("Elias kronofogsvans (såg)", 0.2)
     time.sleep(2)
+    print ("=========================================================================================================================")
     print("Tack för att du spelade!")
     time.sleep(2)
+    print ("=========================================================================================================================")
     print("Slutcredits musik spelas nu upp...")
     print("alla buggfixade")
+    print ("=========================================================================================================================")
     time.sleep(10)
     return 
-

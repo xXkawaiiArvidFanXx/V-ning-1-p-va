@@ -8,7 +8,7 @@ from map_module import *
 from text_func import *
 t = turtle
 
-def Write_room(x,y):
+def Write_room(x,y, game_map):
     for i in range (4):
         t.pendown()
         t.forward(60)
@@ -16,12 +16,12 @@ def Write_room(x,y):
         t.penup()
     t.right(50)
     t.forward(45)
-    t.write(map[x][y])
+    t.write(game_map[x][y])
     t.back(42)
     t.left(50)
     t.penup()
     
-def Turtle_maps(x,y): #kanske en lista för icke hittade rum
+def Turtle_maps(x,y,game_map): #kanske en lista för icke hittade rum
     """player.pos_x, player.pos_y"""
     t = turtle
     wn = turtle.Screen()
@@ -35,7 +35,7 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     for a in range (1,5):
         for i in range (7):
             t.goto(-300+65*a,225-65*i)
-            Write_room(i,a-1)
+            Write_room(i,a-1,game_map)
             wn.update()
             time.sleep(0.5)
     #använd player pos som variabler x och y
