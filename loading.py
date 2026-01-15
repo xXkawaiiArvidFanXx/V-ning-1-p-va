@@ -38,7 +38,9 @@ def game_loading():
     print("invänta dramatisk musik")
     time.sleep(1)
     print("!!    Studio FL    !!")
+    stopmusic()
     sound("ljud/intro.wav")
+    backgroundmusic("ljud/bakgrund.wav")
     time.sleep(2)
     clear_terminal()
     return
