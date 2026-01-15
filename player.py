@@ -22,7 +22,7 @@ class Player():
         self.xp = 0
         self.level = 1
         self.health_potion = 0
-        self.grich = grisch
+        self.grisch = grisch
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"

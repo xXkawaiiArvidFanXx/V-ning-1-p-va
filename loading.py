@@ -1,6 +1,6 @@
 import time
-from text_func import clear_terminal
-from soundengiene import *
+from text_func import *
+from soundengine import *
 #Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet laddar ner massa filer
 def game_loading():
     """En Estetisk funktion"""
@@ -43,3 +43,49 @@ def game_loading():
     clear_terminal()
     return
     # Här skulle du lägga in kod för att spela upp ett ljud
+
+def endcredits():
+    """Spelar upp slutcredits"""
+    clear_terminal()
+    buffered_type("Programering", 0.1)
+    buffered_type("Elias kronofogsvans (såg)", 0.2)
+    buffered_type("Den kvalificerade Fofilolipop", 0.2)
+    buffered_type("frej?", 0.2)
+    time.sleep(2)
+    buffered_type("Speldesign", 0.1)
+    buffered_type("Elias kronofogsvans (såg)", 0.2)
+    buffered_type("Den kvalificerade Fofilolipop", 0.2)
+    buffered_type("frej?", 0.2)
+    time.sleep(2)
+    buffered_type("Musik och Ljuddesign", 0.1)
+    buffered_type("Elias kronofogsvans (såg)", 0.2)
+    buffered_type("Den kvalificerade Fofilolipop", 0.2)
+    buffered_type("frej?", 0.2)
+    time.sleep(2)
+    buffered_type("Balans och Spelmekanik", 0.1)
+    buffered_type("Elias kronofogsvans (såg)", 0.2)
+    buffered_type("Den kvalificerade Fofilolipop", 0.2)
+    buffered_type("frej?", 0.2)
+    time.sleep(2)
+    buffered_type("Monsterdesign", 0.1)
+    buffered_type("Elias kronofogsvans (såg)", 0.2)
+    buffered_type("Den kvalificerade Fofilolipop", 0.2)
+    buffered_type("frej?", 0.2)
+    time.sleep(2)
+    buffered_type("Karta", 0.1)
+    buffered_type("frej!", 0.2)
+    time.sleep(2)
+    buffered_type("Projektöverseende fellstavningar och rum (inte hotell hahahahaha kanske (stav))", 0.1)
+    buffered_type("Den kvalificerade Fofilolipop", 0.2)
+    time.sleep(2)
+    buffered_type("Inventory, buggar och hälsoflaskor det är viktigt", 0.1)
+    buffered_type("Elias kronofogsvans (såg)", 0.2)
+    time.sleep(2)
+    print("Tack för att du spelade!")
+    time.sleep(2)
+    print("Slutcredits musik spelas nu upp...")
+    print("alla buggfixade")
+    time.sleep(10)
+    return 
+
+endcredits()

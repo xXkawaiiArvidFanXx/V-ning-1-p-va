@@ -1,6 +1,6 @@
 import random as rand
 from player import *
-from soundengiene import *
+from soundengine import *
 from levelup_sys import *
 from text_func import *
 import time
@@ -179,7 +179,10 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
         audio_file = 0
     elif num == 5:
         trap_message = "Du råkade öppna fel dörr och du gick in i en improv musikgrupp som spelar lite jazz!"
+        stopmusic()
         audio_file = "ljud/jazztrap.wav"
+        stopmusic()
+        backgroundmusic("ljud\\bakgrund.wav")
     elif len(player.inventory) >= 5:
         trap_message = "Du försöker att smyga förbi en lärare som patrullerar korridoren, men du snubblar över din egen ficka full med saker och faller pladask på marken. Läraren ser dig och du får en varning för att ha sprungit i korridoren."
         audio_file = 0
