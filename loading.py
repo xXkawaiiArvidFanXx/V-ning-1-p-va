@@ -89,4 +89,3 @@ def endcredits():
     time.sleep(10)
     return 
 
-endcredits()
