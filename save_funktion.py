@@ -35,7 +35,7 @@ def save_game(player, game_map, weapon):
 
 
 
-    print(game_map)
+    #print(game_map)
     map_save = ""
     for a in range (7):
         for b in range (4): 

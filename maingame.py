@@ -149,7 +149,6 @@ def maingame(player, game_map):
                     print("Tutorial: https://youtu.be/nWm1AwnhtY0")
                     continue
                 return "save_game"
-                break
             else:
                 raise ValueError
 

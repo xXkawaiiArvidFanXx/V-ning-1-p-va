@@ -6,7 +6,7 @@ from victory_or_lose import *
 
 # Huvudprogrammet <3
 def maingame_start():
-    game_loading()
+    #game_loading()
     game_map = map_creation()
     load_or_save=startgame()
     if load_or_save != "load_game":
@@ -21,7 +21,7 @@ def maingame_start():
         endcredits()
     else:
         save_game(player, game_map, player.equipped_weapon)
-    print("Spelet avslutas....")
+        print("Spelet avslutas....")
 
 if __name__ == "__main__":
     maingame_start()
