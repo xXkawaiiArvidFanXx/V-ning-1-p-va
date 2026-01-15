@@ -5,13 +5,24 @@ from victory_or_lose import *
 
 
 # Huvudprogrammet <3
-def maingame_start():
-    game_loading()
+def maingame_start(map):
+    #game_loading()
     map_creation()
-    startgame()
-    player = class_chooser()
-    maingame(player)
-    victory_or_loosory(player)
+    load_or_save=startgame()
+    if load_or_save != "load_game":
+        player = class_chooser()
+    else:
+        player, map = load_game()
+    
+    save_loss_or_win = maingame(player)
+    
+    if save_loss_or_win != "save_game":
+        victory_or_loosory(player)
+#        endcredits()
+
+    else:
+        save_game(player, map)
+    print("Spelet avslutas....")
 
 if __name__ == "__main__":
-    maingame_start()
+    maingame_start(map)

@@ -137,7 +137,7 @@ def maingame(player):
             elif game_choice == 2:
                 inventory(player)
             elif game_choice == 3:
-                save_game(player, map)
+                return "save_game"
                 break
             else:
                 raise ValueError
