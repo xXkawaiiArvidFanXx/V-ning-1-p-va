@@ -17,6 +17,9 @@ def anoying_name(player):
             buffered_type(f"Du skrev ingenting, därmed blir ditt namn {player}!\n", 0.1)
         
         elif player.lower() != name.lower():
+
+            name = name.capitalize()
+
             yes_or_no = input(f"Du skrev {name}, \nMenade du {player} \nJa eller Nej\n")
             while yes_or_no.lower() != "ja": 
                 clear_terminal()
@@ -34,6 +37,10 @@ def anoying_name(player):
                 elif i <= 20:
                     yes_or_no = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
                     i += 1
+                elif i == 24:
+                    last_trick = input(f"Skriv inte ja om du inte vill heta {name}")
+                    if last_trick.lower() != "ja":
+                        yes_or_no = "ja"
                 elif i <= 25:
                     buffered_type(f"Okej du vinner, ditt namn är nu {name}", 1)
                     time.sleep(2)

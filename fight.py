@@ -18,8 +18,7 @@ def fight(player, enemy):
             print(player.takes_damage())
             first_strike = False
 
-        if enemy.fight_or_flight(player):
-            print(f"{enemy.monstername} ser din karisma!")
+        if enemy.fight_or_flight(player) or first_strike:
             return "fled"
 
         choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
