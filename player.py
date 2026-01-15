@@ -260,9 +260,3 @@ def chest(player):
         print("Kistan var tom...")
         print("Försök inte ha lika otur nästa gång...")
     return player
-    
-
-        
-
-
-

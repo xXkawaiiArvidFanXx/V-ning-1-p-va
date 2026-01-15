@@ -23,11 +23,15 @@ from map_module import *
 #         self.level = 1
 #         self.health_potion = 0
 
-def save_game(player, map,weapon):
+def save_game(player, map, weapon):
     """Player , map"""
     hp = player.hp
     maxhp = player.maxhp
-    inventory = player.inventory
+    # Inventory
+    inventory = ""
+    for w in player.inventory:
+        inventory += f"{w.damage},{w.name},{w.rarity}|"
+
     e_weapon = player.equipped_weapon
     basestrenght =player.base_strenght
     strenght = player.strenght
@@ -43,9 +47,13 @@ def save_game(player, map,weapon):
     potsion = player.health_potion
     grisch = player.grisch 
     
-    weapon_damage =weapon.damage
-    weapon_name= weapon.name
-    weapon_rarity=weapon.rarity
+    weapon_damage = weapon.damage
+    weapon_name = weapon.name
+    weapon_rarity = weapon.rarity
+
+
+    # Bygger inventory som text: damage,name,rarity|
+
 
 
 
@@ -79,7 +87,22 @@ def load_game():
     player = Player(2,2,"N",2,"W")
     player.hp =int(list_of_stats[0])
     player.maxhp =int(list_of_stats[1])
-    player.inventory =list_of_stats[2]
+
+
+    inventory =list_of_stats[2]
+    player.inventory = []
+
+    inventory = list_of_stats[2]
+    player.inventory = []
+
+    if inventory != "":
+        for w in inventory.split("|"):
+            if w == "":
+                continue
+            damage, name, rarity = w.split(",")
+            player.inventory.append(Weapon(int(damage), name, rarity))
+
+
     player.equipped_weapon =list_of_stats[3]
     player.base_strenght =float(list_of_stats[4])
     player.strenght=float(list_of_stats[5])
@@ -98,7 +121,9 @@ def load_game():
     weapon_name = list_of_stats[18]
     weapon_rarity =list_of_stats[19]
     wepon =Weapon(weapon_damage, weapon_name, weapon_rarity)
+
     player.equipped_weapon = wepon
+    
     #gör Map save till formen av en karta
     map_save = []
     for i in range (7): #En tom kart mall skapas
@@ -138,9 +163,15 @@ def load_game():
 # #Boss 2 är alltid i sista rummet???
 # map[3][1] = "B"
 # map[2][2] = "B"
-# map[6][3] = "E"
+# # map[6][3] = "E"
 
-weapon = weapon_create("")
-spelare = Player(2,2,2,2,2)
-save_game(spelare, map,weapon)
-load_game()
+
+# player, map= load_game()
+
+# print(player.equip_weapon)
+
+# weapon = weapon_create("aboguien")
+# spelare = Player(2,2,"hej",2,False)
+# spelare.add_item(weapon)
+# save_game(spelare, map, weapon)
+# load_game()

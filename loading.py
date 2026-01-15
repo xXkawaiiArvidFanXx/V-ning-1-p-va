@@ -40,8 +40,8 @@ def game_loading():
     print("!!    Studio FL    !!")
     stopmusic()
     sound("ljud/intro.wav")
-    backgroundmusic("ljud/bakgrund.wav")
     time.sleep(2)
+    backgroundmusic("ljud/bakgrund.wav")
     clear_terminal()
     return
     # Här skulle du lägga in kod för att spela upp ett ljud
