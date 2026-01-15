@@ -106,7 +106,7 @@ def load_game():
     # for row in map_save: #Hur man kan skiva ut kartan fint
     #        print(row)
     
-    return player , map_save, wepon
+    return player , map_save
 
 #load_game()
 
