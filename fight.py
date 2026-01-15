@@ -111,7 +111,9 @@ def B_room(player):
         return player
     else:
 
-        buffered_type("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare \n Det rekomenderas att sänka volymen \n du har 5 sekunder på dig",0,1)
+        buffered_type("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare", 0.1)
+        buffered_type("Det rekomenderas att sänka volymen", 0.1)
+        buffered_type("Du har 5 sekunder på dig", 0.1)
         stopmusic()
         backgroundmusic("ljud\hesa_filip.waw")
         for i in range (0,4):
@@ -236,7 +238,7 @@ def N_room(player):
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     if room == "Ont rum":
-        monster_hp = round(player.level *1.10 * rand.randint(4, 15))
+        monster_hp = round(player.level *1.10 * rand.randint(7, 15))
         base_attack = round(player.level *1.1 + 0.23 * monster_hp) #bara formel som förhoppningsvis är balancerad
         monster_attack = max(1, base_attack + rand.randint(-1, 1)) #max ifall ekvationen skulle ge tall under 1 (max väljer argumentet som är störst )
 
