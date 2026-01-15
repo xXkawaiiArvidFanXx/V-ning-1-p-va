@@ -83,7 +83,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
             
             elif character_selector == 2:
                 player_name = anoying_name("Phrank")
-                player = Player(25, 1, player_name, 4, False)
+                player = Player(25, 1, player_name, 3, False)
                 guitar = weapon_create("gitarr")
                 player.add_item(guitar)
                 print(f"Du är nu {player.name}, en estet med hög karisma \n")
@@ -91,7 +91,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
             
             elif character_selector == 3:
                 player_name = anoying_name("Geodor Von Tohn Fih")
-                player = Player(15, 2, player_name, 0.5, False) 
+                player = Player(15, 2, player_name, 1, False) 
                 laptop = weapon_create("dator")
                 player.add_item(laptop)
                 print(f"Du är nu {player.name}, Rektorn på skolan med en mäktig dator \n")
