@@ -213,7 +213,7 @@ class Monster():
         """Om spelaren har hög charisma kan monstret fly från fighten."""
         if self.is_boss:
             return False
-        flee_chance = rand.randint(2, 4)
+        flee_chance = rand.randint(1, 4)
         if flee_chance <= player.charisma:
             print(f"Du lyckades skrämma iväg {self.monstername} med din höga charisma!")
             return True
