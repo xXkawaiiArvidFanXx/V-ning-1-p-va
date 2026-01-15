@@ -159,6 +159,9 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
     elif num == 4:
         trap_message = "När du öppnar dörren till rummet ser du bara mörker, men Mamma didnt raise no chicken, så du går in. När du går in gör du illa dig på något vasst i mörkret."
         audio_file = 0
+    elif num == 5:
+        trap_message = "Du råkade öppna fel dörr och du gick in i en improv musikgrupp som spelar lite jazz!"
+        audio_file = "ljud/jazztrap.wav"
     else:
         trap_message = "Du trodde att du hittade en genväg till matsalen, men du hade otur och hamnade i en trång korridor med kladdiga väggar. Du fastnar i väggen i flera timmar och du blir hungrig. I desperation börjar du att äta på väggen som är giftig och du tar skada och blir mildt arg på dig själv för att du åt av väggen istället för mackan i din hand"
         audio_file = 0
