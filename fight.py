@@ -267,9 +267,3 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     elif room == "Neutralt rum":
         return N_room(player)
     
-player = Player(10, 1.5, "Test", 1.1, True)
-backgroundmusic("ljud\\bakgrund.wav")
-time.sleep(2)
-room_chooser("Bossrum", player)
-
-time.sleep(2)
