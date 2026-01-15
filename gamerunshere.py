@@ -20,7 +20,7 @@ def maingame_start():
         victory_or_loosory(player)
         endcredits()
     else:
-        save_game(player, game_map)
+        save_game(player, game_map, player.equipped_weapon)
     print("Spelet avslutas....")
 
 if __name__ == "__main__":

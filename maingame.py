@@ -141,7 +141,7 @@ def maingame(player, game_map):
 
                 
             elif game_choice == 2:
-                inventory(player)
+                inventory(player,game_map)
             elif game_choice == 3:
                 return "save_game"
                 break
