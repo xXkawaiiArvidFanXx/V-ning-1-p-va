@@ -6,7 +6,7 @@ from victory_or_lose import *
 
 # Huvudprogrammet <3
 def maingame_start(map):
-    #game_loading()
+    game_loading()
     map_creation()
     load_or_save=startgame()
     if load_or_save != "load_game":
@@ -18,7 +18,7 @@ def maingame_start(map):
     
     if save_loss_or_win != "save_game":
         victory_or_loosory(player)
-#        endcredits()
+        endcredits()
 
     else:
         save_game(player, map)
