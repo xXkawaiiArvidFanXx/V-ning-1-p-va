@@ -1,5 +1,5 @@
 import time
-from text_func import clear_terminal
+from text_func import *
 from soundengine import *
 #Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet laddar ner massa filer
 def game_loading():
@@ -43,3 +43,19 @@ def game_loading():
     clear_terminal()
     return
     # Här skulle du lägga in kod för att spela upp ett ljud
+
+def endcredits():
+    """Spelar upp slutcredits"""
+    clear_terminal()
+    buffered_type("Programering", 0.1)
+    buffered_type("Elias kronofogel")
+    time.sleep(2)
+    print("Med hjälp av: ChatGPT, Stackoverflow, och massa andra människor på internet")
+    time.sleep(2)
+    print("Tack för att du spelade!")
+    time.sleep(2)
+    print("Slutcredits musik spelas nu upp...")
+    sound("ljud/credits.wav")
+    time.sleep(10)
+    clear_terminal()
+    return
