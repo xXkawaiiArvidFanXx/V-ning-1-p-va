@@ -1,9 +1,11 @@
 # här ska vi skapa vår huvuddel av spelet och imporera klasser etc eftersom vi jobbar
+from os import name
 from player import *
-from slowtype import *
+from text_func import *
 from map_module import *
 from fight import *
 from map_module import *
+from save_funktion import *
 import time
 
 def anoying_name(player):
@@ -12,59 +14,57 @@ def anoying_name(player):
         
         name = input("Innan du börjar ditt äventyr vill jag först veta ditt namn!\nHej, jag heter: ")
         if name == "":
-            slowtype(f"Du skrev ingeting, därmed blir ditt namn {player}!\n", 0.1)
+            buffered_type(f"Du skrev ingenting, därmed blir ditt namn {player}!\n", 0.1)
         
         elif player.lower() != name.lower():
-            YesOrNo = input(f"Du skrev {name}, \nMenade du {player} \nJa eller Nej\n")
-            while YesOrNo.lower() != "ja": 
+            yes_or_no = input(f"Du skrev {name}, \nMenade du {player} \nJa eller Nej\n")
+            while yes_or_no.lower() != "ja": 
                 clear_terminal()
                 time.sleep(0.5)
                 if i <= 3:
-                    YesOrNo = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
+                    yes_or_no = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
                     i += 1
                 elif i <= 7:
-                    YesOrNo = input(f"Allvarligt, ge dig. Skriv bara ja\n")
+                    yes_or_no = input(f"Allvarligt, ge dig. Skriv bara ja\n")
                     i += 1
                 elif i <= 14:
-                    deadahh()
-                    YesOrNo = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
-                    deadahh()
+                    typo()
+                    yes_or_no = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
                     i += 1
                 elif i <= 20:
-                    YesOrNo = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
+                    yes_or_no = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
                     i += 1
                 elif i <= 25:
-                    slowtype(f"Okej du vinner, ditt namn är nu {name}", 0.5)
+                    buffered_type(f"Okej du vinner, ditt namn är nu {name}", 1)
                     time.sleep(2)
-                    slowtype("Var det värt det?", 0.75)
+                    buffered_type("Var det värt det?", 1.5)
                     time.sleep(2)
-                    slowtype("aja, lycka till", 1)
+                    buffered_type("aja, lycka till", 2)
                     player = name
                     return player
                 
-                    
-            slowtype(f"Okej\n", 2)
+            buffered_type(f"Okej\n", 2)
         return player
 
 def class_chooser():
-    slowtype("""Välj din skollkaraktär!
+    buffered_type("""Välj din skollkaraktär!
  
 (du kan inte leva ut dina vildaste fantasier i spelet med dom men endå)\n""", 0.01)
     while True:
         time.sleep(1)
-        slowtype("""1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. 
+        buffered_type("""1. Grisch har ett bälte som de kan använda som vapen, men de kan välja att springa ifrån en fiende fast då förlorar de aura och tappar byxorna. 
 Däremot är grischpojken överdrivet självsäker som kanske kan komma till nytta. Grisch har Aura istället för Hp""", 0.01) #Självsäkerheten gör absolut ingenting, vi vill bara att man ska välja den sänsta karaktären.
         time.sleep(1)
-        slowtype("""2. Estet har en gitarr som de kan använda för att slå till sina fiender. Gitarren kan man använda för att höja sin karisma men om du använder gitarren för att slåss kommer den gå sönder. 
+        buffered_type("""2. Estet har en gitarr som de kan använda för att slå till sina fiender. Gitarren kan man använda för att höja sin karisma men om du använder gitarren för att slåss kommer den gå sönder. 
 Om du försöker spela med en sönder gitarr kommer du tappa allt förutom en karisma poäng. Du är inte erfaren i gitarr eftersom att du endast har övat att spela trumpet hela ditt liv""", 0.01)
         time.sleep(1)
-        slowtype("3. Rektorn har en dator som kan användas för att skriva hem mejl, funkar för alla fiender (gör så att dom tar skada) men chans att stöta på tekniska problem och därmed förlorar man sin dator och fighten mot fienden", 0.01)
+        buffered_type("3. Rektorn har en dator som kan användas för att skriva hem mejl, funkar för alla fiender (gör så att dom tar skada) men chans att stöta på tekniska problem och därmed förlorar man sin dator och fighten mot fienden", 0.01)
         time.sleep(1)
-        slowtype("""4. Lärare har fattat att pennan är mäktigare än svärdet. Speciellt när pennorna är vässade. 
+        buffered_type("""4. Lärare har fattat att pennan är mäktigare än svärdet. Speciellt när pennorna är vässade. 
 Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd ska kunna gå sönder och pennan kan ha vässats sönder, då måste man spendera 2 rundor på att få tillbaka udden""", 0.01)
         time.sleep(1)
 
-        slowtype("Välj nu noga vilken karaktär du väljer. Det kan komma att bli skillnaden mellan att bli en hjälte eller ett misslyckande", 0.01)
+        buffered_type("Välj nu noga vilken karaktär du väljer. Det kan komma att bli skillnaden mellan att bli en hjälte eller ett misslyckande", 0.01)
         time.sleep(1)
         character_selector = input("Välj nu din karaktär (1-4):")
         try:
@@ -76,7 +76,7 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
                 player = Player(10, 1.5, player_name, 1.1)
                 belt = weapon_create("bälte")
                 player.add_item(belt)
-                slowtype("Du är nu den sämsta karaktären\n", 0.1)
+                buffered_type("Du är nu den sämsta karaktären\n", 0.1)
                 clear_terminal()
                 print(f"Du är nu {player.name}, en grich med hög (låg) aura \n")
                 return player
@@ -110,9 +110,9 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
 
         except ValueError:
             time.sleep(1)
-            deadahh()
+            typo()
             time.sleep(5)
-            slowtype("Ogiltigt val, försök igen.", 0.1)
+            buffered_type("Ogiltigt val, försök igen.", 0.1)
             time.sleep(1)
 
 
@@ -137,16 +137,16 @@ def maingame(player):
             elif game_choice == 2:
                 inventory(player)
             elif game_choice == 3:
-                print("Sparar och avslutar spelet...")
+                save_game(player, map)
                 break
             else:
                 raise ValueError
 
         except ValueError:
             time.sleep(1)
-            deadahh()
+            typo()
             time.sleep(3)
-            slowtype("Ogiltigt val, försök igen.", 0.1)
+            buffered_type("Ogiltigt val, försök igen.", 0.1)
             time.sleep(1)
     
 
@@ -172,8 +172,8 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
                 
     except ValueError:
         time.sleep(1)
-        deadahh()
+        typo()
         time.sleep(3)
-        slowtype("Ogiltigt val, försök igen.", 0.1)
+        buffered_type("Ogiltigt val, försök igen.", 0.1)
         time.sleep(1)
         startgame()

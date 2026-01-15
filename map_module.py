@@ -6,8 +6,8 @@
 #med funktionen get_room_type() kan du få vad det är för typ av rum spelaren står i
 import random as rand
 from player import *
-from soundengien import *
-def Map_Creation():
+from soundengiene import *
+def map_creation():
     map = []
     map_size = 7 #bestämmer storlek på kartan
     for i in range (map_size): #En tom kart mall skapas
@@ -16,8 +16,8 @@ def Map_Creation():
     for a in range (map_size):
         for b in range (4): #här slumpas rummens egenskaper fram N = Neutralt 
             #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla kanske R = Renoveras B = BOSS E= tomt rum
-            Room_Type = ["N","G","O","T"]
-            map[a][b]=(Room_Type[rand.randint(0,3)])
+            room_type = ["N","G","O","T"]
+            map[a][b]=(room_type[rand.randint(0,3)])
 
     #Bossmodul
     #Alltid en boss 1 i mittenrummet 
@@ -26,11 +26,15 @@ def Map_Creation():
     map[2][2] = "B"
     map[6][3] = "E"
     return map
-def Print_map():
-    for row in map: #Hur man kan skiva ut kartan fint
-        print(row)
 
-map = Map_Creation()
+
+# Behövs inte, men sparar endå
+#
+#def print_map():
+#    for row in map: #Hur man kan skiva ut kartan fint
+#        print(row)
+
+map = map_creation()
 
 
 

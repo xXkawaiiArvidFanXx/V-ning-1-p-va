@@ -1,6 +1,6 @@
 import math
-from slowtype import *
-from soundengien import *
+from text_func import *
+from soundengiene import *
 def xp_req(level):
     """Funktion för hur mycket xp som krävs för att gå upp i nivå"""
     return 10 * 1.5 ** level
@@ -10,8 +10,9 @@ def level_up(player):
     """
     Hantera level up. Returnerar (xp, level, strenght, max_hp).
     """
-    if player.xp >= xp_req(player.level):
-        req = xp_req(player.level)
+    req = xp_req(player.level)
+    if player.xp >= req:
+         #xp som ska tas bort vid level up
         choice = input("""Du kan gå upp i nivå! Men innan det måste du bestäma om du vill:
 1. Få mer styrka
 2. Få mer max hp\n""")
@@ -35,7 +36,7 @@ def level_up(player):
             player.maxhp += 5
             player.hp = player.maxhp
             player.xp -= req
-            print(f"Du är i level {player.level} och har ökat din max {hp(player)} till {player.maxhp} och du har nu {player.hp}/{player.maxhp} {hp(player)}.")
+            print(f"Du är i level {player.level} och har ökat din max {hp_or_aura(player)} till {player.maxhp} och du har nu {player.hp}/{player.maxhp} {hp_or_aura(player)}.")
 
         else:
             print("Ojdå, mannen med trumpeten slog dig så att du förlorade all xp du hade. Bättre lycka nästa gång")
@@ -44,7 +45,8 @@ def level_up(player):
             sound("ljud/wompwomp.mp3")
 
     else:
-        level_procent = 100*player.xp/xp_req(player.level)
-        level_procent_kvar = 100 - level_procent
-        print(f"Endast {level_procent_kvar}% kvar till nästa level")
+        level_procent = 100*player.xp/req
+        level_procent = round(level_procent)
+        level_procent_left = 100 - level_procent
+        print(f"Endast {level_procent_left}% kvar till nästa level")
     return player.xp, player.level, player.strenght, player.maxhp, player.hp, player.base_strenght
