@@ -3,7 +3,7 @@ from text_func import *
 from map_in_turtle import *
 
 class Player():
-    def __init__(self, hp, strenght, name, charisma, special_weapon=None):
+    def __init__(self, hp, strenght, name, charisma, grisch):
         self.hp = hp
         self.maxhp = hp
         self.inventory = []  # här skapar vi listan för spelarens inventory
@@ -22,6 +22,7 @@ class Player():
         self.xp = 0
         self.level = 1
         self.health_potion = 0
+        self.grich = grisch
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
@@ -88,6 +89,7 @@ def use_health_potion(player):
     else:
         print("Du har inga hälsodrycker kvar!\n")
         print("Försök att bli bättre?")
+    return player
 
 
 def inventory(player):
@@ -119,9 +121,13 @@ def inventory(player):
                 time.sleep(2)
                 clear_terminal()
             elif choice == "3":
-                use_health_potion(player)
-                buffered_type("Nu har du druckit en smaskig hälsodryck!\n", 0.05)
-                buffered_type(f"Du har nu {player.health_potion} hälsodrycker kvar i bakfickan!\n", 0.05)
+                if player.health_potion <= 0:
+                    buffered_type("Du har inga hälsodrycker kvar!\n", 0.05)
+                    continue
+                else:
+                    use_health_potion(player)
+                    buffered_type("Nu har du druckit en smaskig hälsodryck!\n", 0.05)
+                    buffered_type(f"Du har nu {player.health_potion} hälsodrycker kvar i bakfickan!\n", 0.05)
             elif choice == "2":
                 buffered_type("Klicka in på Turtle Grafics fönstret.\n", 0.05)
                 Turtle_maps(player.pos_x, player.pos_y)
@@ -173,7 +179,7 @@ class Monster():
         self.wepon = weapon_create("")
         self.wepon_drop_rate = rand.randint(1, 100)
         self.is_boss = boss #booleskt värde, True innebär att det är en boss, detta gör bara så att man inte kan fly från slagsmålet
-
+        
 
 
 
@@ -194,7 +200,25 @@ class Monster():
             player.add_item(self.wepon)
             print(f"Efter att du dödade {self.monstername} dropade han {self.wepon}")
             print("För att använda detta vapen gå in i ditt inventory och byt vapen")
-        
+
+    def monster_start(self, player):
+        """Slumpar vem som börjar slå först i en fight."""
+        first_strike = rand.randint(1, 5)
+        if first_strike == 1:
+            return True
+        else:
+            return False
+    
+    def fight_or_flight(self, player):
+        """Om spelaren har hög charisma kan monstret fly från fighten."""
+        if self.is_boss:
+            return False
+        flee_chance = rand.randint(1, 6)
+        if flee_chance <= player.charisma:
+            print(f"Du lyckades skrämma iväg {self.monstername} med din höga charisma!")
+            return True
+        else:
+            return False
 
 
 def weapon_create(wepontype):

@@ -8,8 +8,21 @@ import time
 def fight(player, enemy):
     """Kod för slagsmål"""
 
+    first_strike = enemy.monster_start(player)
+
     while player.hp > 0 and enemy.monsterhealth > 0:
-        choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly ()? ").strip()
+
+        if first_strike:
+            print(f"\n{enemy.monstername} attackerar dig först!")
+            player.hp -= enemy.monsterdamage
+            print(player.takes_damage())
+            first_strike = False
+
+        if enemy.fight_or_flight(player):
+            print(f"{enemy.monstername} ser din karisma!")
+            return "fled"
+
+        choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
 
         if choice == "1":
             print(f"\nDu attackerar {enemy.monstername}\n")
@@ -26,8 +39,12 @@ def fight(player, enemy):
                 print(f"{player.takes_damage()}")
                 time.sleep(0.5)
         elif choice == "2":
-            use_health_potion(player)
-            buffered_type("Du dricker en hälsodryck och återhämtar lite hälsa!\n", 0.05)
+            if player.health_potion <= 0:
+                print("Du har inga hälsodrycker kvar!")
+                continue
+            else:
+                player = use_health_potion(player)
+                buffered_type("Du dricker en hälsodryck och återhämtar lite hälsa!\n", 0.05)
 
         elif choice == "3":
             flee_chance = rand.randint(1, 10)
@@ -107,7 +124,9 @@ def B_room(player):
         return player
     else:
 
-        buffered_type("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare \n Det rekomenderas att sänka volymen \n du har 5 sekunder på dig",0,1)
+        buffered_type("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare", 0.1)
+        buffered_type("Det rekomenderas att sänka volymen", 0.1)
+        buffered_type("Du har 5 sekunder på dig", 0.1)
         stopmusic()
         backgroundmusic("ljud\hesa_filip.waw")
         for i in range (0,4):
@@ -158,6 +177,9 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
     elif num == 4:
         trap_message = "När du öppnar dörren till rummet ser du bara mörker, men Mamma didnt raise no chicken, så du går in. När du går in gör du illa dig på något vasst i mörkret."
         audio_file = 0
+    elif num == 5:
+        trap_message = "Du råkade öppna fel dörr och du gick in i en improv musikgrupp som spelar lite jazz!"
+        audio_file = "ljud/jazztrap.wav"
     elif len(player.inventory) >= 5:
         trap_message = "Du försöker att smyga förbi en lärare som patrullerar korridoren, men du snubblar över din egen ficka full med saker och faller pladask på marken. Läraren ser dig och du får en varning för att ha sprungit i korridoren."
         audio_file = 0
@@ -229,7 +251,7 @@ def N_room(player):
 
 def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     if room == "Ont rum":
-        monster_hp = round(player.level *1.10 * rand.randint(4, 15))
+        monster_hp = round(player.level *1.10 * rand.randint(7, 15))
         base_attack = round(player.level *1.1 + 0.23 * monster_hp) #bara formel som förhoppningsvis är balancerad
         monster_attack = max(1, base_attack + rand.randint(-1, 1)) #max ifall ekvationen skulle ge tall under 1 (max väljer argumentet som är störst )
 
