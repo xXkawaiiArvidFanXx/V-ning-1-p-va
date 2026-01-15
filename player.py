@@ -3,7 +3,7 @@ from text_func import *
 from map_in_turtle import *
 
 class Player():
-    def __init__(self, hp, strenght, name, charisma, special_weapon=None):
+    def __init__(self, hp, strenght, name, charisma, grisch):
         self.hp = hp
         self.maxhp = hp
         self.inventory = []  # här skapar vi listan för spelarens inventory
@@ -22,6 +22,7 @@ class Player():
         self.xp = 0
         self.level = 1
         self.health_potion = 0
+        self.grich = grisch
     
     def __str__(self):
         return f"Du har {self.hp}/{self.maxhp} hp. Din styrka är {self.strenght} och du har en charisma på {self.charisma}"
@@ -178,7 +179,7 @@ class Monster():
         self.wepon = weapon_create("")
         self.wepon_drop_rate = rand.randint(1, 100)
         self.is_boss = boss #booleskt värde, True innebär att det är en boss, detta gör bara så att man inte kan fly från slagsmålet
-
+        
 
 
 
@@ -199,7 +200,25 @@ class Monster():
             player.add_item(self.wepon)
             print(f"Efter att du dödade {self.monstername} dropade han {self.wepon}")
             print("För att använda detta vapen gå in i ditt inventory och byt vapen")
-        
+
+    def monster_start(self, player):
+        """Slumpar vem som börjar slå först i en fight."""
+        first_strike = rand.randint(1, 5)
+        if first_strike == 1:
+            return True
+        else:
+            return False
+    
+    def fight_or_flight(self, player):
+        """Om spelaren har hög charisma kan monstret fly från fighten."""
+        if self.is_boss:
+            return False
+        flee_chance = rand.randint(2, 4)
+        if flee_chance <= player.charisma:
+            print(f"Du lyckades skrämma iväg {self.monstername} med din höga charisma!")
+            return True
+        else:
+            return False
 
 
 def weapon_create(wepontype):

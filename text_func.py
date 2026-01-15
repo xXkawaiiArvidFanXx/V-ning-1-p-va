@@ -22,7 +22,7 @@ def typo():
                  \__ __/""")
 
 def hp_or_aura(player):
-    if player.name == "Fatima":
+    if player.grisch == True:
         return "Aura"
     else:
         return "HP"
