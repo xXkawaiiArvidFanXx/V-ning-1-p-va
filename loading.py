@@ -38,7 +38,9 @@ def game_loading():
     print("invänta dramatisk musik")
     time.sleep(1)
     print("!!    Studio FL    !!")
+    stopmusic()
     sound("ljud/intro.wav")
+    backgroundmusic("ljud/bakgrund.wav")
     time.sleep(2)
     clear_terminal()
     return
@@ -66,6 +68,7 @@ def endcredits():
     buffered_type("Elias kronofogsvans (såg)", 0.2)
     buffered_type("Den kvalificerade Fofilolipop", 0.2)
     buffered_type("frej?", 0.2)
+    buffered_type("tåbiah (raggmunk)", 0.2)
     time.sleep(2)
     buffered_type("Monsterdesign", 0.1)
     buffered_type("Elias kronofogsvans (såg)", 0.2)
@@ -88,4 +91,3 @@ def endcredits():
     time.sleep(10)
     return 
 
-endcredits()

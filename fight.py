@@ -18,8 +18,7 @@ def fight(player, enemy):
             print(player.takes_damage())
             first_strike = False
 
-        if enemy.fight_or_flight(player):
-            print(f"{enemy.monstername} ser din karisma!")
+        if enemy.fight_or_flight(player) or first_strike:
             return "fled"
 
         choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
@@ -53,7 +52,7 @@ def fight(player, enemy):
                 player.hp -= enemy.monsterdamage
                 print(player.takes_damage())
 
-            if flee_chance > 3:
+            elif flee_chance > 3:
                 if player.name != "Fatima":
                     print("Du lyckades fly från striden!")
                     return "fled"
@@ -128,7 +127,7 @@ def B_room(player):
         buffered_type("Det rekomenderas att sänka volymen", 0.1)
         buffered_type("Du har 5 sekunder på dig", 0.1)
         stopmusic()
-        backgroundmusic("ljud\hesa_filip.waw")
+        backgroundmusic("ljud\\hesa_filip.wav")
         for i in range (0,4):
             time.sleep(1)
             print(i+1) # Eventuelt ljud
@@ -179,10 +178,7 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
         audio_file = 0
     elif num == 5:
         trap_message = "Du råkade öppna fel dörr och du gick in i en improv musikgrupp som spelar lite jazz!"
-        stopmusic()
         audio_file = "ljud/jazztrap.wav"
-        stopmusic()
-        backgroundmusic("ljud\\bakgrund.wav")
     elif len(player.inventory) >= 5:
         trap_message = "Du försöker att smyga förbi en lärare som patrullerar korridoren, men du snubblar över din egen ficka full med saker och faller pladask på marken. Läraren ser dig och du får en varning för att ha sprungit i korridoren."
         audio_file = 0
@@ -201,11 +197,12 @@ def T_room(player, trap_damage, traptype):
     if audio_file == 0:
         pass
     else:
+        stopmusic()
         sound(audio_file)
+        backgroundmusic("ljud\\bakgrund.wav")
     player.hp -= trap_damage
     print(player.takes_damage())
-    ajj = rand.randint(round(player.maxhp*0.1,), round(player.maxhp*0.75))
-    if ajj == 1:
+    if player.hp <= 4:
         sound("ljud/oj_aj.wav")
     return player
 
@@ -264,8 +261,15 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     elif room == "Gott rum":
         return G_room(player)
     elif room == "Fällrum":
-        return T_room(player, rand.randint(2,4), rand.randint(1,5))
+        return T_room(player, rand.randint(2,4), rand.randint(1,6))
     elif room == "Tomt rum":
         return E_room(player)
     elif room == "Neutralt rum":
         return N_room(player)
+    
+player = Player(10, 1.5, "Test", 1.1, True)
+backgroundmusic("ljud\\bakgrund.wav")
+time.sleep(2)
+room_chooser("Bossrum", player)
+
+time.sleep(2)
