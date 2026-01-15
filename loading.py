@@ -66,6 +66,7 @@ def endcredits():
     buffered_type("Elias kronofogsvans (såg)", 0.2)
     buffered_type("Den kvalificerade Fofilolipop", 0.2)
     buffered_type("frej?", 0.2)
+    buffered_type("tåbiah (raggmunk)", 0.2)
     time.sleep(2)
     buffered_type("Monsterdesign", 0.1)
     buffered_type("Elias kronofogsvans (såg)", 0.2)
