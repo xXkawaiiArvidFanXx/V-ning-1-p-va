@@ -80,3 +80,7 @@ def anoying_name(player):
                 
             buffered_type(f"Okej\n", 0.1)
         return player
+
+def row_marker():
+    """Skriver ut en stäng för att dela upp olika delar (lättare att läsa)"""
+    print("========================================================================================================================\n")

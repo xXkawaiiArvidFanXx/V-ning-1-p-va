@@ -83,7 +83,7 @@ def maingame(player, game_map):
 
     while player.hp > 0 and player.boss_room_cleared != 2:
         print("\n")
-        print ("====================================================================================================================\n")
+        row_marker()
         game_choice = input("Vad vill du göra? \n 1. Gå till rum. \n 2. Öppna Inventory/Stats. \n 3. Spara och avsluta. \n  ")
         try:
             game_choice = int(game_choice)

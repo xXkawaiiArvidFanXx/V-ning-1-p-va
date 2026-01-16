@@ -93,7 +93,7 @@ def use_health_potion(player):
 
 def inventory(player,game_map):
     """Här kan man öppna sitt inventory och göra saker som att byta vapen, kolla items och stats, och stänga av"""
-    print ("====================================================================================================================")
+    row_marker()
     print("\n Inventory och Stats:")
     print(f"Din level är: {player.level}")
     print(f"{hp_or_aura(player)}: {player.hp}/{player.maxhp}")

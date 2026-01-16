@@ -50,7 +50,7 @@ def endcredits_common_names():
     buffered_type("Den något kortare Frej", 0.2)
 
 def endcredits_headline(i):
-    print ("=========================================================================================================================")
+    row_marker()
     if i == 1:
         buffered_type("Programering" , 0.1)
     elif i == 2:
@@ -72,24 +72,24 @@ def endcredits():
         endcredits_common_names()
         if i == 5:
             buffered_type("tåbiah (raggmunk)", 0.2)
-    print ("=========================================================================================================================")
+    row_marker()
     buffered_type("Karta samt inledandet av spar funktion", 0.1)
     buffered_type("Den något kortare Frej", 0.2)
     time.sleep(2)
-    print ("=========================================================================================================================")
+    row_marker()
     buffered_type("Projektöverseende fellstavningar och rum (inte hotell hahahahaha kanske (stav))", 0.1)
     buffered_type("Den kvalificerade Fofilolipop", 0.2)
     time.sleep(2)
-    print ("=========================================================================================================================")
+    row_marker()
     buffered_type("Inventory, buggar och hälsoflaskor det är viktigt", 0.1)
     buffered_type("Elias kronofogsvans (såg)", 0.2)
     time.sleep(2)
-    print ("=========================================================================================================================")
+    row_marker()
     print("Tack för att du spelade!")
     time.sleep(2)
-    print ("=========================================================================================================================")
+    row_marker()
     print("Slutcredits musik spelas nu upp...")
     print("alla buggfixade")
-    print ("=========================================================================================================================")
+    row_marker()
     time.sleep(10)
     return 

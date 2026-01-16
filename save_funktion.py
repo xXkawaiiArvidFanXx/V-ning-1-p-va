@@ -104,7 +104,7 @@ def load_game():
         eqwep = "INGENTING"
     else:
         eqwep = player.equipped_weapon
-    print("====================================================================================================================")
+    row_marker()
     print(f"""    Välkommen tillbaka {player.name}. du har {player.hp} av {player.maxhp}. 
     Du är i level {player.level} och har {player.strenght} i styrka.
     Just nu använder du {eqwep}""")

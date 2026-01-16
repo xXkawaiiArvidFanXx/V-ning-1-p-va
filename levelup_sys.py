@@ -12,7 +12,7 @@ def level_up(player):
     """
     req = xp_req(player.level)
     if player.xp >= req:
-         print ("====================================================================================================================\n")
+         row_marker()
          choice = input("""Du kan gå upp i nivå! Men innan det måste du bestäma om du vill:
 1. Få mer styrka
 2. Få mer max hp\n""")
