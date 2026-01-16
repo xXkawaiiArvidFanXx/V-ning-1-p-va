@@ -1,2 +1,2 @@
-21_25_6,smörstekt gitarr,temu|_smörstekt gitarr ||| Skada: 6 ||| Sällsynthet: temu |||_1.0_7.0_Phrank_3.0_5_3_0_0_0_0_1_0_True_6_smörstekt gitarr_temu_
-TNNTONTENTBNTBGTBGOBGOTGOTTO
+25_25_9,dålig gitarr,normal|_dålig gitarr ||| Skada: 9 ||| Sällsynthet: normal |||_1.0_10.0_Phrank_3.0_6_3_0_0_0_0_1_0_True_9_dålig gitarr_normal_
+GOOGGOTNTGBTNBOGGGGTTTNTGONE

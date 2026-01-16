@@ -106,7 +106,7 @@ def load_game():
     #gör Map save till formen av en karta
     map_save = []
     for i in range (7): #En tom kart mall skapas
-        map_save.append([game_map[4*i-3],game_map[4*i-2],game_map[3+4*i-1],game_map[4*i]])
+        map_save.append([game_map[4*i],game_map[4*i+1],game_map[4*i+2],game_map[4*i+3]])
     # for row in map_save: #Hur man kan skiva ut kartan fint
     #        print(row)
     if player.equipped_weapon == None:
