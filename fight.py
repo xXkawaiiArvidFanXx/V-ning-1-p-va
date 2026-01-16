@@ -20,7 +20,6 @@ def fight(player, enemy):
 
         if enemy.fight_or_flight(player) or first_strike:
             return "fled"
-
         choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
 
         if choice == "1":
@@ -52,7 +51,7 @@ def fight(player, enemy):
                 player.hp -= enemy.monsterdamage
                 print(player.takes_damage())
 
-            if flee_chance > 3:
+            elif flee_chance > 3:
                 if player.name != "Fatima":
                     print("Du lyckades fly från striden!")
                     return "fled"
@@ -122,7 +121,7 @@ def B_room(player):
         print("Du har redan besegrat bossen i detta rum.")
         return player
     else:
-
+        print ("====================================================================================================================\n")
         buffered_type("Bossen har små minjoner som spelar episk musik på GIGANORMA högtalare", 0.1)
         buffered_type("Det rekomenderas att sänka volymen", 0.1)
         buffered_type("Du har 5 sekunder på dig", 0.1)
@@ -135,6 +134,7 @@ def B_room(player):
         
         
         if player.boss_room_cleared == 0:
+            print ("====================================================================================================================\n")
             print("Du har kommit till ett bossrum! Förbered dig på en tuff strid mot le cuisinier! \n")
             boss = Monster(round(player.level*1.05*75), round(player.level*1.05*5), True, "Le Cuisinier")
             boss_clear_method = fight(player, boss)
@@ -154,6 +154,7 @@ def B_room(player):
     return player
 
 def G_room(player):
+    print ("====================================================================================================================\n")
     print("Du har hittat en kista och öppnar den!\n")
     chest(player)
     return player
@@ -178,10 +179,7 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
         audio_file = 0
     elif num == 5:
         trap_message = "Du råkade öppna fel dörr och du gick in i en improv musikgrupp som spelar lite jazz!"
-        stopmusic()
         audio_file = "ljud/jazztrap.wav"
-        stopmusic()
-        backgroundmusic("ljud\\bakgrund.wav")
     elif len(player.inventory) >= 5:
         trap_message = "Du försöker att smyga förbi en lärare som patrullerar korridoren, men du snubblar över din egen ficka full med saker och faller pladask på marken. Läraren ser dig och du får en varning för att ha sprungit i korridoren."
         audio_file = 0
@@ -194,29 +192,31 @@ Det är ju 50 för en chokladboll, med nyfunnen skam i kroppen så tar du tillba
 
 
 def T_room(player, trap_damage, traptype):
-    print("\n")
+    print ("====================================================================================================================\n")
     trap_message, audio_file = traptypes(traptype, player)
     print(trap_message)
     if audio_file == 0:
         pass
     else:
+        stopmusic()
         sound(audio_file)
+        backgroundmusic("ljud\\bakgrund.wav")
     player.hp -= trap_damage
     print(player.takes_damage())
-    ajj = rand.randint(round(player.maxhp*0.1,), round(player.maxhp*0.75))
-    if ajj == 1:
+    if player.hp <= 4:
         sound("ljud/oj_aj.wav")
     return player
 
 
 def E_room(player):
+    print ("====================================================================================================================\n")
     print("Dette rum er tomt.")
     print("Det finns inget mer att säga liksom.")
     return player
 
 
 def N_room(player):
-
+    print ("====================================================================================================================\n")
     print("Mattanten: Hej! Jag har lagat ett litet experimentellt recept som du bara MÅSTE prova.")
 
     time.sleep(1)
@@ -263,8 +263,9 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
     elif room == "Gott rum":
         return G_room(player)
     elif room == "Fällrum":
-        return T_room(player, rand.randint(2,4), rand.randint(1,5))
+        return T_room(player, rand.randint(2,4), rand.randint(1,6))
     elif room == "Tomt rum":
         return E_room(player)
     elif room == "Neutralt rum":
         return N_room(player)
+    

@@ -4,54 +4,8 @@ from player import *
 from text_func import *
 from map_module import *
 from fight import *
-from map_module import *
 from save_funktion import *
 import time
-
-def anoying_name(player):
-        """står player iställer för playername men de ska vara ett namn här inte en player objekt"""
-        i=0
-        
-        name = input("Innan du börjar ditt äventyr vill jag först veta ditt namn!\nHej, jag heter: ")
-        if name == "":
-            buffered_type(f"Du skrev ingenting, därmed blir ditt namn {player}!\n", 0.1)
-        
-        elif player.lower() != name.lower():
-
-            name = name.capitalize()
-
-            yes_or_no = input(f"Du skrev {name}, \nMenade du {player} \nJa eller Nej\n")
-            while yes_or_no.lower() != "ja": 
-                clear_terminal()
-                time.sleep(0.5)
-                if i <= 3:
-                    yes_or_no = input(f"Förlåt jag såg inte om du skrev ja eller nej \nKan du svara igen?\n")
-                    i += 1
-                elif i <= 7:
-                    yes_or_no = input(f"Allvarligt, ge dig. Skriv bara ja\n")
-                    i += 1
-                elif i <= 14:
-                    typo()
-                    yes_or_no = input(f"KOOOOOOOOOOOOOOM IGEEEEEEEEEEEEENNNNNNNNNN\n")
-                    i += 1
-                elif i <= 20:
-                    yes_or_no = input(f"Om du fortsätter kommer ditt beteende få konsikvenser\n")
-                    i += 1
-                elif i == 24:
-                    last_trick = input(f"Skriv inte ja om du inte vill heta {name}")
-                    if last_trick.lower() != "ja":
-                        yes_or_no = "ja"
-                elif i <= 25:
-                    buffered_type(f"Okej du vinner, ditt namn är nu {name}", 1)
-                    time.sleep(2)
-                    buffered_type("Var det värt det?", 1.5)
-                    time.sleep(2)
-                    buffered_type("aja, lycka till", 2)
-                    player = name
-                    return player
-                
-            buffered_type(f"Okej\n", 2)
-        return player
 
 def class_chooser():
     buffered_type("""Välj din skollkaraktär!
@@ -124,11 +78,12 @@ Men efter 3 användningar kan inte pennan användas utan att vässas pennans udd
 
 
 
-def maingame(player):
+def maingame(player, game_map):
 # här kör vi huvudspelet :D
 
     while player.hp > 0 and player.boss_room_cleared != 2:
         print("\n")
+        print ("====================================================================================================================\n")
         game_choice = input("Vad vill du göra? \n 1. Gå till rum. \n 2. Öppna Inventory/Stats. \n 3. Spara och avsluta. \n  ")
         try:
             game_choice = int(game_choice)
@@ -136,16 +91,19 @@ def maingame(player):
             if game_choice == 1:
                 print("\n")
                 player.pos_y, player.pos_x = player_position(player.pos_y, player.pos_x)
-                room=get_room_type(player.pos_y, player.pos_x)
+                room=get_room_type(player.pos_y, player.pos_x, game_map)
                 player = room_chooser(room, player)
                 
 
                 
             elif game_choice == 2:
-                inventory(player)
+                inventory(player,game_map)
             elif game_choice == 3:
+                if player.equipped_weapon == None:
+                    print("Du måste ha ett vapen utrustat för att kunna spara spelet")
+                    print("Tutorial: https://youtu.be/nWm1AwnhtY0")
+                    continue
                 return "save_game"
-                break
             else:
                 raise ValueError
 
@@ -157,10 +115,10 @@ def maingame(player):
             time.sleep(1)
     
 
-
-
 def startgame(): #starten till spelet, här ska man välja om man ska skapa en ny sparfil eller om man vill importera en sparad version
     print("Välkommen till första våningen på åva \n")
+    backgroundmusic("ljud/bakgrund.wav")
+
     try:    
         # while True:
         startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil!!! ")
@@ -173,7 +131,7 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
                 
 
         elif startchoice == 2:
-            print("du har valt att ladda in en sparfil, men du känner djupt inne att du vill starta ett nytt spel så det är vad du får")
+            print("du har valt att ladda in en sparfil")
             #här ska vi skapa en load save funktion
             return "load_game"
                 

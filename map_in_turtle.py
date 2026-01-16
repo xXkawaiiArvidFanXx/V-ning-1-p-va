@@ -8,7 +8,7 @@ from map_module import *
 from text_func import *
 t = turtle
 
-def Write_room(x,y):
+def Write_room(x,y, game_map):
     for i in range (4):
         t.pendown()
         t.forward(60)
@@ -16,12 +16,12 @@ def Write_room(x,y):
         t.penup()
     t.right(50)
     t.forward(45)
-    t.write(map[x][y])
+    t.write(game_map[x][y])
     t.back(42)
     t.left(50)
     t.penup()
     
-def Turtle_maps(x,y): #kanske en lista för icke hittade rum
+def Turtle_maps(x,y,game_map): #kanske en lista för icke hittade rum
     """player.pos_x, player.pos_y"""
     t = turtle
     wn = turtle.Screen()
@@ -35,7 +35,7 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     for a in range (1,5):
         for i in range (7):
             t.goto(-300+65*a,225-65*i)
-            Write_room(i,a-1)
+            Write_room(i,a-1,game_map)
             wn.update()
             time.sleep(0.5)
     #använd player pos som variabler x och y
@@ -49,28 +49,26 @@ def Turtle_maps(x,y): #kanske en lista för icke hittade rum
     pos.pendown()
     t.forward(90)
     t.write(""" 
- DU ÄR Här -->
+ DU ÄR HÄR -->
  G = Gott rum
  T = Fälla
  E = Tomt rum
  O = Ont rum
  N = Neutralt rum
  B = Boss Rum """,font=("Creepster", 24, "bold"))
-    estetiskblob = t.Turtle()
-    estetiskblob.penup()
-    estetiskblob.goto(290, 75)
-    estetiskblob.shapesize(stretch_wid=1.5, stretch_len=1.5)
-    estetiskblob.color("red")
-    estetiskblob.shape("circle")
+    player_map_icon = t.Turtle()
+    player_map_icon.penup()
+    player_map_icon.goto(290, 75)
+    player_map_icon.shapesize(stretch_wid=1.5, stretch_len=1.5)
+    player_map_icon.color("red")
+    player_map_icon.shape("circle")
 
-    wn.update() 
+    wn.update()
     Loop = True
     while Loop == True:
         time.sleep(3)
         action = turtle.textinput("kollat klart på kartan?", "q = Släpp mig ut")
-        if action.lower() == "y":
-           Turtle_maps(x,y)
-        elif action.lower() == "q":
+        if action.lower() == "q":
             pos.hideturtle()
             wn._root.withdraw() #gömmer fönstret (del av workaround)
             break

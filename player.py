@@ -92,9 +92,10 @@ def use_health_potion(player):
     return player
 
 
-def inventory(player):
+def inventory(player,game_map):
     # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
     # kolla items och stats, och stänga av
+    print ("====================================================================================================================")
     print("\n Inventory och Stats:")
     print(f"Din level är: {player.level}")
     print(f"{hp_or_aura(player)}: {player.hp}/{player.maxhp}")
@@ -130,7 +131,7 @@ def inventory(player):
                     buffered_type(f"Du har nu {player.health_potion} hälsodrycker kvar i bakfickan!\n", 0.05)
             elif choice == "2":
                 buffered_type("Klicka in på Turtle Grafics fönstret.\n", 0.05)
-                Turtle_maps(player.pos_x, player.pos_y)
+                Turtle_maps(player.pos_x, player.pos_y,game_map)
             elif choice == "4":
                 break
         except ValueError:
@@ -204,6 +205,8 @@ class Monster():
     def monster_start(self, player):
         """Slumpar vem som börjar slå först i en fight."""
         first_strike = rand.randint(1, 5)
+        if self.is_boss == True:
+            return False
         if first_strike == 1:
             return True
         else:
@@ -260,9 +263,3 @@ def chest(player):
         print("Kistan var tom...")
         print("Försök inte ha lika otur nästa gång...")
     return player
-    
-
-        
-
-
-

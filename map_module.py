@@ -8,34 +8,31 @@ import random as rand
 from player import *
 from soundengine import *
 def map_creation():
-    map = []
+    game_map = []
     map_size = 7 #bestämmer storlek på kartan
     for i in range (map_size): #En tom kart mall skapas
-        map.append([0,0,0,0])
+        game_map.append([0,0,0,0])
 
     for a in range (map_size):
         for b in range (4): #här slumpas rummens egenskaper fram N = Neutralt 
             #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla kanske R = Renoveras B = BOSS E= tomt rum
             room_type = ["N","G","O","T"]
-            map[a][b]=(room_type[rand.randint(0,3)])
+            game_map[a][b]=(room_type[rand.randint(0,3)])
 
     #Bossmodul
     #Alltid en boss 1 i mittenrummet 
     #Boss 2 är alltid i sista rummet???
-    map[3][1] = "B"
-    map[2][2] = "B"
-    map[6][3] = "E"
-    return map
+    game_map[3][1] = "B"
+    game_map[2][2] = "B"
+    game_map[6][3] = "E"
+    return game_map
 
 
 # Behövs inte, men sparar endå
 #
-def print_map():
-   for row in map: #Hur man kan skiva ut kartan fint
-       print(row)
-
-map = map_creation()
-
+# def print_map(game_map):
+#    for row in game_map: #Hur man kan skiva ut kartan fint
+#        print(row)
 
 def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför kartan
     if player_pos_y < 0 or player_pos_y > 6 or player_pos_x < 0 or player_pos_x > 3:
@@ -68,8 +65,9 @@ def player_position(pos_y, pos_x):
 
         return new_y, new_x
 
-def get_room_type(player_pos_y, player_pos_x):
-    room = (map[player_pos_y][player_pos_x])
+def get_room_type(player_pos_y, player_pos_x, game_map):
+    """player_pos_y, player_pos_x, game_map"""
+    room = (game_map[player_pos_y][player_pos_x])
 
     if room == "N":
         return "Neutralt rum"
