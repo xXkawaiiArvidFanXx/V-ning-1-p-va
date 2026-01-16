@@ -6,8 +6,7 @@ def save_game(player, game_map, weapon):
     """Player , game_map, weapon"""
     hp = player.hp
     maxhp = player.maxhp
-    # Inventory
-    inventory = ""
+    inventory = "" # Inventory
     for w in player.inventory:
         inventory += f"{w.damage},{w.name},{w.rarity}|"
 
@@ -30,28 +29,22 @@ def save_game(player, game_map, weapon):
     weapon_name = weapon.name
     weapon_rarity = weapon.rarity
 
-
-    # Bygger inventory som text: damage,name,rarity|
-
-
-
     map_save = ""
     for a in range (7):
         for b in range (4): 
             map_save += game_map[a][b]
 
-    file = open("save_file.txt", mode="w", encoding="utf-8") #encoding="utf-8"
+    file = open("save_file.txt", mode="w", encoding="utf-8") #encoding="utf-8" gör att åäö fungerar
     file.write(f"{hp}_{maxhp}_{inventory}_{e_weapon}_{basestrenght}_{strenght}_{name}_{charisma}_{y}_{x}_{nr_boss}_{boss_x}_{boss_y}_{xp}_{level}_{potsion}_{grisch}_{weapon_damage}_{weapon_name}_{weapon_rarity}_\n{map_save}\n")
     file.close()
     print("Spelet är nu sparat")
 
 def load_game():
 
-    file = open("save_file.txt", mode="r", encoding="utf-8") #encoding="utf-8" gör att åäö fungerar, taget från internet
-    stats = file.readline() #läser alla 16 player stats
+    file = open("save_file.txt", mode="r", encoding="utf-8") 
+    stats = file.readline() #läser alla player stats + vapen stats
     game_map = file.read(-1) # hämtar kartan
     file.close() #stänger filen
-    #print(stats)
     
     stats.split("_")
     list_of_stats = []
@@ -102,12 +95,11 @@ def load_game():
 
     player.equipped_weapon = wepon
     
-    #gör Map save till formen av en karta
+    #gör om Map save till formen av en karta
     map_save = []
-    for i in range (7): #En tom kart mall skapas
+    for i in range (7): 
         map_save.append([game_map[4*i],game_map[4*i+1],game_map[4*i+2],game_map[4*i+3]])
-    # for row in map_save: #Hur man kan skiva ut kartan fint
-    #        print(row)
+    
     if player.equipped_weapon == None:
         eqwep = "INGENTING"
     else:

@@ -1,7 +1,7 @@
 import time
 from text_func import *
 from soundengine import *
-#Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet laddar ner massa filer
+#Med game_loading() SKrivs en estetsik lista ut där det verkar som att spelet "laddar ner"massa filer
 def game_loading():
     """En Estetisk funktion"""
     clear_terminal()
@@ -43,7 +43,6 @@ def game_loading():
     time.sleep(2)
     clear_terminal()
     return
-    # Här skulle du lägga in kod för att spela upp ett ljud
 
 def endcredits_common_names():
     buffered_type("Elias kronofogsvans (såg)", 0.2)

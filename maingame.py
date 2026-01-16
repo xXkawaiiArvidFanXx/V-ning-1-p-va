@@ -120,20 +120,20 @@ def startgame(): #starten till spelet, här ska man välja om man ska skapa en n
     backgroundmusic("ljud/bakgrund.wav")
 
     try:    
-        # while True:
-        startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil!!! ")
+        while True:
+            startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil!!! ")
 
-        startchoice = int(startchoice)   
+            startchoice = int(startchoice)   
 
-        if startchoice == 1:
-            print("du har valt att starta ett nytt spel")
-            return "new_game"
-                
+            if startchoice == 1:
+                print("du har valt att starta ett nytt spel")
+                return "new_game"
+                    
 
-        elif startchoice == 2:
-            print("du har valt att ladda in en sparfil")
-            #här ska vi skapa en load save funktion
-            return "load_game"
+            elif startchoice == 2:
+                print("du har valt att ladda in en sparfil")
+                #här ska vi skapa en load save funktion
+                return "load_game"
                 
     except ValueError:
         time.sleep(1)

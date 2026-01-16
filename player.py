@@ -10,8 +10,7 @@ class Player():
         self.equipped_weapon = None  # Vapnet spelaren har utrustat
         # Basstat för styrka (oförändrad av vapen)
         self.base_strenght = strenght
-        # aktuell styrka som används i strid (uppdateras när vapen utrustas och när man går upp i level och väljer styrka)
-        self.strenght = strenght
+        self.strenght = strenght # aktuell styrka som används i strid (uppdateras när vapen utrustas och när man går upp i level och väljer styrka)
         self.name = name
         self.charisma = charisma
         self.pos_y = 6
@@ -93,8 +92,7 @@ def use_health_potion(player):
 
 
 def inventory(player,game_map):
-    # här ska man kunna öppna sitt inventory och göra saker som att byta vapen,
-    # kolla items och stats, och stänga av
+    """Här kan man öppna sitt inventory och göra saker som att byta vapen, kolla items och stats, och stänga av"""
     print ("====================================================================================================================")
     print("\n Inventory och Stats:")
     print(f"Din level är: {player.level}")
@@ -165,8 +163,7 @@ def monsterRANDname(monstername=""):
     adjective_list = ["smal ", "hal ", "kladdig ","smörstekt ","ihålig ", "väldoftande ", "illaluktande ", "jättetung ", "urlladad ", "uråldrig ", "modern ", "politisk ","tondöv ","Toronto baserad ", "utomjordig ","långt ifrån stämd ","fläckig ","musikalisk ","lysande ","dubbelsidig ","politiskt korrekt ", "politiskt inkorrekt ", "dålig ","svag ","drogpåverkad ", "iskall " ]
     monster_list = ["Teknikare", "lerig och blöt fotboll", "Bokhylla", "Multimeter","El och energi elev", "arg lärare", "Levande mobillåda", "Matte gollum", "Blöt och lerig fotboll", "Wilmers skugga", "Hemlösa Alvin", "kirk", "har har tungstensboll + lavastöveL"]
 
-    # om inget namn ges så slumpas ett namn fram
-    if monstername == "" or monstername is None:
+    if monstername == "" or monstername is None:# om inget namn ges så slumpas ett namn fram
         return rand.choice(adjective_list) + rand.choice(monster_list)
     return monstername
 
@@ -181,9 +178,6 @@ class Monster():
         self.wepon_drop_rate = rand.randint(1, 100)
         self.is_boss = boss #booleskt värde, True innebär att det är en boss, detta gör bara så att man inte kan fly från slagsmålet
         
-
-
-
 
     def __str__(self):
         return f"Fienden ({self.monstername}) har {self.monsterhealth} hp och gör {self.monsterdamage} i skada"

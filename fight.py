@@ -16,11 +16,12 @@ def fight(player, enemy):
             print(f"\n{enemy.monstername} attackerar dig först!")
             player.hp -= enemy.monsterdamage
             print(player.takes_damage())
-            first_strike = False
+            
 
-        if enemy.fight_or_flight(player) or first_strike:
+        if enemy.fight_or_flight(player) and first_strike:
             return "fled"
         choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
+        first_strike = False
 
         if choice == "1":
             print(f"\nDu attackerar {enemy.monstername}\n")

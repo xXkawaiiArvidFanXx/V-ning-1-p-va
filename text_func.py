@@ -20,6 +20,7 @@ def hp_or_aura(player):
         return "HP"
 
 def typo():
+        """Till när någon skriver fel"""
         print("""    
                   _____
                 _/ _ _ \_  

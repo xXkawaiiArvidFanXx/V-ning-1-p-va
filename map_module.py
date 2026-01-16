@@ -1,38 +1,27 @@
 #Här skapas en karta och rummen slumpas fram
-#karta grid lista i lista 
-#map = kartan
-#med funktionen Print_map() så kan du skriva ut kartan i terminalen
-#med funktionen Map_Creation skapas en ny karta som sparas i den globala variabeln map
+#med funktionen Map_Creation skapas en ny karta
 #med funktionen get_room_type() kan du få vad det är för typ av rum spelaren står i
 import random as rand
 from player import *
 from soundengine import *
+
 def map_creation():
     game_map = []
-    map_size = 7 #bestämmer storlek på kartan
-    for i in range (map_size): #En tom kart mall skapas
+    
+    for i in range (7): #En tom kart mall skapas
         game_map.append([0,0,0,0])
 
-    for a in range (map_size):
+    for a in range (7):
         for b in range (4): #här slumpas rummens egenskaper fram N = Neutralt 
-            #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla kanske R = Renoveras B = BOSS E= tomt rum
+            #G = gott/GOOd O = Ont/OEvil   T = Trap/fälla B = BOSS (E = Empty)
             room_type = ["N","G","O","T"]
             game_map[a][b]=(room_type[rand.randint(0,3)])
 
-    #Bossmodul
-    #Alltid en boss 1 i mittenrummet 
-    #Boss 2 är alltid i sista rummet???
+    #förbestämda rum, bestämer två platser för bossar, samt gör det rummet man startar i till ett tomt rum
     game_map[3][1] = "B"
     game_map[2][2] = "B"
     game_map[6][3] = "E"
     return game_map
-
-
-# Behövs inte, men sparar endå
-#
-# def print_map(game_map):
-#    for row in game_map: #Hur man kan skiva ut kartan fint
-#        print(row)
 
 def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför kartan
     if player_pos_y < 0 or player_pos_y > 6 or player_pos_x < 0 or player_pos_x > 3:
@@ -41,8 +30,7 @@ def illigal_move(player_pos_y, player_pos_x): #Säger om Spelaren går utanför 
     else:
         return False
 
-
-def player_position(pos_y, pos_x):
+def player_position(pos_y, pos_x): #När spelaren byter rum
     while True:
         player_move = input("Vart vill du gå? upp, ner, vänster, höger?\nAnvänd WASD\n").strip().lower()
 
@@ -65,7 +53,7 @@ def player_position(pos_y, pos_x):
 
         return new_y, new_x
 
-def get_room_type(player_pos_y, player_pos_x, game_map):
+def get_room_type(player_pos_y, player_pos_x, game_map): #ger typen av rummet spelarn står i
     """player_pos_y, player_pos_x, game_map"""
     room = (game_map[player_pos_y][player_pos_x])
 
