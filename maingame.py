@@ -117,6 +117,8 @@ def maingame(player, game_map):
 
 def startgame(): #starten till spelet, här ska man välja om man ska skapa en ny sparfil eller om man vill importera en sparad version
     print("Välkommen till första våningen på åva \n")
+    backgroundmusic("ljud/bakgrund.wav")
+
     try:    
         # while True:
         startchoice = input("Välj 1 om du vill starta ett nytt spel eller 2 om du vill ladda in en sparfil!!! ")
