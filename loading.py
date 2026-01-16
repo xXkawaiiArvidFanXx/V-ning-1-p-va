@@ -92,4 +92,17 @@ def endcredits():
     print("alla buggfixade")
     row_marker()
     time.sleep(10)
+    buffered_type("""    
+10/10!!!
+Från och med första textraden och noten så var jag
+trollbunden till detta charmiga indie-textäventyrsspel. 
+Jag var som förälskad med alla karaktärer, 
+speciellt den grischiga Fatima som jag hade äran att gestalta min första runda.
+De kreativa vapnena och fiendenamnen lockar till tårar, 
+mest ledsna med fienderna, men bryter aldrig den magi som har ingjutits av 
+de otroligt professionella (och snygga om jag får säga det själv) kreatörerna. 
+Ett spel för alla som alltid kan spelas, vare sig ålder, kön eller längd.
+
+//Imponerad Scout (såna ser man inte ofta)
+    """, 0.04)
     return 
