@@ -20,7 +20,6 @@ def fight(player, enemy):
 
         if enemy.fight_or_flight(player) or first_strike:
             return "fled"
-        print ("====================================================================================================================\n")
         choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
 
         if choice == "1":
