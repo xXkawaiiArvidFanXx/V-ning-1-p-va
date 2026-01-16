@@ -6,7 +6,7 @@ from victory_or_lose import *
 
 # Huvudprogrammet <3
 def maingame_start():
-    # game_loading()
+    game_loading()
     load_or_save = startgame()
     if load_or_save == "load_game":
         try:
