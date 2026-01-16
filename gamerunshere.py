@@ -8,7 +8,7 @@ from victory_or_lose import *
 def maingame_start():
     #game_loading()
     game_map = map_creation()
-    load_or_save=startgame()
+    load_or_save = startgame()
     if load_or_save != "load_game":
         player = class_chooser()
     else:
