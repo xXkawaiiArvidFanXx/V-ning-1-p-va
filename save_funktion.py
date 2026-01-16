@@ -35,11 +35,10 @@ def save_game(player, game_map, weapon):
 
 
 
-    #print(game_map)
     map_save = ""
     for a in range (7):
         for b in range (4): 
-             map_save += game_map[a][b]
+            map_save += game_map[a][b]
 
     file = open("save_file.txt", mode="w", encoding="utf-8") #encoding="utf-8"
     file.write(f"{hp}_{maxhp}_{inventory}_{e_weapon}_{basestrenght}_{strenght}_{name}_{charisma}_{y}_{x}_{nr_boss}_{boss_x}_{boss_y}_{xp}_{level}_{potsion}_{grisch}_{weapon_damage}_{weapon_name}_{weapon_rarity}_\n{map_save}\n")

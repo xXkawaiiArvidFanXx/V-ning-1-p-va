@@ -6,14 +6,20 @@ from victory_or_lose import *
 
 # Huvudprogrammet <3
 def maingame_start():
-    #game_loading()
-    game_map = map_creation()
+    game_loading()
     load_or_save = startgame()
-    if load_or_save != "load_game":
-        player = class_chooser()
+    if load_or_save == "load_game":
+        try:
+            player, game_map = load_game()
+        except:
+            print("Ingen sparad spelstatus hittades.")
+            player = class_chooser()
+            game_map = map_creation()
     else:
-        player, game_map = load_game()
-    
+        player = class_chooser()
+        game_map = map_creation()
+
+
     save_loss_or_win = maingame(player, game_map)
     
     if save_loss_or_win != "save_game":

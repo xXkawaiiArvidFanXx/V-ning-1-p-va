@@ -205,6 +205,8 @@ class Monster():
     def monster_start(self, player):
         """Slumpar vem som börjar slå först i en fight."""
         first_strike = rand.randint(1, 5)
+        if self.is_boss == True:
+            return False
         if first_strike == 1:
             return True
         else:
