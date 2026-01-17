@@ -3,7 +3,7 @@ from os import name
 from player import *
 from text_func import *
 from map_module import *
-from fight import *
+from fight_and_rooms import *
 from save_funktion import *
 import time
 
