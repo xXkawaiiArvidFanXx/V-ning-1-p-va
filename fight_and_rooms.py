@@ -150,7 +150,7 @@ def B_room(player):
 
         elif player.boss_room_cleared == 1:
             boss = Monster(round(player.level*1.05*150),round(player.level*1.05*10), True, "Le Homme Féminin Wilmér")
-            fight(player, boss)
+            fight(player, boss, False)
             player.boss_room_cleared += 1
         stopmusic()
         backgroundmusic("ljud/bakgrund.wav")
