@@ -70,7 +70,7 @@ def endcredits():
     for i in range(1,6):
         endcredits_headline(i)
         endcredits_common_names()
-        if i == 5:
+        if i == 3:
             buffered_type("tåbiah (raggmunk)", 0.2)
     row_marker()
     buffered_type("Karta samt inledandet av spar funktion", 0.1)
@@ -106,3 +106,5 @@ Ett spel för alla som alltid kan spelas, vare sig ålder, kön eller längd.
 //Imponerad Scout (såna ser man inte ofta)
     """, 0.04)
     return 
+
+endcredits()
