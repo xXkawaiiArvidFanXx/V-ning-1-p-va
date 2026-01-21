@@ -107,4 +107,3 @@ Ett spel för alla som alltid kan spelas, vare sig ålder, kön eller längd.
     """, 0.04)
     return 
 
-endcredits()
