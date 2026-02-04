@@ -206,9 +206,11 @@ class Monster():
         else:
             return False
     
-    def fight_or_flight(self, player):
+    def fight_or_flight(self, player, first_strike):
         """Om spelaren har hög charisma kan monstret fly från fighten."""
         if self.is_boss:
+            return False
+        elif first_strike == False:
             return False
         flee_chance = rand.randint(1, 6)
         if flee_chance <= player.charisma:

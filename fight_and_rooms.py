@@ -5,10 +5,8 @@ from levelup_sys import *
 from text_func import *
 import time
 
-def fight(player, enemy):
+def fight(player, enemy, first_strike):
     """Kod för slagsmål"""
-
-    first_strike = enemy.monster_start(player)
 
     while player.hp > 0 and enemy.monsterhealth > 0:
 
@@ -18,8 +16,7 @@ def fight(player, enemy):
             print(player.takes_damage())
             
 
-        if enemy.fight_or_flight(player) and first_strike:
-            return "fled"
+
 
         choice = input("Vill du slåss (1) eller dricka en hälsodryck (2) eller försöka fly (3)? ").strip()
         first_strike = False
@@ -89,27 +86,32 @@ def fight(player, enemy):
 
 
 
-def O_room(player, monster):
+def O_room(player, monster, first_strike):
     """Ont rum, startar slagsmål. Efter slagsmålet kollar koden vissa saker t.ex hur man vann o om man kan levla upp"""
     clear_terminal()
     
     print("Du har gått in i ett ont rum och en {} dyker upp! \n".format(monster.monstername))
     print(f"""-------------------{monster}-------------------""")
-    fight_clear_method = fight(player, monster)
+    fight_clear_method = fight(player, monster, first_strike)
 
     if fight_clear_method == "victory":
         correct_choice = str(rand.randint(1, 3))
         print("\n")
         gissning = input("Om du vill kan du vila och kanske återhämta lite hälsa, men då måste du gissa rätt. 1, 2 eller 3? \n").strip()
         if gissning == correct_choice:
+
             if player.hp == player.maxhp:
+
                 print("Du har redan full hälsa, du kan inte vila nu.")
-            hpregen = player.maxhp - player.hp
-            if hpregen == 0:
+            hp_max_regen = player.maxhp - player.hp
+
+            if hp_max_regen == 0:
                 print("Du är redan fullt återhämtad.")
-            genhp = rand.randint(1, hpregen)
+
+            genhp = rand.randint(1, hp_max_regen)
             print(f"Du återhämtar {genhp} {hp_or_aura(player)}.")
             player.hp += genhp
+
         else:
             print("Fel gissning, ingen hälsa återhämtad.")
         player.xp, player.level, player.strenght, player.maxhp, player.hp, player.base_strenght = level_up(player)
@@ -257,8 +259,15 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
         monster_hp = round(player.level *1.10 * rand.randint(7, 15))
         base_attack = round(player.level *1.1 + 0.23 * monster_hp) #bara formel som förhoppningsvis är balancerad
         monster_attack = max(1, base_attack + rand.randint(-1, 1)) #max ifall ekvationen skulle ge tall under 1 (max väljer argumentet som är störst )
+        monster = Monster(monster_hp, monster_attack, False)
 
-        return O_room(player, Monster(monster_hp, monster_attack, False))
+        first_strike = monster.monster_start(player)
+        
+        if monster.fight_or_flight(player, first_strike):
+            return player
+        else:
+            return O_room(player, monster, first_strike)
+        
     elif room == "Bossrum":
         return B_room(player)
     elif room == "Gott rum":
@@ -269,3 +278,4 @@ def room_chooser(room, player, boss=None, trap_message="", audio_file=0):
         return E_room(player)
     elif room == "Neutralt rum":
         return N_room(player)
+
