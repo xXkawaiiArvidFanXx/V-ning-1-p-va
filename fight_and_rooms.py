@@ -130,17 +130,17 @@ def B_room(player):
         buffered_type("Det rekomenderas att sänka volymen", 0.1)
         buffered_type("Du har 5 sekunder på dig", 0.1)
         stopmusic()
-        backgroundmusic("ljud/hesa_filip.wav")
-        for i in range (0,4):
+        backgroundmusic("ljud\\hesa_filip.wav")
+        for i in range (0,5):
             time.sleep(1)
-            print(i+1) # Eventuelt ljud
-        backgroundmusic("ljud/cinematic_drum_loop.wav")
+            print(i+1) 
+        backgroundmusic("ljud\cinematic_drum_loop.wav")
         
-        
+        first_strike = False
         if player.boss_room_cleared == 0:
             print("Du har kommit till ett bossrum! Förbered dig på en tuff strid mot le cuisinier! \n")
             boss = Monster(round(player.level*1.05*75), round(player.level*1.05*5), True, "Le Cuisinier")
-            boss_clear_method = fight(player, boss, False)
+            boss_clear_method = fight(player, boss, first_strike)
             if boss_clear_method == "victory":
                 print("Grattis! Du har besegrat Le Cuisinier och klarat av det första bossrummet!")
                 player.boss_room_cleared += 1
@@ -150,7 +150,7 @@ def B_room(player):
 
         elif player.boss_room_cleared == 1:
             boss = Monster(round(player.level*1.05*150),round(player.level*1.05*10), True, "Le Homme Féminin Wilmér")
-            fight(player, boss, False)
+            fight(player, boss, first_strike)
             player.boss_room_cleared += 1
         stopmusic()
         backgroundmusic("ljud/bakgrund.wav")
