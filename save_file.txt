@@ -1,2 +1,2 @@
-10_10_14,svag bälte,legendariskt|_svag bälte ||| Skada: 14 ||| Sällsynthet: legendariskt |||_1.5_15.5_Fatima_1.1_6_3_0_0_0_0_1_0_True_14_svag bälte_legendariskt_
-GGGTNOTOTOBGNBOTGTGGTGGNGNOE
+13_15_5,smal dator,temu|3,modern stekpanna,normal|_smal dator ||| Skada: 5 ||| Sällsynthet: temu |||_2.0_7.0_Geodor Von Tohn Fih_1.0_4_3_0_0_0_1_1_2_True_5_smal dator_temu_
+GNNTGOTGNNBGTBNONNTGTNTNOOOE

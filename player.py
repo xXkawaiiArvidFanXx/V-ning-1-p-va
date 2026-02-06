@@ -242,12 +242,12 @@ def weapon_create(wepontype):
 
 def chest(player):
     random_num = rand.randint(1,100)
-    if random_num >= 50:
-        choice = "health"
-    if random_num >= 50 and random_num < 75:
-        choice = "weapon"
-    else:
+    if random_num <= 50:
         choice = "empty"
+    elif random_num <= 75:
+        choice = "health"
+    else:
+        choice = "weapon"
     if choice == "weapon":
         chest_weapon = weapon_create("")
         player.add_item(chest_weapon)
